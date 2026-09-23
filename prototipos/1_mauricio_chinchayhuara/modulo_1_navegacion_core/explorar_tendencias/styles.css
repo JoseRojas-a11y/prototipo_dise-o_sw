@@ -1,0 +1,25 @@
+/* Estilos de Contenedores - Explorar Tendencias */
+.emporio-selector-card {
+  background-color: var(--color-surface-container-low);
+  padding: 0.5rem 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.search-box-container {
+  padding: 1rem 1rem 0.5rem 1rem;
+}
+
+.gps-hero-card {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
+  color: var(--color-on-primary);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(9, 20, 38, 0.15);
+}
+
+.trends-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0 1rem;
+}

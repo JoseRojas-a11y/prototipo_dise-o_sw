@@ -1,0 +1,780 @@
+<!DOCTYPE html><html lang="es"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Exportación de Reportes B2B - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head><body class="gamarrachain-dashboard bg-surface font-body-md text-on-surface antialiased">
+  <gamarra-header role="analytics" title="Exportación de Reportes B2B"></gamarra-header>
+  <analytics-tabs active="exportacion-inteligencia-comercial"></analytics-tabs><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full">
+<!-- Top Context Navigation Strip (Secondary sub-header with active state for 'Exportar Reporte') -->
+<div class="w-full bg-surface-container-low/60 px-margin-tablet lg:px-space-xl py-space-sm">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-sm text-body-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">corporate_fare</span>
+<span class="font-semibold text-primary">Holding Textil Perú S.A.</span>
+<span class="">/</span>
+<span class="text-on-surface-variant font-medium">Galería San Pedro</span>
+<span class="">/</span>
+<span class="text-secondary font-semibold">Despacho de Inteligencia B2B</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="flex items-center gap-1 font-label-sm text-secondary text-label-sm bg-secondary-container/50 px-2.5 py-1 rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+          Conexión Segura SSL 256-bit TLS 1.3
+        </span>
+<span class="text-on-surface-variant/50 hidden sm:inline">|</span>
+<span class="font-label-sm text-on-surface-variant text-label-sm hidden sm:inline">Token de Sesión: <span class="font-mono text-primary font-medium">GC-CORP-98421-B</span></span>
+</div>
+</div>
+</div>
+<!-- Main Work Area -->
+<div class="w-full px-margin-tablet lg:px-space-xl py-space-lg">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-xl">
+<!-- Executive Page Header Section -->
+<section class="flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full bg-primary-container text-on-primary font-label-sm uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-secondary-container">verified_user</span>
+                B2B Enterprise Portal
+              </span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Versión Oficial Auditada</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+              Exportación de Inteligencia Comercial &amp; Reportes Estratégicos
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+              Informes ejecutivos consolidados con data transaccional, aforos LiDAR, análisis de precios y predictibilidad de demanda textil para inversionistas y retailers corporativos.
+            </p>
+</div>
+<!-- Periodicity Selector Segmented Control -->
+<div class="flex flex-col gap-1.5 self-start lg:self-end">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">
+              Ventana Temporal de Análisis
+            </label>
+<div class="inline-flex p-1 bg-surface-container rounded-xl">
+<button class="period-btn px-space-md py-2 rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-all" data-period="q3" type="button">
+                Trimestre Q3 2024 (Consolidado)
+              </button>
+<button class="period-btn px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-period="sep" type="button">
+                Mensual Septiembre
+              </button>
+<button class="period-btn px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-period="sem" type="button">
+                Semestral 2024
+              </button>
+</div>
+</div>
+</div>
+<!-- Trust Badges & Compliance Bar -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm p-space-sm rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-space-sm px-space-md py-2 rounded-lg bg-surface-container-low">
+<div class="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: 'FILL' 1;">enhanced_encryption</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Cifrado Militar AES-256</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Archivos sellados con llave criptográfica HSM</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm px-space-md py-2 rounded-lg bg-surface-container-low">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]">branding_watermark</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Firma Digital SHA-256</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Foliado con RUC corporativo y timestamp UTC</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm px-space-md py-2 rounded-lg bg-surface-container-low">
+<div class="w-8 h-8 rounded-lg bg-secondary-container/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container text-[20px]">policy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Válido para Auditoría Financiera</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Certificación pericial Sunat &amp; Big Four Ready</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Dual-Column Operational Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: Available Executive Reports (8 Cols) -->
+<section class="lg:col-span-7 xl:col-span-8 flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Informes Ejecutivos Disponibles</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm">3 paquetes listos</span>
+</div>
+<span class="font-label-sm text-on-surface-variant">Precios expresados en Soles (PEN)</span>
+</div>
+<!-- Report Card 1 -->
+<article class="report-card group bg-surface-container-lowest rounded-xl p-space-md lg:p-space-lg shadow-sm transition-all hover:shadow-md relative overflow-hidden" data-base-price="480" data-id="rep1">
+<div class="flex flex-col md:flex-row gap-space-lg">
+<!-- Visual Blur Preview (Simulated confidential paper) -->
+<div class="relative w-full md:w-48 h-44 shrink-0 rounded-lg overflow-hidden bg-surface-container-high flex flex-col items-center justify-center p-3 shadow-inner">
+<!-- Blurred Paper Mockup Background -->
+<div class="w-full h-full bg-white rounded flex flex-col p-2 space-y-1.5 opacity-40 blur-[1.5px] select-none pointer-events-none">
+<div class="h-2 w-3/4 bg-primary/40 rounded"></div>
+<div class="h-1.5 w-1/2 bg-outline-variant rounded"></div>
+<div class="grid grid-cols-3 gap-1 pt-1">
+<div class="h-8 bg-surface-container-highest rounded"></div>
+<div class="h-8 bg-secondary-container/60 rounded"></div>
+<div class="h-8 bg-surface-variant rounded"></div>
+</div>
+<div class="space-y-1 pt-1">
+<div class="h-1.5 w-full bg-outline-variant/60 rounded"></div>
+<div class="h-1.5 w-5/6 bg-outline-variant/50 rounded"></div>
+<div class="h-1.5 w-2/3 bg-outline-variant/40 rounded"></div>
+</div>
+</div>
+<!-- Confidentiality Overlay -->
+<div class="absolute inset-0 bg-primary/70 backdrop-blur-[2px] flex flex-col items-center justify-center p-2 text-center text-on-primary">
+<div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-[18px] text-secondary-container">lock</span>
+</div>
+<span class="font-label-sm text-[10px] tracking-wider font-bold uppercase text-secondary-fixed">Confidencial B2B</span>
+<span class="text-[9px] text-primary-fixed-dim leading-tight mt-0.5">Watermark: RUC 20601839201</span>
+</div>
+<span class="absolute top-2 left-2 bg-primary-container/90 text-on-primary text-[9px] font-bold px-1.5 py-0.5 rounded font-mono">Q3-PREDICT</span>
+</div>
+<!-- Content and Format Options -->
+<div class="flex flex-col justify-between flex-1 gap-space-md">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-1.5">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-label-sm font-semibold">Macroeconomía Textil</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
+                        Auditado
+                      </span>
+</div>
+<span class="text-headline-sm font-headline-sm text-primary whitespace-nowrap">
+                      S/ <span class="card-display-price">480.00</span>
+<span class="font-body-sm text-body-sm font-normal text-on-surface-variant block text-right">($130 USD)</span>
+</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary leading-snug">
+                    Informe Macro: Tendencias de Demanda Textil y Análisis Predictivo Mayorista 2024-II
+                  </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                    Elasticidad de precios por fardo de tejido plano y de punto, ranking de hilados en déficit crítico y curvas de consumo interprovincial hacia Arequipa, Trujillo y Huancayo.
+                  </p>
+<!-- Report Metadata Bar -->
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-2.5 pt-2 border-t-0 bg-surface-container-low/50 px-space-sm py-1.5 rounded-lg text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">calendar_month</span>
+                      Corte: 30 Sept 2024
+                    </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">description</span>
+                      52 Páginas Foliadas
+                    </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">database</span>
+                      148k transacciones auditadas
+                    </span>
+</div>
+</div>
+<!-- Format Selection Controls -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm pt-2 bg-surface-container-low/30 p-2.5 rounded-lg">
+<div class="flex flex-col gap-1 w-full sm:w-auto">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Seleccionar Formato de Entrega:</span>
+<div class="flex flex-wrap gap-space-xs">
+<label class="format-option inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-surface-container-lowest shadow-sm cursor-pointer text-body-sm hover:bg-surface-container transition-colors">
+<input checked="" class="accent-primary" data-add="0" name="format-rep1" type="radio" value="pdf">
+<span class="font-semibold text-primary">PDF Ejecutivo</span>
+<span class="text-[10px] text-on-surface-variant">(Vectorial)</span>
+</label>
+<label class="format-option inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-surface-container-lowest shadow-sm cursor-pointer text-body-sm hover:bg-surface-container transition-colors">
+<input class="accent-primary" data-add="50" name="format-rep1" type="radio" value="excel">
+<span class="font-semibold text-primary">Excel .XLSX</span>
+<span class="text-[10px] text-on-surface-variant">(+S/ 50)</span>
+</label>
+<label class="format-option inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-surface-container-lowest shadow-sm cursor-pointer text-body-sm hover:bg-surface-container transition-colors">
+<input class="accent-primary" data-add="120" name="format-rep1" type="radio" value="bundle">
+<span class="font-semibold text-primary">Bundle Completo</span>
+<span class="text-[10px] text-secondary font-bold">(+S/ 120)</span>
+</label>
+</div>
+</div>
+<!-- Include in Purchase Toggle Button -->
+<button class="toggle-report-btn w-full sm:w-auto px-space-md py-2.5 rounded-lg font-label-md text-label-md font-bold transition-all flex items-center justify-center gap-2 bg-primary text-on-primary shadow-sm hover:bg-primary-container" data-state="selected" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="">Seleccionado</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Report Card 2 -->
+<article class="report-card group bg-surface-container-lowest rounded-xl p-space-md lg:p-space-lg shadow-sm transition-all hover:shadow-md relative overflow-hidden" data-base-price="650" data-id="rep2">
+<div class="flex flex-col md:flex-row gap-space-lg">
+<!-- Visual Blur Preview -->
+<div class="relative w-full md:w-48 h-44 shrink-0 rounded-lg overflow-hidden bg-surface-container-high flex flex-col items-center justify-center p-3 shadow-inner">
+<div class="w-full h-full bg-white rounded flex flex-col p-2 space-y-1.5 opacity-40 blur-[1.5px] select-none pointer-events-none">
+<div class="h-2 w-2/3 bg-primary/40 rounded"></div>
+<!-- Simulated Heatmap Layout -->
+<div class="grid grid-cols-4 gap-1 pt-1 h-14">
+<div class="bg-error/30 rounded"></div>
+<div class="bg-secondary/40 rounded col-span-2"></div>
+<div class="bg-error/50 rounded"></div>
+</div>
+<div class="h-1.5 w-full bg-outline-variant/60 rounded"></div>
+<div class="h-1.5 w-4/5 bg-outline-variant/40 rounded"></div>
+</div>
+<div class="absolute inset-0 bg-primary/70 backdrop-blur-[2px] flex flex-col items-center justify-center p-2 text-center text-on-primary">
+<div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-[18px] text-secondary-container">sensors</span>
+</div>
+<span class="font-label-sm text-[10px] tracking-wider font-bold uppercase text-secondary-fixed">Data LiDAR Cruda</span>
+<span class="text-[9px] text-primary-fixed-dim leading-tight mt-0.5">Galería San Pedro - 5 Plantas</span>
+</div>
+<span class="absolute top-2 left-2 bg-secondary/90 text-on-secondary text-[9px] font-bold px-1.5 py-0.5 rounded font-mono">SP-LIDAR-5P</span>
+</div>
+<!-- Content and Format Options -->
+<div class="flex flex-col justify-between flex-1 gap-space-md">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-1.5">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-label-sm font-semibold">Auditoría Espacial &amp; Valuación</span>
+<span class="text-secondary font-label-sm text-label-sm font-semibold bg-secondary-container/40 px-2 py-0.5 rounded-full">
+                        Alta Demanda Inmobiliaria
+                      </span>
+</div>
+<span class="text-headline-sm font-headline-sm text-primary whitespace-nowrap">
+                      S/ <span class="card-display-price">650.00</span>
+<span class="font-body-sm text-body-sm font-normal text-on-surface-variant block text-right">($175 USD)</span>
+</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary leading-snug">
+                    Auditoría Espacial de Pasillos y Valor del Metro Cuadrado en Galería San Pedro
+                  </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                    Mapas térmicos de 5 niveles comerciales, densidades peatonales por pasaje, ratio peatón-stand e indexación de valor comercial por metro cuadrado para contratos 2025.
+                  </p>
+<!-- Metadata Bar -->
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-2.5 pt-2 bg-surface-container-low/50 px-space-sm py-1.5 rounded-lg text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">calendar_month</span>
+                      Corte: 05 Oct 2024
+                    </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">radar</span>
+                      24 Sensores Ópticos / LiDAR
+                    </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">storefront</span>
+                      184 Stands Mapeados
+                    </span>
+</div>
+</div>
+<!-- Format Selection Controls -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm pt-2 bg-surface-container-low/30 p-2.5 rounded-lg">
+<div class="flex flex-col gap-1 w-full sm:w-auto">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Seleccionar Formato de Entrega:</span>
+<div class="flex flex-wrap gap-space-xs">
+<label class="format-option inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-surface-container-lowest shadow-sm cursor-pointer text-body-sm hover:bg-surface-container transition-colors">
+<input class="accent-primary" name="format-rep2" type="radio" value="pdf">
+<span class="font-semibold text-primary">PDF Ejecutivo</span>
+<span class="text-[10px] text-on-surface-variant">(Vectorial)</span>
+</label>
+<label class="format-option inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-surface-container-lowest shadow-sm cursor-pointer text-body-sm hover:bg-surface-container transition-colors">
+<input checked="" class="accent-primary" data-add="0" name="format-rep2" type="radio" value="excel">
+<span class="font-semibold text-primary">PDF + Excel .XLSX</span>
+<span class="text-[10px] text-secondary font-bold">(Recomendado)</span>
+</label>
+<label class="format-option inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-surface-container-lowest shadow-sm cursor-pointer text-body-sm hover:bg-surface-container transition-colors">
+<input class="accent-primary" data-add="120" name="format-rep2" type="radio" value="bundle">
+<span class="font-semibold text-primary">Bundle (+RAW CSV)</span>
+<span class="text-[10px] text-on-surface-variant">(+S/ 120)</span>
+</label>
+</div>
+</div>
+<!-- Include in Purchase Toggle Button -->
+<button class="toggle-report-btn w-full sm:w-auto px-space-md py-2.5 rounded-lg font-label-md text-label-md font-bold transition-all flex items-center justify-center gap-2 bg-primary text-on-primary shadow-sm hover:bg-primary-container" data-state="selected" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="">Seleccionado</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Report Card 3 -->
+<article class="report-card group bg-surface-container-lowest rounded-xl p-space-md lg:p-space-lg shadow-sm transition-all hover:shadow-md relative overflow-hidden" data-base-price="890" data-id="rep3">
+<div class="flex flex-col md:flex-row gap-space-lg">
+<!-- Visual Blur Preview -->
+<div class="relative w-full md:w-48 h-44 shrink-0 rounded-lg overflow-hidden bg-surface-container-high flex flex-col items-center justify-center p-3 shadow-inner">
+<div class="w-full h-full bg-white rounded flex flex-col p-2 space-y-1.5 opacity-40 blur-[1.5px] select-none pointer-events-none">
+<div class="h-2 w-4/5 bg-primary/50 rounded"></div>
+<!-- Matrix Charts -->
+<div class="space-y-1 pt-1">
+<div class="flex justify-between items-center"><div class="h-1.5 w-12 bg-primary"></div><div class="h-1.5 w-24 bg-surface-variant"></div></div>
+<div class="flex justify-between items-center"><div class="h-1.5 w-16 bg-primary"></div><div class="h-1.5 w-20 bg-secondary-container"></div></div>
+<div class="flex justify-between items-center"><div class="h-1.5 w-8 bg-primary"></div><div class="h-1.5 w-28 bg-surface-variant"></div></div>
+</div>
+<div class="h-1.5 w-full bg-outline-variant/60 rounded mt-2"></div>
+</div>
+<div class="absolute inset-0 bg-primary/70 backdrop-blur-[2px] flex flex-col items-center justify-center p-2 text-center text-on-primary">
+<div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-[18px] text-secondary-container">query_stats</span>
+</div>
+<span class="font-label-sm text-[10px] tracking-wider font-bold uppercase text-secondary-fixed">Dossier B2B Máster</span>
+<span class="text-[9px] text-primary-fixed-dim leading-tight mt-0.5">Top 120 Confeccionistas</span>
+</div>
+<span class="absolute top-2 left-2 bg-tertiary text-on-tertiary text-[9px] font-bold px-1.5 py-0.5 rounded font-mono">PIMA-DENIM-CORP</span>
+</div>
+<!-- Content and Format Options -->
+<div class="flex flex-col justify-between flex-1 gap-space-md">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-1.5">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-label-sm font-semibold">Cadena Textil &amp; Suministros</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm font-bold">
+                        Exclusivo Gran Mayorista
+                      </span>
+</div>
+<span class="text-headline-sm font-headline-sm text-primary whitespace-nowrap">
+                      S/ <span class="card-display-price">890.00</span>
+<span class="font-body-sm text-body-sm font-normal text-on-surface-variant block text-right">($240 USD)</span>
+</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary leading-snug">
+                    Dossier Integral de Inteligencia B2B: Denim, Algodón Pima y Confección Urbana
+                  </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                    Benchmark competitivo de los 120 mayores fabricantes de Lima Metropolitana, rotación de rollos en almacén, precios de hilanderías mayoristas y proyecciones de fibra para Campaña Verano 2025.
+                  </p>
+<!-- Metadata Bar -->
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-2.5 pt-2 bg-surface-container-low/50 px-space-sm py-1.5 rounded-lg text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">calendar_month</span>
+                      Corte: 01 Oct 2024
+                    </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">inventory_2</span>
+                      76 Págs + Matrices XLSX
+                    </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">hub</span>
+                      120 Proveedores Registrados
+                    </span>
+</div>
+</div>
+<!-- Format Selection Controls -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm pt-2 bg-surface-container-low/30 p-2.5 rounded-lg">
+<div class="flex flex-col gap-1 w-full sm:w-auto">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Seleccionar Formato de Entrega:</span>
+<div class="flex flex-wrap gap-space-xs">
+<label class="format-option inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-surface-container-lowest shadow-sm cursor-pointer text-body-sm hover:bg-surface-container transition-colors">
+<input class="accent-primary" data-add="-90" name="format-rep3" type="radio" value="pdf">
+<span class="font-semibold text-primary">PDF Solamente</span>
+<span class="text-[10px] text-on-surface-variant">(-S/ 90)</span>
+</label>
+<label class="format-option inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-surface-container-lowest shadow-sm cursor-pointer text-body-sm hover:bg-surface-container transition-colors">
+<input class="accent-primary" data-add="-50" name="format-rep3" type="radio" value="excel">
+<span class="font-semibold text-primary">Excel Crudo</span>
+<span class="text-[10px] text-on-surface-variant">(-S/ 50)</span>
+</label>
+<label class="format-option inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-surface-container-lowest shadow-sm cursor-pointer text-body-sm hover:bg-surface-container transition-colors">
+<input checked="" class="accent-primary" data-add="0" name="format-rep3" type="radio" value="bundle">
+<span class="font-semibold text-primary">Bundle Máster (PDF + XLSX + API)</span>
+<span class="text-[10px] text-secondary font-bold">(Completo)</span>
+</label>
+</div>
+</div>
+<!-- Include in Purchase Toggle Button (Initially not selected for realistic cart math) -->
+<button class="toggle-report-btn w-full sm:w-auto px-space-md py-2.5 rounded-lg font-label-md text-label-md font-bold transition-all flex items-center justify-center gap-2 bg-surface-container hover:bg-surface-container-high text-on-surface shadow-sm" data-state="unselected" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span class="">Agregar a Orden</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+</section>
+<!-- RIGHT COLUMN: Sticky Order Summary & B2B Checkout (5 Cols / 4 Cols on XL) -->
+<aside class="lg:col-span-5 xl:col-span-4 sticky top-24 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-md lg:p-space-lg shadow-md flex flex-col gap-space-md">
+<!-- Summary Header -->
+<div class="flex items-center justify-between pb-space-sm border-b-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">receipt_long</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Resumen de Orden Corporativa</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold">
+                B2B Verificado
+              </span>
+</div>
+<!-- Itemized Breakdown Container -->
+<div class="flex flex-col gap-space-sm" id="cart-items-container"><div class="cart-item flex items-start justify-between gap-space-sm p-2.5 rounded-lg bg-surface-container-low animate-fadeIn" data-id="rep1">
+            <div class="flex flex-col">
+              <span class="font-label-md text-label-md text-primary font-bold line-clamp-1">Informe Macro: Demanda Textil 2024-II</span>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-surface-container font-semibold text-on-surface-variant">PDF Vectorial</span>
+                <span class="text-[11px] text-on-surface-variant">Licencia Enterprise</span>
+              </div>
+            </div>
+            <span class="font-label-md text-label-md text-primary font-bold whitespace-nowrap">S/ 480.00</span>
+          </div><div class="cart-item flex items-start justify-between gap-space-sm p-2.5 rounded-lg bg-surface-container-low animate-fadeIn" data-id="rep2">
+            <div class="flex flex-col">
+              <span class="font-label-md text-label-md text-primary font-bold line-clamp-1">Auditoría Espacial Galería San Pedro</span>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-surface-container font-semibold text-on-surface-variant">PDF + Excel</span>
+                <span class="text-[11px] text-on-surface-variant">Licencia Enterprise</span>
+              </div>
+            </div>
+            <span class="font-label-md text-label-md text-primary font-bold whitespace-nowrap">S/ 650.00</span>
+          </div></div>
+<!-- Instant Delivery & Ephemeral Security Notice -->
+<div class="flex items-start gap-2 p-2.5 rounded-lg bg-secondary-container/20 text-on-secondary-container text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">verified</span>
+<span class="">
+<strong>Entrega instantánea:</strong> Enlace de descarga efímero con marca de agua institucional (válido por 48 horas y 3 descargas autorizadas por HSM).
+              </span>
+</div>
+<!-- Financial Calculation Totals -->
+<div class="flex flex-col gap-1.5 pt-space-xs text-body-md">
+<div class="flex justify-between text-on-surface-variant">
+<span class="">Subtotal Informes</span>
+<span class="font-semibold text-on-surface" id="calc-subtotal">S/ 1130.00</span>
+</div>
+<div class="flex justify-between text-secondary">
+<span class="flex items-center gap-1">
+<span class="">Descuento Holding Textil (10%)</span>
+<span class="material-symbols-outlined text-[14px]">info</span>
+</span>
+<span class="font-semibold" id="calc-discount">-S/ 113.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="">I.G.V. (18% Ley 29571)</span>
+<span class="font-semibold text-on-surface" id="calc-igv">S/ 183.06</span>
+</div>
+<div class="h-px bg-surface-container my-1"></div>
+<div class="flex justify-between items-baseline pt-1">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Total a Pagar</span>
+<span class="text-[11px] text-on-surface-variant">Incluye comprobante SUNAT electrónico</span>
+</div>
+<div class="text-right">
+<span class="font-display-metric text-display-metric text-primary leading-none block" id="calc-total">S/ 1200.06</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant" id="calc-usd">≈ $324.34 USD</span>
+</div>
+</div>
+</div>
+<!-- Minimalist Corporate B2B Checkout Gateway Form -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">
+                Método de Facturación &amp; Pago Corporativo
+              </span>
+<!-- Corporate Billing Method Tabs -->
+<div class="grid grid-cols-3 gap-1 p-1 bg-surface-container rounded-lg text-center">
+<button class="pay-tab py-1.5 px-2 rounded-md font-label-sm text-label-sm bg-primary text-on-primary font-semibold shadow-sm transition-all" data-target="card" type="button">
+                  Tarjeta Corp.
+                </button>
+<button class="pay-tab py-1.5 px-2 rounded-md font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all font-medium" data-target="transfer" type="button">
+                  Transferencia
+                </button>
+<button class="pay-tab py-1.5 px-2 rounded-md font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all font-medium" data-target="credit" type="button">
+                  Línea Pro
+                </button>
+</div>
+<!-- Form Inputs -->
+<form class="flex flex-col gap-space-sm mt-1" onsubmit="event.preventDefault();">
+<!-- Razón Social y RUC Autovalidado -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold">Razón Social y RUC Corporativo</label>
+<span class="text-[10px] text-secondary font-bold flex items-center gap-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> SUNAT Activo
+                    </span>
+</div>
+<div class="flex items-center px-3 py-2 bg-surface-container-low rounded-lg text-body-sm text-primary font-medium">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant mr-2">verified</span>
+<span class="truncate">Holding Textil Perú S.A. - RUC 20601839201</span>
+</div>
+</div>
+<!-- Correo Institucional -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold">Correo para Descarga y Facturación XML/PDF</label>
+<div class="relative">
+<input class="w-full px-3 py-2 bg-surface-container-lowest text-primary rounded-lg text-body-sm shadow-inner focus:outline-none focus:bg-surface-container-low" type="email" value="finanzas@holdingtextilperu.com">
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-[18px] text-secondary">mail_lock</span>
+</div>
+</div>
+<!-- Card Details Subsection (Default tab) -->
+<div class="flex flex-col gap-space-xs" id="payment-card-panel">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold">Tarjeta de Crédito Corporativa</label>
+<div class="relative">
+<input class="w-full pl-9 pr-3 py-2 bg-surface-container-lowest text-primary rounded-lg text-body-sm font-mono focus:outline-none focus:bg-surface-container-low" placeholder="•••• •••• •••• 4192" type="text" value="4551 8200 9102 4192">
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-[18px] text-on-surface-variant">credit_card</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold">Vencimiento</label>
+<input class="w-full px-3 py-2 bg-surface-container-lowest text-primary rounded-lg text-body-sm font-mono text-center focus:outline-none focus:bg-surface-container-low" placeholder="MM/AA" type="text" value="08/27">
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold">CVV Corp</label>
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant cursor-pointer">help</span>
+</div>
+<input class="w-full px-3 py-2 bg-surface-container-lowest text-primary rounded-lg text-body-sm font-mono text-center focus:outline-none focus:bg-surface-container-low" placeholder="•••" type="password" value="842">
+</div>
+</div>
+</div>
+<!-- Transfer Instructions Panel (Hidden initially) -->
+<div class="hidden flex-col gap-2 p-3 bg-surface-container-low rounded-lg text-body-sm" id="payment-transfer-panel">
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+<span class="">BCP Soles Corporativo</span>
+</div>
+<div class="font-mono text-[12px] text-on-surface-variant">
+                    CCI: 002-191-000492817291-55<br>
+                    Titular: GamarraChain Intelligence S.A.C.<br>
+                    RUC: 20609918231
+                  </div>
+<span class="text-[11px] text-secondary font-semibold">Activación automática al conciliar transacción vía API BCP.</span>
+</div>
+<!-- Credit Line Panel (Hidden initially) -->
+<div class="hidden flex-col gap-2 p-3 bg-surface-container-low rounded-lg text-body-sm" id="payment-credit-panel">
+<div class="flex justify-between items-center text-primary font-bold">
+<span class="">Línea GamarraChain Pro</span>
+<span class="text-secondary font-mono">Disponible: S/ 45,000.00</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">Carga directa a su factura mensual consolidada con crédito a 30 días.</p>
+</div>
+<!-- Prominent Purchase CTA Trigger -->
+<button class="w-full mt-2 py-3.5 px-space-md rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md transition-all flex items-center justify-center gap-2 group" id="pay-submit-btn" type="button">
+<span class="material-symbols-outlined text-[20px] text-secondary-container group-hover:scale-110 transition-transform">bolt</span>
+<span id="cta-button-text" class="">Pagar S/ 1200.06 y Generar Enlace Seguro</span>
+</button>
+</form>
+<!-- Security & Legal Footnote -->
+<div class="flex flex-col gap-2 pt-2 text-center">
+<div class="flex items-center justify-center gap-3 text-on-surface-variant/70 text-body-sm">
+<span class="flex items-center gap-1 text-[11px]">
+<span class="material-symbols-outlined text-[14px]">shield</span> PCI-DSS Nivel 1
+                  </span>
+<span class="">•</span>
+<span class="flex items-center gap-1 text-[11px]">
+<span class="material-symbols-outlined text-[14px]">lock</span> SSL 256-bit
+                  </span>
+<span class="">•</span>
+<span class="text-[11px] font-semibold">Anti-Fraude Activo</span>
+</div>
+<p class="text-[11px] text-on-surface-variant leading-normal">
+                  Se emitirá automáticamente <strong>Factura Electrónica B2B</strong> con validez tributaria a la bandeja SUNAT de Holding Textil Perú S.A. y al correo registrado.
+                </p>
+</div>
+</div>
+</div>
+<!-- Quick FAQ / Support Contact Card -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]">support_agent</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Mesa de Ayuda para Inversionistas</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Soporte directo vía API &amp; Conciliaciones</span>
+</div>
+</div>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold transition-colors" type="button">
+              Contactar
+            </button>
+</div>
+</aside>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // Dynamic cart management simulation
+    const state = {
+      items: {
+        rep1: { name: "Informe Macro: Demanda Textil 2024-II", basePrice: 480, formatAdd: 0, formatLabel: "PDF Vectorial", selected: true },
+        rep2: { name: "Auditoría Espacial Galería San Pedro", basePrice: 650, formatAdd: 0, formatLabel: "PDF + Excel", selected: true },
+        rep3: { name: "Dossier Integral: Algodón Pima & Denim", basePrice: 890, formatAdd: 0, formatLabel: "Bundle Máster", selected: false }
+      },
+      discountRate: 0.10,
+      igvRate: 0.18,
+      penToUsd: 3.70
+    };
+
+    function updateCalculations() {
+      let subtotal = 0;
+      const cartContainer = document.getElementById('cart-items-container');
+      cartContainer.innerHTML = '';
+
+      Object.entries(state.items).forEach(([id, item]) => {
+        if (item.selected) {
+          const itemTotal = item.basePrice + item.formatAdd;
+          subtotal += itemTotal;
+
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'cart-item flex items-start justify-between gap-space-sm p-2.5 rounded-lg bg-surface-container-low animate-fadeIn';
+          itemDiv.setAttribute('data-id', id);
+          itemDiv.innerHTML = `
+            <div class="flex flex-col">
+              <span class="font-label-md text-label-md text-primary font-bold line-clamp-1">${item.name}</span>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-surface-container font-semibold text-on-surface-variant">${item.formatLabel}</span>
+                <span class="text-[11px] text-on-surface-variant">Licencia Enterprise</span>
+              </div>
+            </div>
+            <span class="font-label-md text-label-md text-primary font-bold whitespace-nowrap">S/ ${itemTotal.toFixed(2)}</span>
+          `;
+          cartContainer.appendChild(itemDiv);
+        }
+      });
+
+      if (subtotal === 0) {
+        cartContainer.innerHTML = '<div class="p-3 text-center text-on-surface-variant text-body-sm italic">Ningún informe seleccionado. Agregue al menos un informe para continuar.</div>';
+      }
+
+      const discount = subtotal * state.discountRate;
+      const taxable = subtotal - discount;
+      const igv = taxable * state.igvRate;
+      const total = taxable + igv;
+      const usdTotal = total / state.penToUsd;
+
+      document.getElementById('calc-subtotal').textContent = `S/ ${subtotal.toFixed(2)}`;
+      document.getElementById('calc-discount').textContent = `-S/ ${discount.toFixed(2)}`;
+      document.getElementById('calc-igv').textContent = `S/ ${igv.toFixed(2)}`;
+      document.getElementById('calc-total').textContent = `S/ ${total.toFixed(2)}`;
+      document.getElementById('calc-usd').textContent = `≈ $${usdTotal.toFixed(2)} USD`;
+      
+      const ctaBtn = document.getElementById('cta-button-text');
+      const submitBtn = document.getElementById('pay-submit-btn');
+      if (subtotal > 0) {
+        ctaBtn.textContent = `Pagar S/ ${total.toFixed(2)} y Generar Enlace Seguro`;
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      } else {
+        ctaBtn.textContent = 'Seleccione al menos un informe';
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      }
+    }
+
+    // Toggle Item Selection Event Listeners
+    document.querySelectorAll('.toggle-report-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const article = this.closest('.report-card');
+        const id = article.dataset.id;
+        const isSelected = state.items[id].selected;
+
+        if (isSelected) {
+          state.items[id].selected = false;
+          this.dataset.state = 'unselected';
+          this.className = 'toggle-report-btn w-full sm:w-auto px-space-md py-2.5 rounded-lg font-label-md text-label-md font-bold transition-all flex items-center justify-center gap-2 bg-surface-container hover:bg-surface-container-high text-on-surface shadow-sm';
+          this.innerHTML = '<span class="material-symbols-outlined text-[18px]">add_circle</span><span>Agregar a Orden</span>';
+        } else {
+          state.items[id].selected = true;
+          this.dataset.state = 'selected';
+          this.className = 'toggle-report-btn w-full sm:w-auto px-space-md py-2.5 rounded-lg font-label-md text-label-md font-bold transition-all flex items-center justify-center gap-2 bg-primary text-on-primary shadow-sm hover:bg-primary-container';
+          this.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span><span>Seleccionado</span>';
+        }
+
+        updateCalculations();
+      });
+    });
+
+    // Format Radio Selectors Event Listeners
+    document.querySelectorAll('.report-card input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        const article = this.closest('.report-card');
+        const id = article.dataset.id;
+        const addPrice = parseFloat(this.dataset.add || '0');
+        const priceDisplay = article.querySelector('.card-display-price');
+        const basePrice = state.items[id].basePrice;
+        
+        state.items[id].formatAdd = addPrice;
+        const labelMap = {
+          'pdf': 'PDF Vectorial',
+          'excel': 'Excel .XLSX',
+          'bundle': 'Bundle Completo'
+        };
+        state.items[id].formatLabel = labelMap[this.value] || 'Formato Específico';
+        
+        priceDisplay.textContent = (basePrice + addPrice).toFixed(2);
+        updateCalculations();
+      });
+    });
+
+    // Periodicity selector buttons
+    document.querySelectorAll('.period-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.period-btn').forEach(b => {
+          b.className = 'period-btn px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all';
+        });
+        this.className = 'period-btn px-space-md py-2 rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-all';
+      });
+    });
+
+    // Payment Tabs Switcher
+    const payTabs = document.querySelectorAll('.pay-tab');
+    const cardPanel = document.getElementById('payment-card-panel');
+    const transferPanel = document.getElementById('payment-transfer-panel');
+    const creditPanel = document.getElementById('payment-credit-panel');
+
+    payTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        payTabs.forEach(t => {
+          t.className = 'pay-tab py-1.5 px-2 rounded-md font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all font-medium';
+        });
+        this.className = 'pay-tab py-1.5 px-2 rounded-md font-label-sm text-label-sm bg-primary text-on-primary font-semibold shadow-sm transition-all';
+
+        const target = this.dataset.target;
+        cardPanel.classList.add('hidden');
+        transferPanel.classList.add('hidden');
+        creditPanel.classList.add('hidden');
+
+        if (target === 'card') cardPanel.classList.remove('hidden');
+        if (target === 'transfer') transferPanel.classList.remove('hidden');
+        if (target === 'credit') creditPanel.classList.remove('hidden');
+      });
+    });
+
+    // Initial run
+    updateCalculations();
+
+    // Subtle purchase interaction
+    document.getElementById('pay-submit-btn').addEventListener('click', function() {
+      if (this.disabled) return;
+      const originalText = this.innerHTML;
+      this.disabled = true;
+      this.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span><span>Cifrando y Foliando Documentos...</span>';
+      
+      setTimeout(() => {
+        this.className = 'w-full mt-2 py-3.5 px-space-md rounded-lg bg-secondary text-on-secondary font-label-lg text-label-lg font-bold shadow-md transition-all flex items-center justify-center gap-2';
+        this.innerHTML = '<span class="material-symbols-outlined text-[20px]">task_alt</span><span>¡Enlace Generado! Enviado a correo</span>';
+        setTimeout(() => {
+          this.className = 'w-full mt-2 py-3.5 px-space-md rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md transition-all flex items-center justify-center gap-2 group';
+          this.disabled = false;
+          this.innerHTML = originalText;
+        }, 4000);
+      }, 1800);
+    });
+
+  })();
+</script></main><footer class="w-full bg-surface-container-low py-space-lg mt-space-xl"><div class="w-full px-margin-tablet lg:px-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm font-semibold text-primary uppercase tracking-wider">GamarraChain Retail Intelligence</span><span class="text-[12px] opacity-40">|</span><span class="font-body-sm text-body-sm">© 2025 Plataforma Corporativa B2B. Red de Nodos Espaciales Textil.</span></div><div class="flex items-center gap-space-lg font-label-sm text-label-sm"><span class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary"></span>Red LoRaWAN Activa</span><span class="hover:text-on-surface transition-colors cursor-pointer">Documentación API IoT</span><span class="hover:text-on-surface transition-colors cursor-pointer">Auditoría de Métricas</span></div></div></footer>
+
+  
+  
+</body></html>

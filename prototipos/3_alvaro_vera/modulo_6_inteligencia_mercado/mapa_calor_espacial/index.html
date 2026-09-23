@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="es" ><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Mapa de Calor Espacial - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head><body class="gamarrachain-dashboard bg-surface font-body-md text-on-surface antialiased">
+  <gamarra-header role="analytics" title="Mapa de Calor Espacial"></gamarra-header>
+  <analytics-tabs active="mapa-calor-espacial"></analytics-tabs><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type">
+
+
+<script src="https://cdn.tailwindcss.com"></script><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type">
+
+
+<script src="https://cdn.tailwindcss.com"></script><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full">
+<!-- Sub-header Operativo y Navegación de Ecosistema B2B -->
+<div class="w-full bg-surface-container-lowest shadow-sm">
+<div class="w-full px-margin-tablet lg:px-space-xl py-space-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
+<!-- 4 Módulos Corporativos No Redundantes -->
+<nav class="flex items-center gap-space-xs overflow-x-auto w-full md:w-auto py-space-xs scrollbar-none">
+<a class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap" href="#">
+          Tendencias y Demanda
+        </a>
+<a class="px-space-md py-space-xs rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm whitespace-nowrap flex items-center gap-space-xs" href="#">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+          Mapa Espacial y Tráfico
+        </a>
+<a class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap" href="#">
+          Gestión de Pautas B2B
+        </a>
+<a class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap" href="#">
+          Exportación de Reportes
+        </a>
+</nav>
+<!-- Estado LiDAR y Acciones Rápidas -->
+<div class="flex items-center gap-space-sm shrink-0 w-full md:w-auto justify-end">
+<div class="hidden lg:flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">sensors</span>
+<span class="font-body-sm text-body-sm">Red LiDAR: 18 Nodos en línea</span>
+</div>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors" id="refresh-lidar-btn" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" id="refresh-icon">sync</span>
+<span class="">Actualizar Lectura LiDAR</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary hover:bg-primary font-label-md text-label-md shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+<span class="">Exportar Mapa (PDF/CSV)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contenido Principal: Arquitectura Modular Bajo Demanda -->
+<div class="w-full px-margin-tablet lg:px-space-xl py-space-lg flex flex-col gap-space-lg">
+<!-- Barra de Selección de Dimensión Espacial y Filtros Rápidos -->
+<div class="w-full bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-space-md">
+<!-- Selector de Dimensión Espacial (Dropdown Prominente) -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center gap-space-sm">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider shrink-0 flex items-center gap-space-xs" for="spatial-dimension-select">
+<span class="material-symbols-outlined text-[18px] text-primary">view_in_ar</span>
+          Seleccionar Dimensión Espacial:
+        </label>
+<div class="relative w-full sm:w-80">
+<select class="w-full appearance-none bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md px-space-md py-space-sm pr-space-xl rounded-lg focus:outline-none transition-colors cursor-pointer" id="spatial-dimension-select">
+<option selected="" value="flow">Flujo Peatonal y Densidad en Pasillos</option>
+<option value="dwell">Tasa de Permanencia en Vitrinas</option>
+<option value="stairs">Acceso por Nivel y Escaleras</option>
+<option value="hotspots">Zonas Calientes de Interacción</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-sm top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[20px]">
+            arrow_drop_down
+          </span>
+</div>
+</div>
+<!-- Filtros Secundarios: Galería / Pabellón y Ventana Temporal -->
+<div class="flex items-center gap-space-sm flex-wrap sm:flex-row"><div class="relative flex items-center bg-surface-container-low px-space-sm py-1 rounded-lg shrink-0"><span class="material-symbols-outlined text-[16px] text-on-surface-variant mr-1">apartment</span><select class="bg-transparent font-label-sm text-label-sm text-on-surface focus:outline-none cursor-pointer pr-space-md appearance-none"><option selected="">Pabellón A / Jr. Gamarra</option><option>Pabellón B / San Cristóbal</option><option>Galería San Pedro (Piso 1)</option><option>Galería San Pedro (Pisos 2-4)</option></select><span class="material-symbols-outlined absolute right-space-xs top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[16px]">expand_more</span></div><div class="relative flex items-center bg-surface-container-low px-space-sm py-1 rounded-lg shrink-0"><span class="material-symbols-outlined text-[16px] text-secondary mr-1">schedule</span><select class="bg-transparent font-label-sm text-label-sm text-on-surface focus:outline-none cursor-pointer pr-space-md appearance-none"><option selected="">Últimos 7 días</option><option>Tiempo Real (LiDAR)</option><option>Semana Mayorista</option><option>Mes en curso</option></select><span class="material-symbols-outlined absolute right-space-xs top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[16px]">expand_more</span></div></div>
+</div>
+<!-- Módulo Central de Visualización: Grilla Dividida (Mapa Esquematizado + Panel Focalizado Único) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Panel Izquierdo: Mapa de Calor Esquemático (8 cols en desktop) -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<!-- Encabezado de Mapa y Leyenda Semántica Compacta -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm pb-space-sm">
+<div>
+<span class="font-headline-sm text-headline-sm text-primary">Plano Térmico de Pasillos</span>
+<div class="flex items-center gap-space-xs mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Galería San Pedro · Sector Comercial A (Planta Nivel 1)</span>
+</div>
+</div>
+<!-- Leyenda de Saturación de 4 Niveles -->
+<div class="flex items-center gap-space-sm bg-surface-container-low px-space-sm py-1 rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Saturación:</span>
+<span class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-variant"></span> 20-40%
+            </span>
+<span class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-fixed"></span> 41-60%
+            </span>
+<span class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed-dim"></span> 61-80%
+            </span>
+<span class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface font-semibold">
+<span class="w-2.5 h-2.5 rounded-full bg-error"></span> &gt;80%
+            </span>
+</div>
+</div>
+<!-- Canvas Esquemático de Arquitectura de Pasillos (SVG Interactivo) -->
+<div class="relative w-full h-[380px] bg-surface-container-low rounded-lg p-space-md overflow-hidden flex items-center justify-center">
+<svg class="w-full h-full max-h-[350px]" fill="none" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Gradientes Térmicos LiDAR para cada pasillo -->
+<radialGradient cx="50%" cy="50%" id="heat-a1" r="50%">
+<stop offset="0%" stop-color="#ba1a1a" stop-opacity="0.85"></stop>
+<stop offset="60%" stop-color="#ba1a1a" stop-opacity="0.35"></stop>
+<stop offset="100%" stop-color="#ba1a1a" stop-opacity="0"></stop>
+</radialGradient>
+<radialGradient cx="50%" cy="50%" id="heat-a2" r="50%">
+<stop offset="0%" stop-color="#c3c0ff" stop-opacity="0.95"></stop>
+<stop offset="65%" stop-color="#c3c0ff" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#c3c0ff" stop-opacity="0"></stop>
+</radialGradient>
+<radialGradient cx="50%" cy="50%" id="heat-b1" r="50%">
+<stop offset="0%" stop-color="#6ffbbe" stop-opacity="0.9"></stop>
+<stop offset="60%" stop-color="#6ffbbe" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#6ffbbe" stop-opacity="0"></stop>
+</radialGradient>
+<radialGradient cx="50%" cy="50%" id="heat-b2" r="50%">
+<stop offset="0%" stop-color="#d3e4fe" stop-opacity="0.8"></stop>
+<stop offset="70%" stop-color="#d3e4fe" stop-opacity="0.15"></stop>
+<stop offset="100%" stop-color="#d3e4fe" stop-opacity="0"></stop>
+</radialGradient>
+<pattern height="24" id="grid-pattern" patternUnits="userSpaceOnUse" width="24">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#dce9ff" stroke-width="0.75"></path>
+</pattern>
+</defs>
+<!-- Fondo Reticular Técnico -->
+<rect fill="#eff4ff" height="420" rx="6" width="800"></rect>
+<rect fill="url(#grid-pattern)" height="420" rx="6" width="800"></rect>
+<!-- Bloques de Stands Inmobiliarios (Estructura de la Galería) -->
+<!-- Fila Superior de Stands -->
+<rect fill="#ffffff" height="70" rx="4" stroke="#c5c6cd" stroke-width="1" width="130" x="40" y="30"></rect>
+<text class="font-label-sm" fill="#45474c" font-size="10" text-anchor="middle" x="105" y="70">STANDS 101 - 108</text>
+<rect fill="#ffffff" height="70" rx="4" stroke="#c5c6cd" stroke-width="1" width="130" x="190" y="30"></rect>
+<text class="font-label-sm" fill="#45474c" font-size="10" text-anchor="middle" x="255" y="70">STANDS 109 - 116</text>
+<rect fill="#ffffff" height="70" rx="4" stroke="#c5c6cd" stroke-width="1" width="130" x="360" y="30"></rect>
+<text class="font-label-sm" fill="#45474c" font-size="10" text-anchor="middle" x="425" y="70">STANDS 117 - 124</text>
+<rect fill="#1e293b" height="70" rx="4" width="230" x="530" y="30"></rect>
+<text class="font-label-sm" fill="#ffffff" font-size="10" text-anchor="middle" x="645" y="65">ZONA TEXTIL MAYORISTA</text>
+<text class="font-body-sm" fill="#8590a6" font-size="9" text-anchor="middle" x="645" y="80">ALGODÓN &amp; DENIM</text>
+<!-- Fila Inferior de Stands -->
+<rect fill="#ffffff" height="70" rx="4" stroke="#c5c6cd" stroke-width="1" width="130" x="40" y="320"></rect>
+<text class="font-label-sm" fill="#45474c" font-size="10" text-anchor="middle" x="105" y="360">STANDS 125 - 132</text>
+<rect fill="#ffffff" height="70" rx="4" stroke="#c5c6cd" stroke-width="1" width="130" x="190" y="320"></rect>
+<text class="font-label-sm" fill="#45474c" font-size="10" text-anchor="middle" x="255" y="360">STANDS 133 - 140</text>
+<rect fill="#ffffff" height="70" rx="4" stroke="#c5c6cd" stroke-width="1" width="130" x="360" y="320"></rect>
+<text class="font-label-sm" fill="#45474c" font-size="10" text-anchor="middle" x="425" y="360">STANDS 141 - 148</text>
+<rect fill="#ffffff" height="70" rx="4" stroke="#c5c6cd" stroke-width="1" width="230" x="530" y="320"></rect>
+<text class="font-label-sm" fill="#45474c" font-size="10" text-anchor="middle" x="645" y="360">STANDS 149 - 162</text>
+<!-- Islas Centrales / Módulos de Exhibición -->
+<rect fill="#d8e3fb" height="50" rx="4" width="90" x="230" y="190"></rect>
+<text class="font-label-sm" fill="#091426" font-size="10" text-anchor="middle" x="275" y="220">ISLA PROMO 1</text>
+<rect fill="#d8e3fb" height="50" rx="4" width="90" x="360" y="190"></rect>
+<text class="font-label-sm" fill="#091426" font-size="10" text-anchor="middle" x="405" y="220">ISLA PROMO 2</text>
+<!-- Manchas de Calor de Pasillos -->
+<!-- Pasillo A1: Entrada Jr. Gamarra (Calor Intenso - Rojo) -->
+<ellipse cx="105" cy="210" fill="url(#heat-a1)" rx="85" ry="75"></ellipse>
+<circle cx="105" cy="210" fill="#ba1a1a" r="8"></circle>
+<circle cx="105" cy="210" r="14" stroke="#ba1a1a" stroke-dasharray="3 3" stroke-width="1.5"></circle>
+<!-- Pasillo A2: Cruce Central (Calor Medio - Violeta) -->
+<ellipse cx="490" cy="210" fill="url(#heat-a2)" rx="75" ry="70"></ellipse>
+<circle cx="490" cy="210" fill="#8481ff" r="7"></circle>
+<!-- Pasillo B1: Acceso Escaleras (Calor Óptimo - Verde Esmeralda) -->
+<ellipse cx="645" cy="200" fill="url(#heat-b1)" rx="65" ry="60"></ellipse>
+<circle cx="645" cy="200" fill="#006c49" r="7"></circle>
+<!-- Pasillo B2: Zona Posterior (Baja Densidad - Cyan/Slate) -->
+<ellipse cx="320" cy="130" fill="url(#heat-b2)" rx="60" ry="40"></ellipse>
+<!-- Señalización Técnica de Nodos LiDAR Activos -->
+<g class="cursor-pointer">
+<rect fill="#091426" height="24" rx="4" width="80" x="65" y="188"></rect>
+<text class="font-label-sm" fill="#ffffff" font-size="9" text-anchor="middle" x="105" y="204">PASILLO A1 (88%)</text>
+</g>
+<g class="cursor-pointer">
+<rect fill="#18008f" height="24" rx="4" width="80" x="450" y="188"></rect>
+<text class="font-label-sm" fill="#ffffff" font-size="9" text-anchor="middle" x="490" y="204">CRUCE A2 (64%)</text>
+</g>
+<g class="cursor-pointer">
+<rect fill="#006c49" height="24" rx="4" width="80" x="605" y="188"></rect>
+<text class="font-label-sm" fill="#ffffff" font-size="9" text-anchor="middle" x="645" y="204">ESCALERA B1</text>
+</g>
+<!-- Vector de Sentido de Circulación Peatonal -->
+<path d="M 40 210 L 760 210" opacity="0.25" stroke="#091426" stroke-dasharray="4 4" stroke-width="1.5"></path>
+<polygon fill="#091426" opacity="0.3" points="765,210 755,206 755,214"></polygon>
+<text class="font-label-sm" fill="#45474c" font-size="9" x="50" y="235">ENTRADA PRINCIPAL (JR. GAMARRA)</text>
+<text class="font-label-sm" fill="#45474c" font-size="9" text-anchor="end" x="710" y="235">SALIDA / CALLE SAN CRISTÓBAL</text>
+</svg>
+<!-- Marcador Flotante de Concurrencia Máxima -->
+<div class="absolute top-space-md left-space-md bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-1 rounded-md shadow-xs flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<span class="font-label-sm text-label-sm text-on-surface">Pico Activo: Jr. Gamarra (88% Aforo)</span>
+</div>
+</div>
+<!-- Leyenda Técnica Inferior y Anonimización -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-xs pt-space-xs text-on-surface-variant">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+<span class="font-body-sm text-body-sm">
+              Sensores LiDAR activos (Nodos 101 al 118) con anonimización en origen (cero captura biométrica).
+            </span>
+</div>
+<span class="font-body-sm text-body-sm shrink-0">Frecuencia de escaneo: 10 Hz</span>
+</div>
+</div>
+<!-- Panel Derecho: Vista Enfocada Únicamente en la Dimensión Activa (4 cols en desktop) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Tarjeta de Indicador Clave Único (Sin fuentes desmedidas) -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+              Dimensión Activa: Flujo Peatonal
+            </span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-secondary-container/40 text-on-secondary-container flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+              +14% vs. promedio
+            </span>
+</div>
+<!-- Métrica Principal Estandarizada -->
+<div class="flex items-baseline justify-between pt-space-xs">
+<div>
+<span class="font-headline-lg text-headline-lg text-primary">42</span>
+<span class="font-body-md text-body-md text-on-surface-variant ml-1">transeúntes / minuto</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-space-xs py-1 rounded">
+              Densidad Normal
+            </span>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-secondary h-full rounded-full" style="width: 68%;"></div>
+</div>
+</div>
+<!-- Desglose Compacto de Pasillos Clave -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider">
+              Pasillos Monitoreados (4 Puntos Clave)
+            </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Conteo LiDAR</span>
+</div>
+<!-- Lista de 4 Pasillos Estructurada y Sin Ruido -->
+<div class="flex flex-col gap-space-xs">
+<!-- Pasillo A1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between gap-space-sm hover:bg-surface-container transition-colors">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Pasillo A1 - Entrada Jr. Gamarra</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">12,450 personas registradas</span>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-error-container text-on-error-container">
+                  Alta (88%)
+                </span>
+</div>
+</div>
+<!-- Pasillo A2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between gap-space-sm hover:bg-surface-container transition-colors">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Pasillo A2 - Cruce Central</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">9,820 personas registradas</span>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-tertiary-fixed text-on-tertiary-fixed">
+                  Media (64%)
+                </span>
+</div>
+</div>
+<!-- Pasillo B1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between gap-space-sm hover:bg-surface-container transition-colors">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Pasillo B1 - Acceso Escaleras</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">7,100 personas registradas</span>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-secondary-container/60 text-on-secondary-container">
+                  Óptima (52%)
+                </span>
+</div>
+</div>
+<!-- Pasillo B2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between gap-space-sm hover:bg-surface-container transition-colors">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Pasillo B2 - Zona Posterior</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">3,900 personas registradas</span>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">
+                  Baja (28%)
+                </span>
+</div>
+</div>
+</div>
+<!-- Micro-alerta Operativa B2B -->
+<div class="mt-space-xs p-space-sm rounded-lg bg-surface-container-high/40 flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-primary shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              El flujo en Pasillo A1 excede el umbral sugerido para despacho de fardos. Se recomienda desviar cargas hacia Pasillo B2.
+            </p>
+</div>
+</div>
+<!-- Módulo de Contexto Visual Inmobiliario / Galería -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center gap-space-md">
+<img class="w-16 h-16 rounded-lg object-cover shrink-0" data-alt="A modern commercial textile gallery corridor in Lima with clean tile floors, bright diffused indoor illumination, and minimal architectural lines reflecting professional wholesale retail operations in deep slate navy and neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbV_LJ6ulXfWujtC8ZphdMmV5c82MUwYj2E_jeYESxmCI6jfBjqD3KKMtfnsfFocjYrl7THRzwNwquxWyEHt45utgb0UGAdWVjal2UyoOXwrHn-iEUKi9Uuoy7LPpfGtp_KQ8TspIZ4Td_Aih6ncHOmsVgCHXIsHSYHSQ0ZpHa8F9aDCZ6D2qSuFX4FHcKxbMJvwosjtU4JVzZ56QkOu7DmENszQLzZtvFCIFUVMclHO_6J7zfNb4v">
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-primary truncate">Sector A1: Alta Exhibición B2B</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">Mayor ratio de conversión visual para mayoristas textiles de confección nacional.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Micro-interacción: Cambio dinámico de filtros y simulación de actualización -->
+<script>
+    (function() {
+      // Toggle interactivo de pestañas secundarias
+      var pills = document.querySelectorAll('.tab-pill');
+      pills.forEach(function(pill) {
+        pill.addEventListener('click', function() {
+          pills.forEach(function(p) {
+            p.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-xs');
+            p.classList.add('text-on-surface-variant');
+          });
+          pill.classList.remove('text-on-surface-variant');
+          pill.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-xs');
+        });
+      });
+
+      // Animación suave de botón Actualizar Lectura LiDAR
+      var refreshBtn = document.getElementById('refresh-lidar-btn');
+      var refreshIcon = document.getElementById('refresh-icon');
+      if (refreshBtn && refreshIcon) {
+        refreshBtn.addEventListener('click', function() {
+          refreshIcon.classList.add('animate-spin');
+          refreshBtn.setAttribute('disabled', 'true');
+          setTimeout(function() {
+            refreshIcon.classList.remove('animate-spin');
+            refreshBtn.removeAttribute('disabled');
+          }, 650);
+        });
+      }
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-low py-space-lg mt-space-xl"><div class="w-full px-margin-tablet lg:px-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm font-semibold text-primary uppercase tracking-wider">GamarraChain Retail Intelligence</span><span class="text-[12px] opacity-40">|</span><span class="font-body-sm text-body-sm">© 2025 Plataforma Corporativa B2B. Red de Nodos Espaciales Textil.</span></div><div class="flex items-center gap-space-lg font-label-sm text-label-sm"><span class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary"></span>Red LoRaWAN Activa</span><span class="hover:text-on-surface transition-colors cursor-pointer">Documentación API IoT</span><span class="hover:text-on-surface transition-colors cursor-pointer">Auditoría de Métricas</span></div></div></footer>
+
+  
+  
+</body></html>

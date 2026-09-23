@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Explorar - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head>
+
+<body class="gamarrachain-app bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+  <gamarra-header role="cliente" title="Explorar"></gamarra-header>
+  <main class="flex flex-col relative w-full pt-16 pb-20 bg-surface min-h-screen">
+    <div class="flex flex-col w-full pb-6">
+      <!-- Selector de Emporio y Ubicación Activa -->
+      <div class="px-margin pt-space-sm pb-space-sm bg-surface-container-low shadow-sm">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-space-sm min-w-0">
+            <div
+              class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0 shadow-sm">
+              <span class="material-symbols-outlined text-[20px]">pin_drop</span>
+            </div>
+            <div class="flex flex-col min-w-0">
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-secondary-fixed-dim animate-pulse inline-block"></span>
+                Emporio Activo
+              </span>
+              <button class="flex items-center gap-1 text-left group" id="emporio-selector-btn">
+                <span class="font-headline-sm text-headline-sm text-on-surface truncate">Gamarra · Galería San
+                  Pedro</span>
+                <span
+                  class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-transform text-[18px]"
+                  id="emporio-chevron">expand_more</span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-lowest px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 shrink-0">
+            <span class="font-label-sm text-label-sm text-secondary font-bold">DAMERO A</span>
+          </div>
+        </div>
+        <!-- Dropdown desplegable de galerías y emporios -->
+        <div class="hidden mt-space-sm pt-space-sm flex flex-col gap-2" id="emporio-dropdown">
+          <div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-md flex flex-col gap-1.5">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase px-2">Cambiar Emporio /
+              Sector</span>
+            <button
+              class="flex items-center justify-between w-full px-3 py-2 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md text-left">
+              <span class="">Gamarra · Galería San Pedro (Damero A)</span>
+              <span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+            </button>
+            <button
+              class="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-surface-container text-on-surface font-body-md text-body-md text-left transition-colors">
+              <span class="">Gamarra · Galería Guizado Hermanos (Damero A)</span>
+              <span class="text-on-surface-variant font-label-sm text-label-sm">450 stands</span>
+            </button>
+            <button
+              class="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-surface-container text-on-surface font-body-md text-body-md text-left transition-colors">
+              <span class="">Gamarra · Centro Comercial Gama (Damero B)</span>
+              <span class="text-on-surface-variant font-label-sm text-label-sm">380 stands</span>
+            </button>
+            <button
+              class="flex items-center justify-between w-full px-3 py-2 rounded-lg hover:bg-surface-container text-on-surface font-body-md text-body-md text-left transition-colors">
+              <span class="">Meyde Huanta · Emporio Central Lima</span>
+              <span class="text-on-surface-variant font-label-sm text-label-sm">210 stands</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Buscador y Acciones Directas -->
+      <div class="px-margin pt-space-md flex flex-col gap-space-sm">
+        <div class="relative flex items-center gap-space-sm">
+          <div class="relative flex-1 flex items-center">
+            <span
+              class="material-symbols-outlined absolute left-3.5 text-on-surface-variant text-[20px] pointer-events-none">search</span>
+            <input
+              class="w-full h-12 pl-11 pr-10 bg-surface-container-lowest rounded-xl shadow-sm text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant/70 focus:outline-none focus:bg-surface-bright"
+              placeholder="Buscar por prenda, tela o stand (ej. Denim, Pima 50/1)..." type="text">
+            <button aria-label="Escanear QR Stand"
+              class="absolute right-3 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center">
+              <span class="material-symbols-outlined text-[20px]">image</span>
+            </button>
+          </div>
+          <button aria-label="Abrir Filtros Avanzados"
+            class="h-12 w-12 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center shrink-0 shadow-sm hover:bg-primary hover:text-on-primary transition-colors"
+            id="toggle-filter-panel">
+            <span class="material-symbols-outlined text-[20px]">tune</span>
+          </button>
+        </div>
+        <!-- Chips de Filtros Rápidos (Horizontal scrollable) -->
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-margin px-margin">
+          <button
+            class="chip-filter active px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 transition-colors">
+            Todos
+          </button>
+          <button
+            class="chip-filter px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 transition-colors">
+            Algodón Pima
+          </button>
+          <button
+            class="chip-filter px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 transition-colors">
+            Denim Pesado
+          </button>
+          <button
+            class="chip-filter px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 transition-colors">
+            Franela Reactiva
+          </button>
+          <button
+            class="chip-filter px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 transition-colors">
+            Casacas Bomber
+          </button>
+          <button
+            class="chip-filter px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 transition-colors">
+            Ropa Deportiva
+          </button>
+          <button
+            class="chip-filter px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 transition-colors">
+            Tallas Grandes
+          </button>
+          <button
+            class="chip-filter px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-secondary font-label-sm text-label-sm whitespace-nowrap shadow-sm shrink-0 flex items-center gap-1 transition-colors">
+            <span class="material-symbols-outlined text-[14px]">bolt</span> Stock Inmediato
+          </button>
+        </div>
+        <!-- Panel de Filtros Avanzados Desplegable -->
+        <div class="hidden bg-surface-container-lowest p-space-md rounded-xl shadow-md flex-col gap-3"
+          id="advanced-filters-panel">
+          <div class="flex items-center justify-between pb-1">
+            <span class="font-headline-sm text-headline-sm text-on-surface">Filtros Mayoristas</span>
+            <button class="font-label-sm text-label-sm text-secondary" id="reset-filters">Limpiar todo</button>
+          </div>
+          <div class="grid grid-cols-2 gap-2.5">
+            <!-- Tipo de Fibra -->
+            <div class="flex flex-col gap-1">
+              <label class="font-label-sm text-label-sm text-on-surface-variant">Tipo de Fibra / Tela</label>
+              <div class="relative bg-surface-container-low rounded-lg">
+                <select
+                  class="w-full h-10 px-2.5 bg-transparent font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none pr-7">
+                  <option>Cualquier tela</option>
+                  <option>Pima 50/1 Peinado</option>
+                  <option>Denim 12-14 oz</option>
+                  <option>Franela Reactiva 30/1</option>
+                  <option>French Terry</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-2 top-2.5 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+              </div>
+            </div>
+            <!-- Rango de Precio -->
+            <div class="flex flex-col gap-1">
+              <label class="font-label-sm text-label-sm text-on-surface-variant">Precio Mayorista (doc)</label>
+              <div class="relative bg-surface-container-low rounded-lg">
+                <select
+                  class="w-full h-10 px-2.5 bg-transparent font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none pr-7">
+                  <option>Cualquier precio</option>
+                  <option>Hasta S/ 15 x doc</option>
+                  <option>S/ 15 a S/ 35 x doc</option>
+                  <option>S/ 35 a S/ 60 x doc</option>
+                  <option>Más de S/ 60 x doc</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-2 top-2.5 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+              </div>
+            </div>
+            <!-- Galería / Sector -->
+            <div class="flex flex-col gap-1">
+              <label class="font-label-sm text-label-sm text-on-surface-variant">Galería / Sector</label>
+              <div class="relative bg-surface-container-low rounded-lg">
+                <select
+                  class="w-full h-10 px-2.5 bg-transparent font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none pr-7">
+                  <option>Toda la galería</option>
+                  <option>Piso 1 - Pasaje A/B</option>
+                  <option>Piso 2 - Pasaje C/D</option>
+                  <option>Sótano Textil</option>
+                  <option>Pisos Superiores Fabricantes</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-2 top-2.5 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+              </div>
+            </div>
+            <!-- Mínimo de Compra -->
+            <div class="flex flex-col gap-1">
+              <label class="font-label-sm text-label-sm text-on-surface-variant">Mínimo de Compra</label>
+              <div class="relative bg-surface-container-low rounded-lg">
+                <select
+                  class="w-full h-10 px-2.5 bg-transparent font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none pr-7">
+                  <option>Sin preferencia</option>
+                  <option>Desde 3 unidades</option>
+                  <option>Por docena (12 uds)</option>
+                  <option>Por fardo / cajón (50+)</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-2 top-2.5 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+              </div>
+            </div>
+          </div>
+          <button class="w-full h-10 bg-primary text-on-primary rounded-lg font-label-md text-label-md mt-1 shadow-sm"
+            id="apply-filters-btn">
+            Aplicar Filtros Seleccionados
+          </button>
+        </div>
+      </div>
+      <!-- Banner GPS Navegador Interior 3D Destacado -->
+      <div class="px-margin pt-space-md">
+        <div
+          class="relative overflow-hidden bg-primary-container text-on-primary rounded-2xl p-space-md shadow-md flex items-center justify-between">
+          <!-- Glow decorativo de fondo -->
+          <div class="absolute -right-8 -bottom-8 w-36 h-36 bg-secondary/30 rounded-full blur-2xl pointer-events-none">
+          </div>
+          <div class="flex items-center gap-3.5 relative z-10 min-w-0 pr-2">
+            <div
+              class="w-12 h-12 rounded-xl bg-secondary text-on-secondary flex items-center justify-center shrink-0 shadow-sm">
+              <span class="material-symbols-outlined text-[26px]">view_in_ar</span>
+            </div>
+            <div class="flex flex-col min-w-0">
+              <span class="font-label-sm text-label-sm text-secondary-fixed uppercase tracking-wider">Mapeo de Pasajes y
+                Stands</span>
+              <h2 class="font-headline-sm text-headline-sm text-white truncate">Navegador GPS Interior 3D</h2>
+              <p class="font-body-sm text-body-sm text-on-primary-container truncate">Ruta peatonal precisa por piso y
+                galería</p>
+            </div>
+          </div>
+          <button
+            class="h-10 px-3.5 bg-secondary text-on-secondary hover:bg-secondary-fixed hover:text-on-secondary-fixed font-label-md text-label-md rounded-xl shadow-sm shrink-0 flex items-center gap-1 transition-colors relative z-10"
+            onclick="document.querySelector('[data-path=\'mapa-gps\']')?.click()">
+            <span class="">Abrir Mapa</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+      <!-- Sección: Tendencias en Confección & Demanda Mayorista -->
+      <div class="px-margin pt-space-lg flex flex-col gap-space-sm">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface">Artículos en Tendencia</h2>
+
+          </div>
+          <button class="font-label-md text-label-md text-secondary hover:underline flex items-center gap-0.5">
+            Ver catálogo completo
+            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+          </button>
+        </div>
+        <!-- Grid Balanceado de 2 Columnas -->
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <!-- Prenda 1: Casaca Denim Oversize -->
+          <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col justify-between">
+            <div class="flex flex-col">
+              <div class="relative w-full h-36 bg-surface-container overflow-hidden">
+                <img class="w-full h-full object-cover"
+                  data-alt="Modern high quality denim oversize streetwear jacket folded on a clean slate stone counter with soft commercial apparel studio lighting and subtle navy blue backdrop accents."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVtD6ogQZKhf3VVtkI2gdLig5We0_5i7wXj8BwmJM7A5o5AuyLRML2RxokZeGWMvYt3OCnHH0c3JWF4Moos8XLpPUVpAzAdufbu4xp5uAu2lw81c0HBGQ4zZnWsFCqKVmLY6dmhPR90yttLJIQpEgOivniBrv9uInKfGcneL_mubCk9aGQwu5Fx6A-WdekjAR2pMUhSL8quSVvnwSsXGz46FbRgblwyW-1yK9gDboSWQ5ktnn-tEt8">
+                <div
+                  class="absolute top-2 left-2 bg-primary/85 backdrop-blur-md px-2 py-0.5 rounded-md text-white font-label-sm text-label-sm flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[12px] text-secondary-fixed">trending_up</span> +85%
+                  demanda
+                </div>
+                <div
+                  class="absolute bottom-2 right-2 bg-surface-container-lowest/90 backdrop-blur-md px-2 py-0.5 rounded-md text-on-surface font-label-sm text-label-sm">
+                  Stand B-204
+                </div>
+              </div>
+              <div class="p-3 flex flex-col gap-1">
+                <span class="font-label-sm text-label-sm text-on-surface-variant truncate">Denim 14oz Pesado</span>
+                <h3 class="font-headline-sm text-[15px] text-on-surface font-bold leading-tight truncate">Casaca Denim
+                  Oversize</h3>
+                <div class="flex items-baseline gap-1 mt-1">
+                  <span class="font-headline-sm text-headline-sm text-secondary font-bold">S/ 38.00</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">x doc</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Mínimo: 6 unidades</span>
+              </div>
+            </div>
+            <div class="p-3 pt-0">
+              <button
+                class="w-full h-9 rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm flex items-center justify-center gap-1 transition-colors">
+                <span class="material-symbols-outlined text-[15px]">near_me</span>
+                <span class="">Ver Stand / Ruta</span>
+              </button>
+            </div>
+          </div>
+          <!-- Prenda 2: Polo Pima 50/1 Cuello Redondo -->
+          <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col justify-between">
+            <div class="flex flex-col">
+              <div class="relative w-full h-36 bg-surface-container overflow-hidden">
+                <img class="w-full h-full object-cover"
+                  data-alt="Stack of neatly arranged organic Peruvian Pima cotton t-shirts in neutral pastel and deep navy tones, commercial textile wholesale photography with soft daylight."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCovWOMXlrxXwqgmFHMsPoCMKr9y2mbxEkNpK7KulaFrPwYi5ok5p548hyHEokvrtPPdACiehI9Z76_nd2fukFdYOA3q8XSvMrguWgUjaFBJ-AWFuxPdZaN8EDlb2tnTHJjP5wjUZ6WrkMPlUGke___ZAGLJPC9zW-AQIK5uyrfr_k5nIvVRcTsQIzBrPC0wfrfleEmN2oQsCXYN_JOzBNmQ3mXDu_1Jkw5e9x5UIiek3z3ZEiXfCo4">
+                <div
+                  class="absolute top-2 left-2 bg-secondary text-on-secondary px-2 py-0.5 rounded-md font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+                  <span class="material-symbols-outlined text-[12px]">local_fire_department</span> Tendencia Alta
+                </div>
+                <div
+                  class="absolute bottom-2 right-2 bg-surface-container-lowest/90 backdrop-blur-md px-2 py-0.5 rounded-md text-on-surface font-label-sm text-label-sm">
+                  Stand A-108
+                </div>
+              </div>
+              <div class="p-3 flex flex-col gap-1">
+                <span class="font-label-sm text-label-sm text-on-surface-variant truncate">Algodón Pima 50/1</span>
+                <h3 class="font-headline-sm text-[15px] text-on-surface font-bold leading-tight truncate">Polo Pima
+                  Cuello Redondo</h3>
+                <div class="flex items-baseline gap-1 mt-1">
+                  <span class="font-headline-sm text-headline-sm text-secondary font-bold">S/ 16.50</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">x doc</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Reactivo al lavado · 24
+                  col.</span>
+              </div>
+            </div>
+            <div class="p-3 pt-0">
+              <button
+                class="w-full h-9 rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm flex items-center justify-center gap-1 transition-colors">
+                <span class="material-symbols-outlined text-[15px]">near_me</span>
+                <span class="">Ver Stand / Ruta</span>
+              </button>
+            </div>
+          </div>
+          <!-- Prenda 3: Polera Franela Reactiva Hoodie -->
+          <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col justify-between">
+            <div class="flex flex-col">
+              <div class="relative w-full h-36 bg-surface-container overflow-hidden">
+                <img class="w-full h-full object-cover"
+                  data-alt="Heavyweight reactive fleece hoodie in deep slate blue on an invisible mannequin with clean stitching details and ribbed cuffs, commercial studio textile lighting."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiK7JJ2Vi6W0VLo5ypG-60jT2lvhJTPuUFViqy-90qD8k6GEGV2H0z7Fbg-BggQTtC4CkPWR-DybQAk4u5t_tbXzE5d8szcsZmUlVRfkyl2bm1AK1WObshcCDVnKSoybyVsOlLy4htn5slI0Zr2P1PZ5effB6yjHaABUJ3jyEgqWWqPFoULeJj4X6fTzTB-fXcBay4TbKVTDZ9tgrn2o0wlwyIj_3zebrIXtMEaJi0MWoPi6aAStrm">
+                <div
+                  class="absolute top-2 left-2 bg-surface-container-lowest/90 backdrop-blur-md px-2 py-0.5 rounded-md text-secondary font-label-sm text-label-sm flex items-center gap-1 font-bold">
+                  <span class="material-symbols-outlined text-[12px] text-secondary">verified</span> Stock Listo
+                </div>
+                <div
+                  class="absolute bottom-2 right-2 bg-surface-container-lowest/90 backdrop-blur-md px-2 py-0.5 rounded-md text-on-surface font-label-sm text-label-sm">
+                  Stand C-312
+                </div>
+              </div>
+              <div class="p-3 flex flex-col gap-1">
+                <span class="font-label-sm text-label-sm text-on-surface-variant truncate">Franela Peinada 30/1</span>
+                <h3 class="font-headline-sm text-[15px] text-on-surface font-bold leading-tight truncate">Polera Hoodie
+                  Reactiva</h3>
+                <div class="flex items-baseline gap-1 mt-1">
+                  <span class="font-headline-sm text-headline-sm text-secondary font-bold">S/ 32.00</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">x doc</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Capucha forrada · Sin
+                  motas</span>
+              </div>
+            </div>
+            <div class="p-3 pt-0">
+              <button
+                class="w-full h-9 rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm flex items-center justify-center gap-1 transition-colors">
+                <span class="material-symbols-outlined text-[15px]">near_me</span>
+                <span class="">Ver Stand / Ruta</span>
+              </button>
+            </div>
+          </div>
+          <!-- Prenda 4: Pantalón Cargo Drill Rígido -->
+          <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col justify-between">
+            <div class="flex flex-col">
+              <div class="relative w-full h-36 bg-surface-container overflow-hidden">
+                <img class="w-full h-full object-cover"
+                  data-alt="Tactical drill cargo pants with utility pockets in khaki and charcoal tones displayed in a minimalist boutique clothing rack, high sharpness commercial catalog look."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx7cLi1VzeRvxBVUatf6ihkOxWz6CQGDSKm_kGv6bSmuK8MvjKFitxXeVXzBZVu4138FqN7dvfGWj4zdh_oZa_4NnlD8b7PtE7SodavY_xTGsOW9LTL1pNT3fDDDgOu8GQw6re5BuYxrVvONpNvM71lZxFFr12C7LuFmkag6MQ-pP6EHoAaBea7QmhvHkzGA76gMUCzBSXkd3Xi8tg2uKJMbfHQaTpWX878Qpd3tT6pUOse-S7Z4eC">
+                <div
+                  class="absolute top-2 left-2 bg-surface-container-lowest/90 backdrop-blur-md px-2 py-0.5 rounded-md text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[12px] text-on-surface-variant">inventory_2</span> 1,200
+                  uds
+                </div>
+                <div
+                  class="absolute bottom-2 right-2 bg-surface-container-lowest/90 backdrop-blur-md px-2 py-0.5 rounded-md text-on-surface font-label-sm text-label-sm">
+                  Stand D-105
+                </div>
+              </div>
+              <div class="p-3 flex flex-col gap-1">
+                <span class="font-label-sm text-label-sm text-on-surface-variant truncate">Drill Pesado 100%
+                  Algodón</span>
+                <h3 class="font-headline-sm text-[15px] text-on-surface font-bold leading-tight truncate">Pantalón Cargo
+                  Rígido</h3>
+                <div class="flex items-baseline gap-1 mt-1">
+                  <span class="font-headline-sm text-headline-sm text-secondary font-bold">S/ 29.00</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">x doc</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface-variant truncate">Tallas 28 al 36 · 6
+                  bolsillos</span>
+              </div>
+            </div>
+            <div class="p-3 pt-0">
+              <button
+                class="w-full h-9 rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm flex items-center justify-center gap-1 transition-colors">
+                <span class="material-symbols-outlined text-[15px]">near_me</span>
+                <span class="">Ver Stand / Ruta</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Micro-Resumen de Conectividad con Mayoristas de la Galería -->
+      <div class="px-margin pt-space-lg">
+        <div class="bg-surface-container-low rounded-xl p-space-md flex items-center justify-between shadow-sm">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-9 h-9 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">storefront</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-headline-sm text-[14px] text-on-surface font-bold">342 Stands Conectados</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant">Precios mayoristas directos sin
+                comisiones</span>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-secondary text-[22px]">verified_user</span>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        // Dropdown Emporio Selector
+        const emporioBtn = document.getElementById('emporio-selector-btn');
+        const emporioDropdown = document.getElementById('emporio-dropdown');
+        const emporioChevron = document.getElementById('emporio-chevron');
+        if (emporioBtn && emporioDropdown) {
+          emporioBtn.addEventListener('click', () => {
+            emporioDropdown.classList.toggle('hidden');
+            emporioChevron.style.transform = emporioDropdown.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+          });
+        }
+
+        // Toggle Filtros Avanzados
+        const filterBtn = document.getElementById('toggle-filter-panel');
+        const filterPanel = document.getElementById('advanced-filters-panel');
+        const applyFiltersBtn = document.getElementById('apply-filters-btn');
+        if (filterBtn && filterPanel) {
+          filterBtn.addEventListener('click', () => {
+            filterPanel.classList.toggle('hidden');
+            filterPanel.classList.toggle('flex');
+          });
+          if (applyFiltersBtn) {
+            applyFiltersBtn.addEventListener('click', () => {
+              filterPanel.classList.add('hidden');
+              filterPanel.classList.remove('flex');
+            });
+          }
+        }
+
+        // Interacción de chips rápidos
+        const chips = document.querySelectorAll('.chip-filter');
+        chips.forEach(chip => {
+          chip.addEventListener('click', () => {
+            chips.forEach(c => {
+              c.classList.remove('bg-primary', 'text-on-primary');
+              c.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+            });
+            chip.classList.add('bg-primary', 'text-on-primary');
+            chip.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+          });
+        });
+      })();
+    </script>
+  </main>
+
+
+  <gamarra-nav mode="cliente" active="explorar"></gamarra-nav>
+</body>
+
+</html>

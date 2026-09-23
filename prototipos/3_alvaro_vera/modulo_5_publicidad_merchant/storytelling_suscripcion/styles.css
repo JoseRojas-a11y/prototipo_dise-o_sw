@@ -1,0 +1,13 @@
+/* Estilos de Contenedores - Storytelling Suscripción */
+.subscription-hero-card {
+  background: linear-gradient(135deg, #091426, #18008f);
+  color: #fff;
+  border-radius: 1rem;
+  padding: 1.25rem;
+}
+
+.plan-benefit-item {
+  background: var(--color-surface-container-lowest);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+}

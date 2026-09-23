@@ -1,0 +1,13 @@
+/* Estilos de Contenedores - Configuración y Pago de Campaña */
+.campaign-tier-card {
+  background: var(--color-surface-container-lowest);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(197, 198, 205, 0.4);
+}
+
+.budget-config-card {
+  background: var(--color-surface-container-low);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}

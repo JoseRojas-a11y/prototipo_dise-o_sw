@@ -1,0 +1,401 @@
+<!DOCTYPE html><html lang="es"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Planes y Precios - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head><body class="gamarrachain-app bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased select-none">
+  <gamarra-header role="vendedor" title="Planes y Precios" back="suscripcion"></gamarra-header><main class="flex flex-col relative w-full pt-16 pb-20 bg-surface flex-grow min-h-screen"><div class="flex flex-col w-full">
+<div class="px-margin pt-space-md pb-space-lg flex flex-col gap-space-md">
+<!-- Top Step Bar & Navigation -->
+<div class="flex items-center justify-between">
+<a class="inline-flex items-center gap-space-xs text-on-surface-variant hover:text-primary transition-colors py-1" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span class="font-label-md text-label-md">Volver a Beneficios</span>
+</a>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-primary">
+<span class="font-label-sm text-label-sm">Paso 2 de 2</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Header Title block -->
+<div class="flex flex-col gap-1">
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Elige el plan para potenciar tu taller</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cancela o cambia de modalidad en cualquier momento sin penalidad.</p>
+</div>
+<!-- Billing Cycle Toggle Selector -->
+<div class="p-1 rounded-xl bg-surface-container flex items-center justify-between gap-1 shadow-sm">
+<button class="flex-1 py-2.5 rounded-lg text-center transition-all bg-surface-container-lowest text-primary shadow-sm" id="billing-monthly-btn" onclick="setBilling('monthly')" type="button">
+<span class="font-label-lg text-label-lg">Mensual</span>
+</button>
+<button class="flex-1 py-2.5 rounded-lg text-center transition-all text-on-surface-variant relative" id="billing-annual-btn" onclick="setBilling('annual')" type="button">
+<span class="font-label-lg text-label-lg flex items-center justify-center gap-1">
+          Anual
+          <span class="px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm text-[10px] leading-tight font-bold">-20% dto</span>
+</span>
+</button>
+</div>
+<!-- Plan Cards -->
+<div class="flex flex-col gap-space-md mt-1">
+<!-- Plan 1: Taller Emprendedor -->
+<div class="plan-card cursor-pointer p-space-md rounded-xl bg-surface-container-lowest shadow-sm transition-all relative overflow-hidden flex flex-col gap-space-sm" id="card-plan-emprendedor" onclick="selectPlan('emprendedor')">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">Taller Emprendedor</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Para confeccionistas que inician su vitrina</span>
+</div>
+<div class="radio-indicator w-5 h-5 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-on-primary hidden">check</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-display-metric text-display-metric text-primary tracking-tight price-value" data-annual="39" data-monthly="49">S/ 49</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ mes</span>
+<span class="annual-badge hidden font-label-sm text-label-sm text-secondary ml-1 bg-secondary-container/40 px-2 py-0.5 rounded">Cobro anual S/ 468</span>
+</div>
+<div class="flex flex-col gap-2 pt-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">Vitrina hasta 20 prendas activas</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">Badge de Taller Textil Verificado</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">Enlace directo a WhatsApp del taller</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">Métricas básicas de visitas semanales</span>
+</div>
+</div>
+</div>
+<!-- Plan 2: Marca Mayorista (Featured) -->
+<div class="plan-card cursor-pointer p-space-md rounded-xl bg-surface-container-low shadow-md transition-all relative overflow-hidden flex flex-col gap-space-sm" id="card-plan-mayorista" onclick="selectPlan('mayorista')">
+<div class="absolute top-0 right-0">
+<div class="bg-primary text-on-primary px-3 py-1 rounded-bl-xl font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[13px] text-secondary-fixed">star</span>
+            Más Recomendado
+          </div>
+</div>
+<div class="flex items-start justify-between pr-24">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">Marca Mayorista</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ventas a gran escala y alcance a nivel nacional</span>
+</div>
+<div class="radio-indicator w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-on-primary">check</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-display-metric text-display-metric text-primary tracking-tight price-value" data-annual="79" data-monthly="99">S/ 99</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ mes</span>
+<span class="annual-badge hidden font-label-sm text-label-sm text-secondary ml-1 bg-secondary-container/40 px-2 py-0.5 rounded">Cobro anual S/ 948</span>
+</div>
+<div class="flex flex-col gap-2 pt-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">Prendas y catálogos ilimitados</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">Prioridad en búsquedas de provincias</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">Reportes quincenales de demanda textil</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">Soporte prioritario por asesor asignado</span>
+</div>
+</div>
+</div>
+<!-- Plan 3: Corporativo Galería -->
+<div class="plan-card cursor-pointer p-space-md rounded-xl bg-surface-container-lowest shadow-sm transition-all relative overflow-hidden flex flex-col gap-space-sm" id="card-plan-corporativo" onclick="selectPlan('corporativo')">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">Corporativo Galería</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Para consorcios, galerías y distribuidores múltiples</span>
+</div>
+<div class="radio-indicator w-5 h-5 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-on-primary hidden">check</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-display-metric text-display-metric text-primary tracking-tight price-value" data-annual="149" data-monthly="189">S/ 189</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ mes</span>
+<span class="annual-badge hidden font-label-sm text-label-sm text-secondary ml-1 bg-secondary-container/40 px-2 py-0.5 rounded">Cobro anual S/ 1,788</span>
+</div>
+<div class="flex flex-col gap-2 pt-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">Gestión Multi-stand o múltiples puestos</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">Exportación de catálogos en PDF masivo</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">Posicionamiento VIP en mapa 3D de Gamarra</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Commercial Story Visual Break -->
+<div class="relative overflow-hidden rounded-xl h-24 bg-surface-container flex items-center p-space-md shadow-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center shrink-0 mr-3 shadow-sm">
+<span class="material-symbols-outlined text-[26px] text-primary">store</span>
+</div>
+<div class="flex flex-col z-10 pr-2">
+<span class="font-label-lg text-label-lg text-primary">Unidos por la moda nacional</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Más de 1,240 talleres ya comercializan directamente a provincias cada día.</span>
+</div>
+</div>
+<!-- Dynamic Quotation Summary Card -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-md flex flex-col gap-3">
+<div class="flex items-center justify-between pb-2">
+<span class="font-headline-sm text-headline-sm text-primary">Resumen de Cotización</span>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">receipt_long</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Plan seleccionado</span>
+<span class="font-label-lg text-label-lg text-primary" id="summary-plan-name">Marca Mayorista (Mensual)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Frecuencia de renovación</span>
+<span class="font-body-md text-body-md text-on-surface" id="summary-cycle">Facturación recurrente</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="igv-toggle" onchange="toggleIGV()" type="checkbox">
+<label class="font-body-sm text-body-sm text-on-surface-variant cursor-pointer select-none" for="igv-toggle">Requiero factura con RUC (+18% IGV)</label>
+</div>
+</div>
+<div class="hidden flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant pt-1" id="igv-breakdown-row">
+<span>IGV (18%)</span>
+<span id="summary-igv-amount">S/ 17.82</span>
+</div>
+<div class="h-px bg-surface-container-high my-1"></div>
+<div class="flex items-baseline justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary">Total a pagar hoy</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Moneda oficial Soles (PEN)</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg text-primary" id="summary-total-price">S/ 99.00</span>
+</div>
+</div>
+</div>
+<!-- Payment Methods Section -->
+<div class="flex flex-col gap-space-sm pt-1">
+<span class="font-headline-sm text-headline-sm text-primary">Método de Pago Seguro</span>
+<div class="flex flex-col gap-2">
+<!-- Option 1: Yape / Plin -->
+<label class="payment-option cursor-pointer p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between transition-all" onclick="selectPayment('yape')">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-[22px]">qr_code_scanner</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-primary">Yape / Plin (QR Instantáneo)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Confirmación automática sin comisiones</span>
+</div>
+</div>
+<input checked="" class="w-4 h-4 text-primary focus:ring-0" name="payment_method" type="radio" value="yape">
+</label>
+<!-- Option 2: Tarjeta Débito / Crédito -->
+<label class="payment-option cursor-pointer p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between transition-all" onclick="selectPayment('card')">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">credit_card</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-primary">Tarjeta Débito / Crédito B2B</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Visa, Mastercard, Amex empresarial</span>
+</div>
+</div>
+<input class="w-4 h-4 text-primary focus:ring-0" name="payment_method" type="radio" value="card">
+</label>
+<!-- Option 3: Transferencia BCP / BBVA -->
+<label class="payment-option cursor-pointer p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between transition-all" onclick="selectPayment('transfer')">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-primary">Transferencia BCP o BBVA</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Validación de constancia por WhatsApp</span>
+</div>
+</div>
+<input class="w-4 h-4 text-primary focus:ring-0" name="payment_method" type="radio" value="transfer">
+</label>
+</div>
+</div>
+<!-- Primary Action CTA -->
+<div class="flex flex-col gap-3 pt-space-sm">
+<button class="w-full h-14 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] transition-transform" id="cta-submit-btn" onclick="handleCheckout()" type="button">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+<span>Confirmar Suscripción Segura</span>
+</button>
+<!-- Trust Badges Footer -->
+<div class="flex items-center justify-center gap-space-lg text-on-surface-variant pt-1 pb-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary">verified_user</span>
+<span class="font-label-sm text-label-sm">Pago 256-bit SSL</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary">bolt</span>
+<span class="font-label-sm text-label-sm">Activación en 5 min</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let currentBilling = 'monthly';
+  let currentPlan = 'mayorista';
+
+  const planCatalog = {
+    emprendedor: {
+      name: 'Taller Emprendedor',
+      monthly: 49,
+      annualBilled: 468,
+      annualMonthlyEquiv: 39
+    },
+    mayorista: {
+      name: 'Marca Mayorista',
+      monthly: 99,
+      annualBilled: 948,
+      annualMonthlyEquiv: 79
+    },
+    corporativo: {
+      name: 'Corporativo Galería',
+      monthly: 189,
+      annualBilled: 1788,
+      annualMonthlyEquiv: 149
+    }
+  };
+
+  function setBilling(cycle) {
+    currentBilling = cycle;
+    const monthlyBtn = document.getElementById('billing-monthly-btn');
+    const annualBtn = document.getElementById('billing-annual-btn');
+
+    if (cycle === 'annual') {
+      annualBtn.className = 'flex-1 py-2.5 rounded-lg text-center transition-all bg-surface-container-lowest text-primary shadow-sm relative';
+      monthlyBtn.className = 'flex-1 py-2.5 rounded-lg text-center transition-all text-on-surface-variant';
+      
+      document.querySelectorAll('.price-value').forEach(el => {
+        el.textContent = 'S/ ' + el.getAttribute('data-annual');
+      });
+      document.querySelectorAll('.annual-badge').forEach(el => {
+        el.classList.remove('hidden');
+      });
+    } else {
+      monthlyBtn.className = 'flex-1 py-2.5 rounded-lg text-center transition-all bg-surface-container-lowest text-primary shadow-sm';
+      annualBtn.className = 'flex-1 py-2.5 rounded-lg text-center transition-all text-on-surface-variant relative';
+
+      document.querySelectorAll('.price-value').forEach(el => {
+        el.textContent = 'S/ ' + el.getAttribute('data-monthly');
+      });
+      document.querySelectorAll('.annual-badge').forEach(el => {
+        el.classList.add('hidden');
+      });
+    }
+    updateSummary();
+  }
+
+  function selectPlan(planKey) {
+    currentPlan = planKey;
+    const allCards = {
+      emprendedor: document.getElementById('card-plan-emprendedor'),
+      mayorista: document.getElementById('card-plan-mayorista'),
+      corporativo: document.getElementById('card-plan-corporativo')
+    };
+
+    Object.keys(allCards).forEach(key => {
+      const card = allCards[key];
+      const indicator = card.querySelector('.radio-indicator');
+      const checkIcon = indicator.querySelector('.material-symbols-outlined');
+
+      if (key === planKey) {
+        card.classList.remove('bg-surface-container-lowest');
+        card.classList.add('bg-surface-container-low', 'shadow-md');
+        indicator.classList.remove('bg-surface-container');
+        indicator.classList.add('bg-primary');
+        checkIcon.classList.remove('hidden');
+      } else {
+        card.classList.add('bg-surface-container-lowest');
+        card.classList.remove('bg-surface-container-low', 'shadow-md');
+        indicator.classList.add('bg-surface-container');
+        indicator.classList.remove('bg-primary');
+        checkIcon.classList.add('hidden');
+      }
+    });
+
+    updateSummary();
+  }
+
+  function toggleIGV() {
+    const igvRow = document.getElementById('igv-breakdown-row');
+    const checked = document.getElementById('igv-toggle').checked;
+    if (checked) {
+      igvRow.classList.remove('hidden');
+    } else {
+      igvRow.classList.add('hidden');
+    }
+    updateSummary();
+  }
+
+  function updateSummary() {
+    const plan = planCatalog[currentPlan];
+    const isAnnual = currentBilling === 'annual';
+    const planLabel = plan.name + (isAnnual ? ' (Anual)' : ' (Mensual)');
+    
+    document.getElementById('summary-plan-name').textContent = planLabel;
+    document.getElementById('summary-cycle').textContent = isAnnual ? 'Cobro anual prepagado (-20%)' : 'Facturación mensual automática';
+
+    const baseAmount = isAnnual ? plan.annualBilled : plan.monthly;
+    const withIGV = document.getElementById('igv-toggle').checked;
+
+    if (withIGV) {
+      const igvAmount = baseAmount * 0.18;
+      const totalAmount = baseAmount + igvAmount;
+      document.getElementById('summary-igv-amount').textContent = 'S/ ' + igvAmount.toFixed(2);
+      document.getElementById('summary-total-price').textContent = 'S/ ' + totalAmount.toFixed(2);
+    } else {
+      document.getElementById('summary-total-price').textContent = 'S/ ' + baseAmount.toFixed(2);
+    }
+  }
+
+  function selectPayment(method) {
+    const radio = document.querySelector(`input[name="payment_method"][value="${method}"]`);
+    if (radio) radio.checked = true;
+  }
+
+  function handleCheckout() {
+    const btn = document.getElementById('cta-submit-btn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[20px]">sync</span><span>Procesando solicitud...</span>`;
+    setTimeout(() => {
+      btn.innerHTML = `<span class="material-symbols-outlined text-[20px] text-secondary-fixed">check_circle</span><span>¡Activado con Éxito!</span>`;
+      btn.classList.add('bg-secondary');
+    }, 900);
+  }
+</script></main>  
+  <gamarra-nav mode="vendedor" active="suscripcion"></gamarra-nav>
+</body></html>

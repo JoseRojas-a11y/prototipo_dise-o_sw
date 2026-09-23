@@ -1,0 +1,581 @@
+<!DOCTYPE html><html lang="es" ><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Ocupación de Stands - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head><body class="gamarrachain-dashboard bg-surface font-body-md text-on-surface antialiased">
+  <gamarra-header role="analytics" title="Ocupación de Stands"></gamarra-header>
+  <analytics-tabs active="ocupacion-stands"></analytics-tabs><svg aria-hidden="true" class="inline-defs-container" style="position:absolute;width:0;height:0;overflow:hidden"></svg><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type">
+
+
+<script src="https://cdn.tailwindcss.com"></script><svg aria-hidden="true" class="inline-defs-container" style="position:absolute;width:0;height:0;overflow:hidden"></svg><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type">
+
+
+<script src="https://cdn.tailwindcss.com"></script><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full">
+<!-- Context Sub-bar / Commercial Breadcrumb & Realtime LoRaWAN Stream Status -->
+<section class="w-full bg-surface-container-low px-margin-tablet lg:px-space-xl py-space-sm shadow-sm">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Holding Textil Perú S.A.</span>
+<span class="text-outline opacity-40">/</span>
+<span class="font-label-sm text-label-sm text-on-surface font-medium">Galería San Pedro</span>
+<span class="text-outline opacity-40">/</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Ocupación &amp; Rentas Inmobiliarias</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-md">
+<div class="flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-md">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Hub IoT: Nodos 24/24 Activos</span>
+</div>
+<div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-md font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-outline">key</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-semibold">Token: GC-LIMA-89104</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">update</span>
+<span class="font-label-sm text-label-sm">Sync: Hace 42s</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Page Header & Level Selector -->
+<section class="w-full px-margin-tablet lg:px-space-xl pt-space-lg pb-space-md">
+<div class="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-sm py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm uppercase tracking-widest font-bold">Inmótica B2B</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pabellones A &amp; B Comerciales</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+          Matriz de Ocupación de Stands &amp; Rentabilidad Espacial
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+          Supervisión milimétrica de arrendamiento, cánones por m², densidad de tráfico peatonal y disponibilidad operativa de locales comerciales en Galería San Pedro.
+        </p>
+</div>
+<!-- Level Commercial Selector -->
+<div class="flex items-center p-1 bg-surface-container rounded-xl shadow-sm self-stretch xl:self-auto overflow-x-auto">
+<button class="px-space-md py-space-xs rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold transition-all whitespace-nowrap shadow-sm" type="button">
+          Nivel 1 (Pab. A y B)
+        </button>
+<button class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-md text-label-md font-semibold transition-all whitespace-nowrap" type="button">
+          Nivel 2 (Confección)
+        </button>
+<button class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-md text-label-md font-semibold transition-all whitespace-nowrap" type="button">
+          Nivel 3 (Telas &amp; Pima)
+        </button>
+<button class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-md text-label-md font-semibold transition-all whitespace-nowrap" type="button">
+          Nivel 4 (Talleres)
+        </button>
+<button class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-md text-label-md font-semibold transition-all whitespace-nowrap" type="button">
+          Mezzanine
+        </button>
+</div>
+</div>
+</section>
+<!-- KPI Cards Grid -->
+<section class="w-full px-margin-tablet lg:px-space-xl pb-space-lg">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- KPI 1: Ocupación Total -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Ocupación Total</span>
+<span class="w-9 h-9 rounded-lg bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">domain</span>
+</span>
+</div>
+<div class="my-space-sm">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-display-metric text-display-metric text-primary">94.2%</span>
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +2.4%
+            </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">173 de 184 stands activos</span>
+</div>
+<!-- Micro progress bar -->
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 94.2%;"></div>
+</div>
+</div>
+<!-- KPI 2: Renta Promedio x m² -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Renta Promedio x m²</span>
+<span class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</span>
+</div>
+<div class="my-space-sm">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-display-metric text-display-metric text-primary">S/ 142.50</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ m²</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Canon mensualizado consolidado</span>
+</div>
+<!-- Sparkline indicator -->
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="text-secondary font-bold">+S/ 8.20/m²</span>
+<span class="">desde Q4 2024</span>
+</div>
+</div>
+<!-- KPI 3: Permanencia de Inquilinos -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Permanencia Media</span>
+<span class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">handshake</span>
+</span>
+</div>
+<div class="my-space-sm">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-display-metric text-display-metric text-primary">28</span>
+<span class="font-body-lg text-body-lg text-primary font-bold">meses</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Contratos comerciales estables</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="">Índice fidelidad: 91.8%</span>
+</div>
+</div>
+<!-- KPI 4: Ratio de Rotación -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Rotación Concesiones</span>
+<span class="w-9 h-9 rounded-lg bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">sync_alt</span>
+</span>
+</div>
+<div class="my-space-sm">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-display-metric text-display-metric text-primary">3.1%</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-bold">
+              Muy baja rotación
+            </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Riesgo de vacancia: Bajo (&lt;5%)</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px] text-secondary">verified</span>
+<span class="">Excelente rendimiento de plaza</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Stands Matrix + Detail Flyout Grid Layout -->
+<section class="w-full px-margin-tablet lg:px-space-xl pb-space-xl">
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column: Filter Controls & Commercial Matrix Map (8 Cols) -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- Filter & Search Toolbar -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mr-space-xs font-bold">Filtrar Estado:</span>
+<button class="px-space-sm py-1 rounded-md bg-primary text-on-primary font-label-sm text-label-sm font-medium" type="button">Todos (184)</button>
+<button class="px-space-sm py-1 rounded-md bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium" type="button">Al día (156)</button>
+<button class="px-space-sm py-1 rounded-md bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium" type="button">Por Renovar (17)</button>
+<button class="px-space-sm py-1 rounded-md bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium" type="button">Disponibles (11)</button>
+</div>
+<div class="relative flex-1 md:max-w-xs">
+<input class="w-full h-10 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm outline-none focus:bg-surface-container-lowest focus:shadow-sm" placeholder="Buscar stand, RUC o marca..." type="text">
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-[18px] text-outline">search</span>
+</div>
+</div>
+<!-- Real Commercial Gallery Grid Layout -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-lg">
+<!-- Section A: Pasaje A (Zona Denim & Tejidos Pesados) -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Pasaje A - Acceso Principal Jr. Gamarra</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Tráfico: Alto (+24k pers/día)</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-space-sm">
+<!-- Stand A-101 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer shadow-sm group" onclick="selectStand('Stand A-101', 'Gamarra Denim Corp', '20601839211', 'Denim &amp; Drill', '16.0 m²', '21,200 visitas', 'S/ 2,800.00', 'Vigente hasta Mar 2026', 'al-dia')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-primary font-bold group-hover:text-secondary transition-colors">Stand A-101</span>
+<span class="w-2 h-2 rounded-full bg-secondary" title="Al día"></span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold truncate">Gamarra Denim Corp</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface">Denim</span>
+<span class="font-bold text-primary">S/ 2,800</span>
+</div>
+</div>
+<!-- Stand A-102 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer shadow-sm group" onclick="selectStand('Stand A-102', 'Textiles Pima Real', '20554902184', 'Algodón Pima', '15.5 m²', '19,800 visitas', 'S/ 2,650.00', 'Vigente hasta Sep 2025', 'al-dia')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-primary font-bold group-hover:text-secondary transition-colors">Stand A-102</span>
+<span class="w-2 h-2 rounded-full bg-secondary" title="Al día"></span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold truncate">Textiles Pima Real</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface">Algodón Pima</span>
+<span class="font-bold text-primary">S/ 2,650</span>
+</div>
+</div>
+<!-- Stand A-103 (Por Renovar) -->
+<div class="p-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container transition-all cursor-pointer shadow-sm group" onclick="selectStand('Stand A-103', 'Hilados del Valle', '20498110943', 'Tejido Plano', '14.0 m²', '17,400 visitas', 'S/ 2,300.00', 'Vence en 22 días (Nov 2025)', 'renovar')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-primary font-bold group-hover:text-primary transition-colors">Stand A-103</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm font-bold text-[10px]">Por Renovar</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold truncate">Hilados del Valle</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-lowest text-on-surface">Tejido Plano</span>
+<span class="font-bold text-primary">S/ 2,300</span>
+</div>
+</div>
+<!-- Stand A-104 (Disponible) -->
+<div class="p-space-sm rounded-lg bg-secondary-container/20 hover:bg-secondary-container/30 transition-all cursor-pointer shadow-sm group" onclick="selectStand('Stand A-104', 'Disponible para Concesión', '-', 'Multirubro Textil', '18.0 m²', '23,000 visitas (estimadas)', 'S/ 3,100.00 (Base)', 'Listo para entrega inmediata', 'disponible')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-secondary font-bold">Stand A-104</span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-bold text-[10px]">Disponible</span>
+</div>
+<div class="font-body-md text-body-md text-secondary font-bold truncate">Vacante Inmediata</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-lowest text-on-surface">18 m²</span>
+<span class="font-bold text-secondary">S/ 3,100</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section B: Pasaje B (Galería Central & Alta Rotación) -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-3 h-3 rounded-sm bg-secondary"></span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Pasaje B - Atrio Central &amp; Escaleras Mecánicas</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Tráfico: Muy Alto (+31k pers/día)</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-space-sm">
+<!-- Stand B-201 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer shadow-sm group" onclick="selectStand('Stand B-201', 'Algodonera San Jacinto', '20100492817', 'Algodón Pima', '17.2 m²', '28,100 visitas', 'S/ 2,900.00', 'Vigente hasta Feb 2026', 'al-dia')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-primary font-bold group-hover:text-secondary transition-colors">Stand B-201</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold truncate">Algodonera San Jacinto</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface">Pima 50/1</span>
+<span class="font-bold text-primary">S/ 2,900</span>
+</div>
+</div>
+<!-- Stand B-202 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer shadow-sm group" onclick="selectStand('Stand B-202', 'Bordados &amp; Estampados Perú', '20492817462', 'Servicios Textiles', '13.8 m²', '24,600 visitas', 'S/ 2,200.00', 'Vigente hasta Ene 2026', 'al-dia')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-primary font-bold group-hover:text-secondary transition-colors">Stand B-202</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold truncate">Bordados &amp; Estampados</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface">Estampados</span>
+<span class="font-bold text-primary">S/ 2,200</span>
+</div>
+</div>
+<!-- Stand B-203 (En remodelación) -->
+<div class="p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high transition-all cursor-pointer shadow-sm group" onclick="selectStand('Stand B-203', 'En remodelación técnica', '20603819204', 'Confección Deportiva', '15.0 m²', '20,000 visitas (proy)', 'S/ 2,400.00', 'Apertura programada en 14 días', 'remodelacion')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-on-surface-variant font-bold">Stand B-203</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm text-[10px]">Obras</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant font-medium truncate">En remodelación</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-lowest text-on-surface">Acondicionamiento</span>
+<span class="font-bold text-outline">Pausa</span>
+</div>
+</div>
+<!-- Stand B-204 (Active Selected Highlight) -->
+<div class="p-space-sm rounded-lg bg-primary text-on-primary transition-all cursor-pointer shadow-md transform scale-[1.02]" id="card-b204" onclick="selectStand('Stand B-204', 'Confecciones Los Andes', '20519482012', 'Denim &amp; Gabardina', '14.5 m²', '18,400 visitas', 'S/ 2,450.00', 'Vigente hasta Dic 2025', 'al-dia')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md font-bold text-secondary-container">Stand B-204 ★</span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm text-[10px] font-bold">Al día</span>
+</div>
+<div class="font-body-md text-body-md text-on-primary font-bold truncate">Confecciones Los Andes</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-primary-container">
+<span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary">Denim</span>
+<span class="font-bold text-secondary-container">S/ 2,450</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section C: Galería Central & Pasaje Posterior -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-3 h-3 rounded-sm bg-outline"></span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Pasaje Posterior - Salida Jr. Antonio Bazo</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Tráfico: Moderado (+15k pers/día)</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-space-sm">
+<!-- Stand C-301 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer shadow-sm group" onclick="selectStand('Stand C-301', 'Creaciones Infantiles Chiki', '20391820491', 'Confección Infantil', '13.0 m²', '14,200 visitas', 'S/ 1,950.00', 'Vigente hasta Ago 2026', 'al-dia')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-primary font-bold group-hover:text-secondary transition-colors">Stand C-301</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold truncate">Creaciones Infantiles</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface">Infantil</span>
+<span class="font-bold text-primary">S/ 1,950</span>
+</div>
+</div>
+<!-- Stand C-302 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer shadow-sm group" onclick="selectStand('Stand C-302', 'Lencería &amp; Tejidos Finos', '20481928374', 'Tejidos de Punto', '14.2 m²', '16,100 visitas', 'S/ 2,150.00', 'Vigente hasta Ene 2026', 'al-dia')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-primary font-bold group-hover:text-secondary transition-colors">Stand C-302</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold truncate">Lencería &amp; Tejidos Finos</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface">Punto</span>
+<span class="font-bold text-primary">S/ 2,150</span>
+</div>
+</div>
+<!-- Stand C-303 (Por Renovar) -->
+<div class="p-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container transition-all cursor-pointer shadow-sm group" onclick="selectStand('Stand C-303', 'Avíos Textiles del Centro', '20601948203', 'Avíos &amp; Cierres', '12.5 m²', '13,900 visitas', 'S/ 1,800.00', 'Vence en 8 días (Oct 2025)', 'renovar')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-primary font-bold group-hover:text-primary transition-colors">Stand C-303</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm font-bold text-[10px]">Por Renovar</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold truncate">Avíos del Centro</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-lowest text-on-surface">Avíos</span>
+<span class="font-bold text-primary">S/ 1,800</span>
+</div>
+</div>
+<!-- Stand C-304 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer shadow-sm group" onclick="selectStand('Stand C-304', 'Boutique Urbana Perú', '20194820193', 'Confección Juvenil', '15.0 m²', '17,800 visitas', 'S/ 2,350.00', 'Vigente hasta Nov 2026', 'al-dia')">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-primary font-bold group-hover:text-secondary transition-colors">Stand C-304</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold truncate">Boutique Urbana</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface">Juvenil</span>
+<span class="font-bold text-primary">S/ 2,350</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Gallery Context Banner -->
+<div class="p-space-md rounded-xl bg-surface-container flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center shrink-0 shadow-sm text-primary">
+<span class="material-symbols-outlined text-[26px]">apartment</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">Plano Arquitectónico Digitalizado CAD</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Integrado con sensores de paso infrarrojos LoRaWAN en cada punto de acceso.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-space-xs rounded-lg bg-surface-container-lowest hover:bg-surface-container-high text-primary font-label-md text-label-md font-semibold transition-colors shadow-sm flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+<span class="">Ver Capa Térmica</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Stand Selected Dossier & Commercial Actions (4 Cols) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md sticky top-24">
+<!-- Stand Dossier Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden flex flex-col">
+<!-- Dossier Header -->
+<div class="bg-primary p-space-md text-on-primary flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-container font-bold" id="detail-code">Stand B-204</span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-primary leading-tight mt-0.5" id="detail-name">Confecciones Los Andes</h2>
+<span class="font-body-sm text-body-sm text-on-primary-container" id="detail-category">Denim &amp; Gabardina Pesada</span>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-bold shadow-sm" id="detail-badge">
+              Al día
+            </span>
+</div>
+<!-- Stand Image Showcase Placeholder -->
+<div class="relative w-full h-44 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="High-end textile storefront inside a bustling Latin American wholesale market gallery, vibrant rolls of premium Peruvian denim, modern display rack, industrial ambient spotlighting with warm accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALJZGMRJsWT7hDOB_mLpj8kNEfF2YGyTawkUN01ZUsqbL-86b5t1xpvq9zK-QnNg7jkoAh9EMemzYrM77q5ckgZhy94JEDsvYo_ncqM2PhjUYSP5w8DhZWK4XhtiEqEgrGSaOy4dpzMX1Wr1maLIw2k-1eNB90KJF1GK5kozJKaZjgV-VhJLsv1GRXBVHttfnH2lJQzZYUCo5xojQ__o9c8Ve1SJi8An5wBPD6BCb4WgeUY5uLALpm">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent flex items-end p-space-sm">
+<span class="font-label-sm text-label-sm text-on-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">photo_camera</span>
+<span class="">Cámara de Telemetría Stand B-204 (Actualizado)</span>
+</span>
+</div>
+</div>
+<!-- Contract & Spatial Specs -->
+<div class="p-space-md flex flex-col gap-space-md">
+<!-- Metrics Matrix for this stand -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-medium">Área Ocupada</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold mt-1" id="detail-area">14.5 m²</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Canon: S/ 168.96 / m²</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-medium">Tráfico Mensual</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold mt-1" id="detail-traffic">18,400 visitas</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">Percentil Top 15%</span>
+</div>
+</div>
+<!-- Detail Key-Values -->
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
+<div class="flex items-center justify-between py-1.5 border-b-0 bg-surface-container-low px-space-sm rounded">
+<span class="text-on-surface-variant">RUC Concesionario:</span>
+<span class="font-label-md text-label-md text-primary font-semibold" id="detail-ruc">20519482012</span>
+</div>
+<div class="flex items-center justify-between py-1.5 bg-surface-container-low px-space-sm rounded">
+<span class="text-on-surface-variant">Titular Representante:</span>
+<span class="font-label-md text-label-md text-primary font-semibold">Andrés Huamán Quispe</span>
+</div>
+<div class="flex items-center justify-between py-1.5 bg-surface-container-low px-space-sm rounded">
+<span class="text-on-surface-variant">Alquiler Mensual Pactado:</span>
+<span class="font-label-lg text-label-lg text-primary font-bold" id="detail-rent">S/ 2,450.00</span>
+</div>
+<div class="flex items-center justify-between py-1.5 bg-surface-container-low px-space-sm rounded">
+<span class="text-on-surface-variant">Garantía Inmobiliaria:</span>
+<span class="font-label-md text-label-md text-primary font-semibold">S/ 7,350.00 (3 meses)</span>
+</div>
+<div class="flex items-center justify-between py-1.5 bg-surface-container-low px-space-sm rounded">
+<span class="text-on-surface-variant">Vigencia Contractual:</span>
+<span class="font-label-md text-label-md text-secondary font-semibold" id="detail-expiry">Hasta Dic 2025</span>
+</div>
+</div>
+<!-- Telemetry Mini-Graph Inline -->
+<div class="p-space-sm rounded-lg bg-surface-container flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wide">Densidad de Tráfico Horaria (Hoy)</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Pico: 14:00 hrs</span>
+</div>
+<!-- Mini SVG Bar Chart -->
+<svg class="w-full h-12 text-primary" fill="none" viewBox="0 0 280 48">
+<rect fill="currentColor" height="16" opacity="0.25" rx="2" width="12" x="5" y="32"></rect>
+<rect fill="currentColor" height="24" opacity="0.3" rx="2" width="12" x="25" y="24"></rect>
+<rect fill="currentColor" height="28" opacity="0.4" rx="2" width="12" x="45" y="20"></rect>
+<rect fill="currentColor" height="34" opacity="0.6" rx="2" width="12" x="65" y="14"></rect>
+<rect fill="currentColor" height="40" opacity="0.75" rx="2" width="12" x="85" y="8"></rect>
+<rect fill="#006c49" height="44" rx="2" width="12" x="105" y="4"></rect>
+<rect fill="#006c49" height="42" rx="2" width="12" x="125" y="6"></rect>
+<rect fill="currentColor" height="36" opacity="0.7" rx="2" width="12" x="145" y="12"></rect>
+<rect fill="currentColor" height="32" opacity="0.6" rx="2" width="12" x="165" y="16"></rect>
+<rect fill="currentColor" height="26" opacity="0.4" rx="2" width="12" x="185" y="22"></rect>
+<rect fill="currentColor" height="20" opacity="0.3" rx="2" width="12" x="205" y="28"></rect>
+<rect fill="currentColor" height="14" opacity="0.2" rx="2" width="12" x="225" y="34"></rect>
+</svg>
+<div class="flex justify-between text-[10px] text-on-surface-variant font-label-sm">
+<span class="">08:00</span>
+<span class="">12:00</span>
+<span class="">14:00 (Pico)</span>
+<span class="">18:00</span>
+<span class="">21:00</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<button class="w-full h-11 px-space-md rounded-lg bg-primary hover:bg-inverse-surface text-on-primary font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-space-sm shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span class="">Descargar Contrato Digital (.PDF)</span>
+</button>
+<button class="w-full h-11 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-space-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span class="">Gestionar Canon / Cuota de Mantenimiento</span>
+</button>
+<button class="w-full h-11 px-space-md rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-space-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">sensors</span>
+<span class="">Ver Telemetría en Vivo del Stand</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Summary Box: Plaza Performance -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">account_balance_wallet</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Recaudación Nivel 1</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">S/ 426,800.00 / mes</span>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-secondary-container/30 text-on-secondary-container font-label-sm text-label-sm font-bold">
+            98.7% Cobrado
+          </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Notification Toast Simulation (Hidden by default, triggered on interactive actions) -->
+<div class="fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-space-md py-space-sm rounded-xl shadow-xl flex items-center gap-space-sm transition-all duration-300 opacity-0 pointer-events-none translate-y-4" id="toast-message">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+<span class="font-label-md text-label-md" id="toast-text">Stand seleccionado correctamente</span>
+</div>
+<!-- Vanilla Interaction Logic -->
+<script>
+    function selectStand(code, name, ruc, category, area, traffic, rent, expiry, statusType) {
+      // Update DOM elements in detail panel
+      document.getElementById('detail-code').innerText = code;
+      document.getElementById('detail-name').innerText = name;
+      document.getElementById('detail-category').innerText = category;
+      document.getElementById('detail-area').innerText = area;
+      document.getElementById('detail-traffic').innerText = traffic;
+      document.getElementById('detail-ruc').innerText = ruc;
+      document.getElementById('detail-rent').innerText = rent;
+      document.getElementById('detail-expiry').innerText = expiry;
+
+      const badgeEl = document.getElementById('detail-badge');
+      if (statusType === 'al-dia') {
+        badgeEl.className = 'px-space-sm py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-bold shadow-sm';
+        badgeEl.innerText = 'Al día';
+      } else if (statusType === 'renovar') {
+        badgeEl.className = 'px-space-sm py-1 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm font-bold shadow-sm';
+        badgeEl.innerText = 'Por Renovar';
+      } else if (statusType === 'disponible') {
+        badgeEl.className = 'px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold shadow-sm';
+        badgeEl.innerText = 'Disponible';
+      } else {
+        badgeEl.className = 'px-space-sm py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-bold shadow-sm';
+        badgeEl.innerText = 'Remodelación';
+      }
+
+      // Show toast
+      const toast = document.getElementById('toast-message');
+      document.getElementById('toast-text').innerText = 'Ficha técnica de ' + code + ' cargada';
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+      }, 2200);
+    }
+
+    // Attach active state styling to the App Shell's "Ocupación de Stands" nav button
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('header nav a');
+      navLinks.forEach(link => {
+        if (link.textContent.trim().includes('Ocupación de Stands')) {
+          link.classList.remove('text-on-surface-variant');
+          link.classList.add('bg-primary', 'text-on-primary', 'font-semibold', 'shadow-sm');
+        }
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low py-space-lg mt-space-xl"><div class="w-full px-margin-tablet lg:px-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm font-semibold text-primary uppercase tracking-wider">GamarraChain Retail Intelligence</span><span class="text-[12px] opacity-40">|</span><span class="font-body-sm text-body-sm">© 2025 Plataforma Corporativa B2B. Red de Nodos Espaciales Textil.</span></div><div class="flex items-center gap-space-lg font-label-sm text-label-sm"><span class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary"></span>Red LoRaWAN Activa</span><span class="hover:text-on-surface transition-colors cursor-pointer">Documentación API IoT</span><span class="hover:text-on-surface transition-colors cursor-pointer">Auditoría de Métricas</span></div></div></footer>
+
+  
+  
+</body></html>

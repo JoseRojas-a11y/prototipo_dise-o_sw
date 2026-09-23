@@ -1,0 +1,7 @@
+/* Estilos de Contenedores - Ocupación de Stands */
+.stands-matrix-card {
+  background: var(--color-surface-container-lowest);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(197, 198, 205, 0.4);
+}

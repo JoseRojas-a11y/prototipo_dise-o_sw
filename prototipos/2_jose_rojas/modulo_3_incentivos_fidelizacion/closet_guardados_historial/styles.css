@@ -1,0 +1,13 @@
+/* Estilos de Contenedores - Closet Guardados */
+.closet-segmented-tabs {
+  background: var(--color-surface-container-low);
+  border-radius: 0.75rem;
+  padding: 0.25rem;
+  display: flex;
+}
+
+.saved-items-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}

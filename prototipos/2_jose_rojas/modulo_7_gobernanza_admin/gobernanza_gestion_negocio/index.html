@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Gobernanza del Negocio - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head>
+<body class="gamarrachain-app bg-surface font-body text-sm text-on-surface flex flex-col min-h-screen antialiased select-none">
+  <gamarra-header role="vendedor" title="Gobernanza del Negocio" back="inicio"></gamarra-header>
+  <!-- Header -->
+  
+
+  <!-- Main Content -->
+  <main class="flex flex-col relative w-full pt-16 pb-24 bg-surface flex-grow min-h-screen overflow-y-auto">
+    <div class="flex flex-col w-full px-4 py-4 gap-4">
+
+      <!-- Stand Profile Card -->
+      <div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-outline-variant/30 flex flex-col gap-3">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-lg">
+              CLA
+            </div>
+            <div class="flex flex-col">
+              <h2 class="font-headline font-bold text-base text-primary leading-tight">Confecciones Los Andes</h2>
+              <span class="text-xs text-on-surface-variant">RUC 20608945123 · Gamarra Damero A</span>
+              <span class="text-xs text-secondary font-medium mt-0.5 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-secondary"></span> Abierto al público · Stand B-204
+              </span>
+            </div>
+          </div>
+          <button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+            <span class="material-symbols-outlined text-[18px]">edit</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Governance Control Switches -->
+      <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant/30 flex flex-col gap-3">
+        <h3 class="font-headline font-bold text-sm text-primary flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-primary text-[18px]">tune</span>
+          Reglas de Negocio & Operatividad
+        </h3>
+
+        <!-- Toggle 1: Estado del Puesto -->
+        <div class="flex items-center justify-between py-1.5 border-b border-outline-variant/20">
+          <div class="flex flex-col">
+            <span class="text-xs font-semibold text-primary">Recepción de Pedidos Mayoristas</span>
+            <span class="text-[11px] text-on-surface-variant">Permite a compradores de provincias enviar órdenes</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-10 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
+          </label>
+        </div>
+
+        <!-- Toggle 2: Sincronización UWB con mapa 3D -->
+        <div class="flex items-center justify-between py-1.5 border-b border-outline-variant/20">
+          <div class="flex flex-col">
+            <span class="text-xs font-semibold text-primary">Beacon UWB de Navegación 3D</span>
+            <span class="text-[11px] text-on-surface-variant">Transmitir señal de precisión para guiado peatonal</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-10 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
+          </label>
+        </div>
+
+        <!-- Toggle 3: Validación Comunitaria de Precios -->
+        <div class="flex items-center justify-between py-1.5">
+          <div class="flex flex-col">
+            <span class="text-xs font-semibold text-primary">Validación Abierta Comunitaria</span>
+            <span class="text-[11px] text-on-surface-variant">Permite a usuarios validar stock por puntos</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" checked class="sr-only peer">
+            <div class="w-10 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Control de Suscripción & SaaS Activo -->
+      <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant/30 flex flex-col gap-3">
+        <div class="flex items-center justify-between">
+          <h3 class="font-headline font-bold text-sm text-primary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-primary text-[18px]">workspace_premium</span>
+            Suscripción SaaS Vigente
+          </h3>
+          <span class="text-xs font-bold text-secondary bg-secondary-container/50 px-2 py-0.5 rounded-full">Taller Pro</span>
+        </div>
+        <p class="text-xs text-on-surface-variant">Renovación automática el 15 del próximo mes. Incluye catálogo ilimitado, 3 pautas destacadas y analíticas de tráfico.</p>
+        <div class="flex items-center gap-2 pt-1">
+          <a href="#" data-path="planes-suscripcion" class="flex-1 h-9 rounded-lg bg-primary text-on-primary text-xs font-semibold flex items-center justify-center gap-1 shadow-sm">
+            <span>Gestionar Suscripción</span>
+            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+          </a>
+          <a href="#" data-path="publicidad" class="h-9 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary text-xs font-semibold flex items-center justify-center gap-1">
+            <span>Pauta</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Moderación de Disputas & Reseñas Comunitarias -->
+      <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant/30 flex flex-col gap-3">
+        <div class="flex items-center justify-between">
+          <h3 class="font-headline font-bold text-sm text-primary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-primary text-[18px]">gavel</span>
+            Moderación y Disputas de Datos
+          </h3>
+          <span class="text-[11px] font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">1 pendiente</span>
+        </div>
+
+        <div class="bg-surface-container-low rounded-lg p-3 flex flex-col gap-2 border border-outline-variant/30">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-primary">Reporte sobre Casaca Denim #CD-204</span>
+            <span class="text-[10px] text-on-surface-variant">Hoy 09:40 AM</span>
+          </div>
+          <p class="text-xs text-on-surface-variant">El usuario validó: <em>"Stock en stand es 150 doc, no 180 doc"</em>.</p>
+          <div class="flex items-center gap-2 pt-1">
+            <button class="flex-1 h-7 rounded-md bg-secondary text-on-secondary text-xs font-medium flex items-center justify-center">Aceptar y Actualizar</button>
+            <button class="flex-1 h-7 rounded-md bg-surface-container text-on-surface-variant text-xs font-medium flex items-center justify-center">Desestimar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  
+  
+  <gamarra-nav mode="vendedor" active="inicio"></gamarra-nav>
+</body>
+</html>

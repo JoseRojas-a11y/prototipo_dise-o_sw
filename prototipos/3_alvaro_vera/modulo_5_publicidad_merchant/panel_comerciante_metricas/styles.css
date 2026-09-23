@@ -1,0 +1,19 @@
+/* Estilos de Contenedores - Panel Comerciante Métricas */
+.merchant-hero-card {
+  background: var(--color-surface-container-lowest);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.kpi-row-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}

@@ -1,0 +1,15 @@
+/* Estilos de Contenedores - Mapa de Calor Espacial */
+.analytics-canvas-container {
+  width: 100%;
+  border-radius: 1rem;
+  background: #0b1523;
+  overflow: hidden;
+  position: relative;
+  min-height: 480px;
+}
+
+.kpi-analytics-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}

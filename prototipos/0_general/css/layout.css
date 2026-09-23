@@ -1,0 +1,70 @@
+/* GamarraChain - Layouts y Contenedores Generales */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-family-body);
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Contenedor móvil nativo centrado en escritorio */
+.gamarrachain-app {
+  width: 100%;
+  max-width: 440px;
+  min-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--color-surface);
+  position: relative;
+  box-shadow: 0 0 35px rgba(9, 20, 38, 0.08);
+}
+
+/* Contenedor completo para Spatial Analytics B2B */
+.gamarrachain-dashboard {
+  width: 100%;
+  max-width: 1400px;
+  min-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--color-surface);
+  position: relative;
+}
+
+/* Transición suave */
+main {
+  animation: pageFadeIn 0.2s ease-out;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0.94;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar reset */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

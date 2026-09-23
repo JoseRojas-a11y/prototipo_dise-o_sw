@@ -1,0 +1,22 @@
+/* Estilos de Contenedores - Alta Rápida de Inventario */
+.intake-banner {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
+  color: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.photo-drop-card {
+  background: rgba(239, 244, 255, 0.5);
+  border: 2px dashed rgba(197, 198, 205, 0.8);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.form-card {
+  background: var(--color-surface-container-lowest);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(197, 198, 205, 0.3);
+}

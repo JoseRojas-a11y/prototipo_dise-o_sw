@@ -1,0 +1,33 @@
+/* Estilos de Contenedores - Navegador GPS 3D */
+.map-3d-viewport {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 128px);
+  background-color: #0b1523;
+  overflow: hidden;
+}
+
+.uwb-status-pill {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 20;
+  background: rgba(9, 20, 38, 0.85);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  border-radius: 9999px;
+  padding: 0.35rem 0.75rem;
+}
+
+.stand-arrival-card {
+  position: absolute;
+  bottom: 5.5rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 20;
+  background: rgba(248, 249, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}

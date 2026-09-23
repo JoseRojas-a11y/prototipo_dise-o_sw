@@ -1,0 +1,14 @@
+/* Estilos de Contenedores - Gobernanza del Negocio */
+.business-profile-card {
+  background: var(--color-surface-container-lowest);
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(197, 198, 205, 0.3);
+}
+
+.governance-rules-card {
+  background: var(--color-surface-container-lowest);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(197, 198, 205, 0.3);
+}

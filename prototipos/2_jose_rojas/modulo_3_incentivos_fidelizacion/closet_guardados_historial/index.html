@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Mi Closet - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head><body class="gamarrachain-app bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+  <gamarra-header role="cliente" title="Mi Closet"></gamarra-header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full pb-6">
+<!-- Sub-Header & Summary Info -->
+<div class="px-margin pt-3 pb-2 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight leading-tight">Mi Closet</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Prendas guardadas e historial de búsqueda</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">checkroom</span>
+</div>
+</div>
+<!-- Segmented Control Tabs -->
+<div class="mt-3 p-1 bg-surface-container-high/80 rounded-xl flex items-center gap-1 shadow-sm">
+<button class="flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5" id="tab-saved-btn" onclick="switchMainTab('saved')">
+<span class="material-symbols-outlined text-[16px] text-secondary">bookmark</span>
+<span>Guardados (12)</span>
+</button>
+<button class="flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all text-on-surface-variant hover:text-primary flex items-center justify-center gap-1.5" id="tab-history-btn" onclick="switchMainTab('history')">
+<span class="material-symbols-outlined text-[16px]">history</span>
+<span>Búsquedas (8)</span>
+</button>
+</div>
+</div>
+<!-- VIEW 1: Saved Items Container -->
+<div class="flex flex-col w-full gap-4 mt-2" id="view-saved">
+<!-- Category Chips Pill Bar -->
+<div class="px-margin overflow-x-auto no-scrollbar flex items-center gap-2 py-1">
+<button class="cat-pill px-3.5 py-1.5 rounded-full font-label-sm text-label-sm bg-primary text-on-primary transition-all whitespace-nowrap shadow-sm" onclick="filterCategory(this, 'all')">
+        Todos (12)
+      </button>
+<button class="cat-pill px-3.5 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition-all whitespace-nowrap" onclick="filterCategory(this, 'denim')">
+        Denim (4)
+      </button>
+<button class="cat-pill px-3.5 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition-all whitespace-nowrap" onclick="filterCategory(this, 'pima')">
+        Pima 50/1 (5)
+      </button>
+<button class="cat-pill px-3.5 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition-all whitespace-nowrap" onclick="filterCategory(this, 'franela')">
+        Franela (3)
+      </button>
+</div>
+<!-- Product Cards Grid/List -->
+<div class="px-margin flex flex-col gap-3">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 shadow-sm flex flex-col gap-3 transition-all duration-300 relative overflow-hidden" data-category="denim" id="card-item-1">
+<div class="flex gap-3">
+<div class="w-20 h-24 rounded-lg bg-surface-container-high overflow-hidden shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="High quality indigo blue denim jacket on boutique display hanger, premium Peruvian Gamarra textile market manufacturing, modern urban daylight lighting with detailed brass buttons and crisp stitching" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoSOcbJH6bawRBF-KZ0vmqOxCVoD9AuLm1UDfe0wgWHnWP0AIp-40gGYlJXgLsDNruodX52iAcOOqLvo8YMQcbH6egTNKTExdiiugSuifxcTQF4aERsKr1U8lk6YKyj8gY7nkViuAoSqUdo5T-Aq7K4f8dYSiKwaWqdibuIaKCheuZTav_j4q99-ekGArQ6EiQ_s45t73M-MnXxPUY3sOjxpCdBoMkZKTJFoOMEt63Co0i5dK6-m7V"/>
+<span class="absolute bottom-1 left-1 px-1.5 py-0.5 rounded bg-primary/80 backdrop-blur-sm text-on-primary font-label-sm text-[9px] uppercase tracking-wider">Denim</span>
+</div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h3 class="font-label-lg text-label-lg text-primary truncate">Casaca Denim Streetwear</h3>
+<button aria-label="Eliminar del Closet" class="w-7 h-7 rounded-full flex items-center justify-center text-outline hover:text-error hover:bg-error-container/40 transition-colors shrink-0 -mr-1" onclick="removeItem('card-item-1')">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">store</span>
+<span class="font-body-sm text-body-sm truncate">Stand B-204 • Galería San Pedro</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between pt-1">
+<div>
+<span class="font-headline-sm text-headline-sm text-primary">S/ 38.00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ doc</span>
+</div>
+<span class="font-body-sm text-[11px] text-outline">Hace 2 días</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1 border-t border-surface-container-high/40">
+<button class="flex-1 h-10 px-3 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[18px]">directions_walk</span>
+<span>Ver Ruta GPS</span>
+</button>
+<button class="h-10 px-3 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md flex items-center justify-center gap-1 active:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Stand</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 shadow-sm flex flex-col gap-3 transition-all duration-300 relative overflow-hidden" data-category="pima" id="card-item-2">
+<div class="flex gap-3">
+<div class="w-20 h-24 rounded-lg bg-surface-container-high overflow-hidden shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Folded stack of premium white and black Peruvian Pima 50/1 combed cotton t-shirts in minimalist commercial wholesale studio showroom lighting with smooth soft fabric texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4yaBy7tjJnphqWaBaiha6z6RHaY3V7UqT6KSsKmvAQrU0E-0D6g1XHBdIsvqla6zozqqcldIH-WPIyEhTd0ucNkbkIqz76jjsHrmCmixvAxPRHSI7ODz3InY3xUXlWOryatvUij2WljZtKEg7DocaXktM11aY-9h6js8iao_n8BXyrxUHAzOagELBI2IGybebvm7XxR-DOb6AZnzbc-yA9oT17J52lDUY1uBzCkFc3Kw64z-g7lYo"/>
+<span class="absolute bottom-1 left-1 px-1.5 py-0.5 rounded bg-primary/80 backdrop-blur-sm text-on-primary font-label-sm text-[9px] uppercase tracking-wider">Pima 50/1</span>
+</div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h3 class="font-label-lg text-label-lg text-primary truncate">Pack Polos Algodón Pima C.R.</h3>
+<button aria-label="Eliminar del Closet" class="w-7 h-7 rounded-full flex items-center justify-center text-outline hover:text-error hover:bg-error-container/40 transition-colors shrink-0 -mr-1" onclick="removeItem('card-item-2')">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">store</span>
+<span class="font-body-sm text-body-sm truncate">Stand A-108 • Galería Guizado</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between pt-1">
+<div>
+<span class="font-headline-sm text-headline-sm text-primary">S/ 16.50</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ doc</span>
+</div>
+<span class="font-body-sm text-[11px] text-outline">Guardado ayer</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1 border-t border-surface-container-high/40">
+<button class="flex-1 h-10 px-3 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[18px]">directions_walk</span>
+<span>Ver Ruta GPS</span>
+</button>
+<button class="h-10 px-3 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md flex items-center justify-center gap-1 active:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Stand</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 shadow-sm flex flex-col gap-3 transition-all duration-300 relative overflow-hidden" data-category="franela" id="card-item-3">
+<div class="flex gap-3">
+<div class="w-20 h-24 rounded-lg bg-surface-container-high overflow-hidden shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Cozy dark green and charcoal fleece hoodie sweater displayed flat lay on wholesale merchant table, heavy GSM cotton fleece texture, studio catalog aesthetic with soft directional shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpaYzD47C90kdUXMObKEU1AWkJRPeCg60Ft7mh0s1D9KNsWbjO2B5XmcZNNtq4qu4saUJgneIMqIuZ-0PdFXMQjW7V6tzC4ud6iSNAP66wUeiC8sbrA5S1fNLGT8g-v0mL_CCId7F00oadw5dNj-6JhwSN5jc3eIZCD1u27y1wV5DYbrlBZJG4laTaVyiZ0pnk0ZLIE4Z79y1Y_8qCS_rvIgHPHBWAqfYtwmgch9h1fZopf0qi0Fq6"/>
+<span class="absolute bottom-1 left-1 px-1.5 py-0.5 rounded bg-primary/80 backdrop-blur-sm text-on-primary font-label-sm text-[9px] uppercase tracking-wider">Franela</span>
+</div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h3 class="font-label-lg text-label-lg text-primary truncate">Polera Fleece Franela Reactiva</h3>
+<button aria-label="Eliminar del Closet" class="w-7 h-7 rounded-full flex items-center justify-center text-outline hover:text-error hover:bg-error-container/40 transition-colors shrink-0 -mr-1" onclick="removeItem('card-item-3')">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">store</span>
+<span class="font-body-sm text-body-sm truncate">Stand C-312 • CC Gama Gamarra</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between pt-1">
+<div>
+<span class="font-headline-sm text-headline-sm text-primary">S/ 32.00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ doc</span>
+</div>
+<span class="font-body-sm text-[11px] text-secondary font-semibold">Guardado hoy</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1 border-t border-surface-container-high/40">
+<button class="flex-1 h-10 px-3 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[18px]">directions_walk</span>
+<span>Ver Ruta GPS</span>
+</button>
+<button class="h-10 px-3 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md flex items-center justify-center gap-1 active:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Stand</span>
+</button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 shadow-sm flex flex-col gap-3 transition-all duration-300 relative overflow-hidden" data-category="denim" id="card-item-4">
+<div class="flex gap-3">
+<div class="w-20 h-24 rounded-lg bg-surface-container-high overflow-hidden shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Military khaki and slate cargo utility trousers with multi pockets made of 100 percent cotton drill fabric, modern commercial fashion lookbook clean bright background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO_P_N5uZSesT-q5vLfPv-jQhN0MMAZsunvhZo7et4I4gjSzeWdH8lba1KxQWEGnC0jpIwan0ed6uh1fBTktUByL_0Y-P-_kwU_9elgC4Muh6sNxPJzqazJv4vLysTXDTR2ZHAPXFZsk0fquvKJyVW1r4zilhnletSsG0FllpZmi-t0sRxUOIGU-ThFB2_eCgO2vNFEy5Amhrg6hNttwY_oac3qGD-Mz5mIEp1ljHpveusQ2V5xdIZ"/>
+<span class="absolute bottom-1 left-1 px-1.5 py-0.5 rounded bg-primary/80 backdrop-blur-sm text-on-primary font-label-sm text-[9px] uppercase tracking-wider">Drill</span>
+</div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h3 class="font-label-lg text-label-lg text-primary truncate">Pantalón Cargo Drill 100% Alg.</h3>
+<button aria-label="Eliminar del Closet" class="w-7 h-7 rounded-full flex items-center justify-center text-outline hover:text-error hover:bg-error-container/40 transition-colors shrink-0 -mr-1" onclick="removeItem('card-item-4')">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">store</span>
+<span class="font-body-sm text-body-sm truncate">Stand D-105 • Galería Damero</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between pt-1">
+<div>
+<span class="font-headline-sm text-headline-sm text-primary">S/ 29.00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ doc</span>
+</div>
+<span class="font-body-sm text-[11px] text-outline">Hace 5 días</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1 border-t border-surface-container-high/40">
+<button class="flex-1 h-10 px-3 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[18px]">directions_walk</span>
+<span>Ver Ruta GPS</span>
+</button>
+<button class="h-10 px-3 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md flex items-center justify-center gap-1 active:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Stand</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- VIEW 2: Search History Section (Toggled or stacked seamlessly) -->
+<div class="px-margin flex flex-col gap-3 mt-4" id="view-history">
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">manage_search</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Tus Búsquedas Recientes</h3>
+</div>
+<button class="font-label-sm text-label-sm text-outline hover:text-error transition-colors px-2 py-1 rounded" onclick="clearHistoryList()">
+        Borrar historial
+      </button>
+</div>
+<!-- History Interactive Chips List -->
+<div class="flex flex-col gap-2.5" id="history-container">
+<!-- Search item 1 -->
+<div class="history-card bg-surface-container-lowest p-3.5 rounded-xl flex items-center justify-between gap-2 shadow-sm transition-all hover:bg-surface-container-low">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-primary truncate">Polos oversize franela 24/1</span>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-[12px] mt-0.5">
+<span>Ayer</span>
+<span>•</span>
+<span class="text-secondary font-semibold">18 resultados</span>
+</div>
+</div>
+</div>
+<button class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0 hover:bg-secondary hover:text-on-secondary transition-colors" title="Reanudar búsqueda">
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<!-- Search item 2 -->
+<div class="history-card bg-surface-container-lowest p-3.5 rounded-xl flex items-center justify-between gap-2 shadow-sm transition-all hover:bg-surface-container-low">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-primary truncate">Casaca denim con corderoy</span>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-[12px] mt-0.5">
+<span>Hace 3 días</span>
+<span>•</span>
+<span class="text-secondary font-semibold">6 stands con stock</span>
+</div>
+</div>
+</div>
+<button class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0 hover:bg-secondary hover:text-on-secondary transition-colors" title="Reanudar búsqueda">
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<!-- Search item 3 -->
+<div class="history-card bg-surface-container-lowest p-3.5 rounded-xl flex items-center justify-between gap-2 shadow-sm transition-all hover:bg-surface-container-low">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-primary truncate">Joggers french terry reactivo</span>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-[12px] mt-0.5">
+<span>Hace 5 días</span>
+<span>•</span>
+<span class="text-secondary font-semibold">12 resultados</span>
+</div>
+</div>
+</div>
+<button class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0 hover:bg-secondary hover:text-on-secondary transition-colors" title="Reanudar búsqueda">
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Fast Actions Summary Card (Combined Route Planner) -->
+<div class="px-margin mt-5 mb-2">
+<div class="bg-primary-container text-on-primary rounded-xl p-4 shadow-md flex flex-col gap-3 relative overflow-hidden">
+<!-- Decorative background wave/accent -->
+<div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-secondary/15 pointer-events-none blur-2xl"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-md bg-secondary flex items-center justify-center text-on-secondary">
+<span class="material-symbols-outlined text-[18px]">route</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary-container uppercase tracking-wider">Recorrido Inteligente</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high/20 text-surface-container-highest">4 Stands</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<div class="flex items-baseline gap-2">
+<span class="font-display-metric text-[26px] font-bold text-on-primary leading-tight">S/ 115.50</span>
+<span class="font-body-sm text-body-sm text-on-primary-container">presupuesto base aprox.</span>
+</div>
+<p class="font-body-sm text-[13px] text-on-primary-container">
+          4 prendas seleccionadas en San Pedro, Gama y Damero
+        </p>
+</div>
+<button class="w-full h-12 mt-1 rounded-lg bg-secondary text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm active:opacity-95 transition-all" onclick="launchCombinedRoute()">
+<span class="material-symbols-outlined text-[20px]">map</span>
+<span>Trazar Ruta Combinada GPS</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  // Dynamic Tab and Filter Handlers
+  function switchMainTab(tab) {
+    const savedBtn = document.getElementById('tab-saved-btn');
+    const historyBtn = document.getElementById('tab-history-btn');
+    const viewSaved = document.getElementById('view-saved');
+    const viewHistory = document.getElementById('view-history');
+
+    if (tab === 'saved') {
+      savedBtn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5";
+      historyBtn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all text-on-surface-variant hover:text-primary flex items-center justify-center gap-1.5";
+      viewSaved.classList.remove('hidden');
+      viewHistory.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      historyBtn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5";
+      savedBtn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all text-on-surface-variant hover:text-primary flex items-center justify-center gap-1.5";
+      viewHistory.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function filterCategory(el, category) {
+    document.querySelectorAll('.cat-pill').forEach(btn => {
+      btn.className = "cat-pill px-3.5 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition-all whitespace-nowrap";
+    });
+    el.className = "cat-pill px-3.5 py-1.5 rounded-full font-label-sm text-label-sm bg-primary text-on-primary transition-all whitespace-nowrap shadow-sm";
+
+    const cards = document.querySelectorAll('[data-category]');
+    cards.forEach(card => {
+      if (category === 'all' || card.getAttribute('data-category') === category) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  function removeItem(cardId) {
+    const card = document.getElementById(cardId);
+    if (!card) return;
+    card.style.transform = 'translateX(60px)';
+    card.style.opacity = '0';
+    setTimeout(() => {
+      card.remove();
+    }, 280);
+  }
+
+  function clearHistoryList() {
+    const container = document.getElementById('history-container');
+    if (container) {
+      container.innerHTML = `
+        <div class="p-6 text-center bg-surface-container-lowest rounded-xl flex flex-col items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-[32px] text-outline">history_toggle_off</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Historial borrado correctamente</span>
+        </div>
+      `;
+    }
+  }
+
+  function launchCombinedRoute() {
+    // Quick notification / GPS routing prompt
+    const originalText = event.currentTarget.innerHTML;
+    event.currentTarget.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">refresh</span> Optimizando paradas...';
+    setTimeout(() => {
+      alert("Ruta calculada: 4 stands optimizados para caminata en orden: San Pedro -> Guizado -> Gama -> Damero.");
+      event.currentTarget.innerHTML = originalText;
+    }, 600);
+  }
+</script></main>  
+  <gamarra-nav mode="cliente" active="closet"></gamarra-nav>
+</body></html>

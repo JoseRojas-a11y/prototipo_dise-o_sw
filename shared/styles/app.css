@@ -1,0 +1,40 @@
+/* GamarraChain - Contenedor y Comportamiento de la App */
+
+/* Para pantallas móviles de usuario y comerciante (ancho móvil natural centrado en pantallas grandes) */
+.gamarrachain-app {
+  width: 100%;
+  max-width: 440px;
+  min-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--color-surface);
+  position: relative;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Para pantallas B2B / Spatial Analytics (que son tableros de escritorio/tablet completos) */
+.gamarrachain-dashboard {
+  width: 100%;
+  max-width: 1400px;
+  min-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--color-surface);
+  position: relative;
+}
+
+/* Transición suave entre pantallas */
+main {
+  animation: fadeInApp 0.25s ease-out;
+}
+
+@keyframes fadeInApp {
+  from {
+    opacity: 0.92;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

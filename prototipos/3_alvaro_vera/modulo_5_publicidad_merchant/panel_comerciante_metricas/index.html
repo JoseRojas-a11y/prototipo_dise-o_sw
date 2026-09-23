@@ -1,0 +1,358 @@
+<!DOCTYPE html><html lang="es"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Panel Comerciante - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head><body class="gamarrachain-app bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen">
+  <gamarra-header role="vendedor" title="Panel Comerciante"></gamarra-header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface"><div class="flex flex-col w-full px-margin pb-space-lg">
+<!-- CABECERA DE TIENDA Y SWITCH LIMPIO -->
+<section class="mt-4 mb-4">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-surface-container">
+<div class="flex items-center justify-between gap-3">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h1 class="text-lg font-bold text-on-surface font-headline-sm truncate">Confecciones Los Andes</h1>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded-full text-xs font-semibold text-primary">
+<span class="material-symbols-outlined text-[13px] text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+              Verificado
+            </span>
+</div>
+<p class="text-sm text-on-surface-variant flex items-center gap-1 mt-0.5 truncate">
+<span class="material-symbols-outlined text-[16px] text-outline">location_on</span>
+            Stand B-204 · Galería San Pedro
+          </p>
+</div>
+<!-- Estado interactivo compacto -->
+<button class="shrink-0 flex items-center gap-2 bg-secondary-fixed text-on-secondary-fixed px-3 py-1.5 rounded-full text-xs font-semibold active:scale-95 transition-all shadow-xs" id="storeStatusToggle" onclick="toggleStoreStatus()" type="button">
+<span class="relative flex h-2.5 w-2.5" id="statusPulseDot">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+</span>
+<span id="statusToggleLabel">Abierto</span>
+</button>
+</div>
+</div>
+</section>
+<!-- MENÚ DE FUNCIONALIDADES EN CUADRÍCULA (GRID 2x2 + 1) -->
+<section class="mb-5">
+<div class="flex items-center justify-between mb-2.5 px-0.5">
+<h2 class="text-base font-bold text-on-surface font-headline-sm">Operaciones del Puesto</h2>
+<span class="text-xs text-on-surface-variant font-medium">Accesos directos</span>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<!-- 1: Vitrina Digital -->
+<a class="bg-surface-container-lowest p-3.5 rounded-xl border border-surface-container shadow-xs flex flex-col justify-between active:scale-[0.98] transition-transform" href="#">
+<div class="flex items-start justify-between mb-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">checkroom</span>
+</div>
+<span class="bg-surface-container-high text-primary px-1.5 py-0.5 rounded text-xs font-semibold">84 prendas</span>
+</div>
+<div>
+<span class="text-sm font-bold text-on-surface block leading-tight">Vitrina Digital</span>
+<span class="text-xs text-on-surface-variant block mt-0.5">Catálogo y fotos</span>
+</div>
+</a>
+<!-- 2: Campañas y Pautas -->
+<a class="bg-surface-container-lowest p-3.5 rounded-xl border border-surface-container shadow-xs flex flex-col justify-between active:scale-[0.98] transition-transform relative overflow-hidden" href="#">
+<div class="flex items-start justify-between mb-2">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">campaign</span>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-1.5 py-0.5 rounded text-xs font-semibold">Activa</span>
+</div>
+<div>
+<span class="text-sm font-bold text-on-surface block leading-tight">Campañas y Pautas</span>
+<span class="text-xs text-on-surface-variant block mt-0.5">Visibilidad &amp; mapa 3D</span>
+</div>
+</a>
+<!-- 3: Métricas del Stand (Scroll/Enfoque a consulta) -->
+<button class="bg-surface-container-lowest p-3.5 rounded-xl border border-surface-container shadow-xs flex flex-col justify-between text-left active:scale-[0.98] transition-transform" onclick="focusMetricSelector()" type="button">
+<div class="flex items-start justify-between mb-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[22px]">insights</span>
+</div>
+<span class="bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded text-xs font-semibold">+24%</span>
+</div>
+<div>
+<span class="text-sm font-bold text-on-surface block leading-tight">Métricas del Stand</span>
+<span class="text-xs text-on-surface-variant block mt-0.5">Consulta bajo demanda</span>
+</div>
+</button>
+<!-- 4: Pedidos y Stock -->
+<a class="bg-surface-container-lowest p-3.5 rounded-xl border border-surface-container shadow-xs flex flex-col justify-between active:scale-[0.98] transition-transform" href="#">
+<div class="flex items-start justify-between mb-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">inventory_2</span>
+</div>
+<span class="bg-surface-container text-outline px-1.5 py-0.5 rounded text-xs font-semibold">5 nuevos</span>
+</div>
+<div>
+<span class="text-sm font-bold text-on-surface block leading-tight">Pedidos y Stock</span>
+<span class="text-xs text-on-surface-variant block mt-0.5">Separaciones mayoristas</span>
+</div>
+</a>
+<!-- 5: Soporte y Asesor (ancho completo) -->
+<a class="col-span-2 bg-surface-container-lowest p-3.5 rounded-xl border border-surface-container shadow-xs flex items-center justify-between active:scale-[0.98] transition-transform" href="https://wa.me/51999999999?text=Hola%20Carlos,%20soy%20de%20Confecciones%20Los%20Andes%20Stand%20B-204" target="_blank">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">support_agent</span>
+</div>
+<div>
+<span class="text-sm font-bold text-on-surface block leading-tight">Soporte y Asesor Asignado</span>
+<span class="text-xs text-on-surface-variant block mt-0.5">Carlos · Módulo San Pedro (Piso 2)</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</div>
+</a>
+</div>
+</section>
+<!-- ZONA DE MÉTRICAS CONDICIONAL / BAJO DEMANDA -->
+<section class="mb-4" id="metricSection">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-surface-container">
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="text-base font-bold text-on-surface font-headline-sm">Consulta de Métricas</h2>
+<p class="text-xs text-on-surface-variant">Selecciona un indicador específico para evitar saturación</p>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px]">filter_alt</span>
+</div>
+<!-- Menú Desplegable Selector de Métrica -->
+<div class="space-y-2.5">
+<div>
+<label class="block text-xs font-semibold text-on-surface-variant mb-1" for="metricSelect">
+            Seleccionar Métrica a Consultar:
+          </label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border border-surface-container text-on-surface text-sm rounded-lg p-2.5 pr-8 appearance-none focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary font-medium" id="metricSelect" onchange="onMetricChange()">
+<option value="none">-- Seleccionar métrica a consultar --</option>
+<option selected="" value="visitas">Visitas Confirmadas al Stand</option>
+<option value="impresiones">Impresiones de Vitrina</option>
+<option value="clics">Clics en Ofertas de Prendas</option>
+<option value="busquedas">Búsquedas Populares Asociadas</option>
+</select>
+<div class="absolute inset-y-0 right-2.5 flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Botones rápidos / Filtro en pestañas -->
+<div class="flex gap-1.5 overflow-x-auto pb-1 text-xs">
+<button class="metric-chip px-2.5 py-1 rounded-full font-semibold bg-primary text-on-primary shrink-0 transition-colors" id="chip-visitas" onclick="setMetric('visitas')" type="button">Visitas</button>
+<button class="metric-chip px-2.5 py-1 rounded-full font-semibold bg-surface-container text-on-surface shrink-0 transition-colors" id="chip-impresiones" onclick="setMetric('impresiones')" type="button">Impresiones</button>
+<button class="metric-chip px-2.5 py-1 rounded-full font-semibold bg-surface-container text-on-surface shrink-0 transition-colors" id="chip-clics" onclick="setMetric('clics')" type="button">Clics</button>
+<button class="metric-chip px-2.5 py-1 rounded-full font-semibold bg-surface-container text-on-surface shrink-0 transition-colors" id="chip-busquedas" onclick="setMetric('busquedas')" type="button">Búsquedas</button>
+</div>
+</div>
+<!-- CONTENEDOR DE TARJETA ENFOCADA (SOLO UNA MÉTRICA A LA VEZ) -->
+<div class="mt-4 pt-3 border-t border-surface-container">
+<!-- Estado Vacío -->
+<div class="hidden text-center py-6" id="metric-empty">
+<span class="material-symbols-outlined text-outline text-[32px] mb-1">analytics</span>
+<p class="text-sm font-medium text-on-surface">Ninguna métrica seleccionada</p>
+<p class="text-xs text-on-surface-variant mt-0.5">Elige una opción arriba para cargar los datos del stand.</p>
+</div>
+<!-- Métrica 1: Visitas al Stand -->
+<div class="metric-panel bg-surface-container-low rounded-lg p-3.5 border border-surface-container" id="metric-visitas">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Métrica Actual</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-xs font-bold px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">arrow_upward</span> +24% vs semana previa
+            </span>
+</div>
+<div class="flex items-center justify-between py-1">
+<div>
+<p class="text-sm font-semibold text-on-surface">Visitas Confirmadas al Stand</p>
+<p class="text-xs text-on-surface-variant">Tráfico físico guiado desde el mapa 3D</p>
+</div>
+<div class="text-right">
+<span class="text-base font-bold text-primary">312 personas</span>
+<span class="block text-xs text-secondary font-medium">94% guiadas al puesto</span>
+</div>
+</div>
+<div class="mt-2.5 pt-2 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant">
+<span>Stand B-204 · Período Lun - Hoy</span>
+<span class="text-primary font-semibold">Objetivo cumplido</span>
+</div>
+</div>
+<!-- Métrica 2: Impresiones de Vitrina -->
+<div class="metric-panel hidden bg-surface-container-low rounded-lg p-3.5 border border-surface-container" id="metric-impresiones">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Métrica Actual</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-xs font-bold px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">arrow_upward</span> +18% esta semana
+            </span>
+</div>
+<div class="flex items-center justify-between py-1">
+<div>
+<p class="text-sm font-semibold text-on-surface">Impresiones de Vitrina</p>
+<p class="text-xs text-on-surface-variant">Veces que tus prendas aparecieron en pantalla</p>
+</div>
+<div class="text-right">
+<span class="text-base font-bold text-primary">24,850 vistas</span>
+<span class="block text-xs text-on-surface-variant">84 prendas activas</span>
+</div>
+</div>
+<div class="mt-2.5 pt-2 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant">
+<span>Visualizaciones en Galería San Pedro</span>
+<span class="text-secondary font-semibold">Alta retención</span>
+</div>
+</div>
+<!-- Métrica 3: Clics en Ofertas -->
+<div class="metric-panel hidden bg-surface-container-low rounded-lg p-3.5 border border-surface-container" id="metric-clics">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Métrica Actual</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-xs font-bold px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">arrow_upward</span> +12% interacción
+            </span>
+</div>
+<div class="flex items-center justify-between py-1">
+<div>
+<p class="text-sm font-semibold text-on-surface">Clics en Ofertas</p>
+<p class="text-xs text-on-surface-variant">Compradores que revisaron fichas de precio</p>
+</div>
+<div class="text-right">
+<span class="text-base font-bold text-primary">1,420 clics</span>
+<span class="block text-xs text-on-surface-variant">5.7% ratio de click</span>
+</div>
+</div>
+<div class="mt-2.5 pt-2 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant">
+<span>Prendas líderes: Casacas drill y Denim</span>
+<span class="text-primary font-semibold">Tasa saludable</span>
+</div>
+</div>
+<!-- Métrica 4: Búsquedas Populares -->
+<div class="metric-panel hidden bg-surface-container-low rounded-lg p-3.5 border border-surface-container" id="metric-busquedas">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Métrica Actual</span>
+<span class="bg-surface-container text-primary text-xs font-bold px-2 py-0.5 rounded-full">
+              3,890 consultas totales
+            </span>
+</div>
+<div class="py-1">
+<p class="text-sm font-semibold text-on-surface">Términos que te encontraron</p>
+<p class="text-xs text-on-surface-variant mb-2">Consultas frecuentes de mayoristas esta semana</p>
+<div class="flex flex-wrap gap-1.5">
+<span class="bg-surface-container-lowest px-2 py-1 rounded text-xs text-on-surface font-medium border border-surface-container">
+                casacas drill (1,410)
+              </span>
+<span class="bg-surface-container-lowest px-2 py-1 rounded text-xs text-on-surface font-medium border border-surface-container">
+                polos pima (980)
+              </span>
+<span class="bg-surface-container-lowest px-2 py-1 rounded text-xs text-on-surface font-medium border border-surface-container">
+                poleras mayorista (820)
+              </span>
+</div>
+</div>
+<div class="mt-2.5 pt-2 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant">
+<span>Indexación en San Pedro</span>
+<span class="text-secondary font-semibold">+8% demanda</span>
+</div>
+</div>
+</div>
+<!-- Botón de actualización de métrica bajo demanda -->
+<div class="mt-3">
+<button class="w-full py-2 bg-surface-container text-primary font-semibold text-xs rounded-lg hover:bg-surface-container-high transition-colors flex items-center justify-center gap-1.5" onclick="refreshMetric()" type="button">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+          Consultar dato actualizado
+        </button>
+</div>
+</div>
+</section>
+</div>
+<script>
+  let isStoreOpen = true;
+
+  function toggleStoreStatus() {
+    isStoreOpen = !isStoreOpen;
+    const btn = document.getElementById('storeStatusToggle');
+    const label = document.getElementById('statusToggleLabel');
+    const dot = document.getElementById('statusPulseDot');
+
+    if (isStoreOpen) {
+      btn.className = "shrink-0 flex items-center gap-2 bg-secondary-fixed text-on-secondary-fixed px-3 py-1.5 rounded-full text-xs font-semibold active:scale-95 transition-all shadow-xs";
+      label.textContent = "Abierto";
+      dot.innerHTML = `
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+      `;
+    } else {
+      btn.className = "shrink-0 flex items-center gap-2 bg-surface-container text-on-surface-variant px-3 py-1.5 rounded-full text-xs font-semibold active:scale-95 transition-all shadow-xs";
+      label.textContent = "Pausado";
+      dot.innerHTML = `
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-outline"></span>
+      `;
+    }
+  }
+
+  function setMetric(metricKey) {
+    const select = document.getElementById('metricSelect');
+    select.value = metricKey;
+    onMetricChange();
+  }
+
+  function onMetricChange() {
+    const val = document.getElementById('metricSelect').value;
+    const panels = ['visitas', 'impresiones', 'clics', 'busquedas'];
+    
+    // Ocultar todos los paneles
+    panels.forEach(p => {
+      const el = document.getElementById('metric-' + p);
+      if (el) el.classList.add('hidden');
+      const chip = document.getElementById('chip-' + p);
+      if (chip) {
+        chip.className = "metric-chip px-2.5 py-1 rounded-full font-semibold bg-surface-container text-on-surface shrink-0 transition-colors";
+      }
+    });
+
+    const emptyPanel = document.getElementById('metric-empty');
+
+    if (val === 'none') {
+      emptyPanel.classList.remove('hidden');
+    } else {
+      emptyPanel.classList.add('hidden');
+      const activeEl = document.getElementById('metric-' + val);
+      if (activeEl) activeEl.classList.remove('hidden');
+      
+      const activeChip = document.getElementById('chip-' + val);
+      if (activeChip) {
+        activeChip.className = "metric-chip px-2.5 py-1 rounded-full font-semibold bg-primary text-on-primary shrink-0 transition-colors";
+      }
+    }
+  }
+
+  function focusMetricSelector() {
+    const metricSection = document.getElementById('metricSection');
+    metricSection.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('metricSelect').focus();
+  }
+
+  function refreshMetric() {
+    const select = document.getElementById('metricSelect');
+    const curr = select.value;
+    if (curr === 'none') return;
+    
+    const panel = document.getElementById('metric-' + curr);
+    if (panel) {
+      panel.classList.add('opacity-40');
+      setTimeout(() => {
+        panel.classList.remove('opacity-40');
+      }, 300);
+    }
+  }
+</script>
+</main>  
+  <gamarra-nav mode="vendedor" active="inicio"></gamarra-nav>
+</body></html>

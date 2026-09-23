@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Ingesta de Inventario - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head>
+<body class="gamarrachain-app bg-surface font-body text-sm text-on-surface flex flex-col min-h-screen antialiased select-none">
+  <gamarra-header role="vendedor" title="Ingesta de Inventario" back="vitrina"></gamarra-header>
+  <!-- Top Navigation Header -->
+  
+
+  <!-- Main Content Form -->
+  <main class="flex flex-col relative w-full pt-16 pb-24 bg-surface flex-grow min-h-screen overflow-y-auto">
+    <div class="flex flex-col w-full px-4 py-4 gap-4">
+      
+      <!-- Hero Banner Guía de Ingesta -->
+      <div class="bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-2xl p-4 shadow-sm">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex flex-col gap-1">
+            <span class="text-xs font-medium uppercase tracking-wider text-secondary-container">Garantía de Ingreso</span>
+            <h2 class="font-headline font-bold text-lg leading-snug">Publica en Catálogo en 30 Segundos</h2>
+            <p class="text-xs text-on-primary-container">La IA optimiza la foto, asigna etiquetas textiles y notifica a compradores en la galería.</p>
+          </div>
+          <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-secondary-container text-[24px]">cloud_upload</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Foto Upload Zone -->
+      <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant/30 flex flex-col gap-3">
+        <label class="text-xs font-semibold text-primary block">Fotografía del Producto o Fardo</label>
+        <div class="border-2 border-dashed border-outline-variant/60 rounded-xl p-6 flex flex-col items-center justify-center gap-2 hover:border-primary/50 transition-colors cursor-pointer bg-surface-container-low/50">
+          <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[28px]">add_a_photo</span>
+          </div>
+          <div class="text-center">
+            <span class="text-sm font-semibold text-primary block">Tomar foto o subir de galería</span>
+            <span class="text-xs text-on-surface-variant">Recomendado: fondo claro o percha del stand</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Fields -->
+      <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant/30 flex flex-col gap-3.5">
+        <div>
+          <label class="text-xs font-semibold text-primary block mb-1">Nombre Comercial de la Prenda</label>
+          <input type="text" id="prod-name" value="Casaca Drill Canvas Cuello Corderoy" class="w-full h-11 px-3 rounded-lg bg-surface-container-low border border-outline-variant/40 text-on-surface text-sm focus:outline-none focus:border-primary font-medium">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs font-semibold text-primary block mb-1">Categoría Textil</label>
+            <select class="w-full h-11 px-3 rounded-lg bg-surface-container-low border border-outline-variant/40 text-on-surface text-sm focus:outline-none focus:border-primary">
+              <option selected>Casacas & Drill</option>
+              <option>Polos Algodón Pima</option>
+              <option>Poleras Franela</option>
+              <option>Pantalones & Jeans</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-primary block mb-1">Código / Artículo</label>
+            <div class="relative">
+              <input type="text" value="CD-508" class="w-full h-11 pl-3 pr-8 rounded-lg bg-surface-container-low border border-outline-variant/40 text-on-surface text-sm focus:outline-none focus:border-primary font-medium">
+              <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">barcode_scanner</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Grid -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs font-semibold text-primary block mb-1">Precio x Unidad (S/)</label>
+            <input type="number" id="price-unit" value="48.00" class="w-full h-11 px-3 rounded-lg bg-surface-container-low border border-outline-variant/40 text-on-surface text-sm focus:outline-none focus:border-primary font-medium">
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-primary block mb-1">Precio x Mayor / Doc (S/)</label>
+            <input type="number" id="price-doc" value="39.50" class="w-full h-11 px-3 rounded-lg bg-secondary-container/30 border border-secondary/30 text-secondary text-sm font-bold focus:outline-none focus:border-secondary">
+          </div>
+        </div>
+
+        <!-- Stock and Location -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs font-semibold text-primary block mb-1">Stock Disponible</label>
+            <div class="flex items-center gap-1">
+              <input type="number" value="120" class="w-full h-11 px-3 rounded-lg bg-surface-container-low border border-outline-variant/40 text-on-surface text-sm focus:outline-none focus:border-primary font-medium">
+              <span class="text-xs text-on-surface-variant font-medium">docenas</span>
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-primary block mb-1">Stand o Almacén</label>
+            <select class="w-full h-11 px-2.5 rounded-lg bg-surface-container-low border border-outline-variant/40 text-on-surface text-xs focus:outline-none focus:border-primary font-medium">
+              <option selected>Stand B-204 (S. Pedro)</option>
+              <option>Stand A-102 (Sta. Rosa)</option>
+              <option>Almacén Gamarra 840</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button id="btn-save" class="w-full h-12 bg-primary hover:bg-primary-container active:scale-[0.99] text-on-primary rounded-xl font-headline font-semibold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-[20px]">check_circle</span>
+        <span>Publicar en Vitrina Comercial</span>
+      </button>
+
+      <!-- Feedback Success Banner (Hidden by default) -->
+      <div id="success-banner" class="hidden bg-secondary-container/40 border border-secondary text-on-secondary-container p-3 rounded-xl flex items-center gap-2.5">
+        <span class="material-symbols-outlined text-secondary text-[22px]">verified</span>
+        <div class="flex flex-col text-xs">
+          <span class="font-bold">¡Prenda incorporada con éxito!</span>
+          <span>Indexada en búsqueda y disponible en la vitrina del Stand B-204.</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  
+
+  <script>
+    document.getElementById('btn-save').addEventListener('click', function() {
+      const banner = document.getElementById('success-banner');
+      banner.classList.remove('hidden');
+      setTimeout(() => {
+        window.location.hash = '#vitrina';
+      }, 1200);
+    });
+  </script>
+  
+  <gamarra-nav mode="vendedor" active="vitrina"></gamarra-nav>
+</body>
+</html>

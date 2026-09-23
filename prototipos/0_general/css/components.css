@@ -1,0 +1,107 @@
+/* GamarraChain - Componentes Generales del Sistema */
+
+/* Barra Superior Header */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 64px;
+  z-index: 50;
+  background: rgba(248, 249, 255, 0.88);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+
+.dashboard-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 64px;
+  z-index: 50;
+  background: rgba(248, 249, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(197, 198, 205, 0.4);
+}
+
+/* Barra Inferior Bottom Navigation */
+.app-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 64px;
+  z-index: 50;
+  background: rgba(248, 249, 255, 0.92);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 -4px 16px rgba(11, 28, 48, 0.06);
+}
+
+/* Tarjeta estándar de superficie */
+.surface-card {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(197, 198, 205, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* Botón de acción principal */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-family: var(--font-family-headline);
+  font-weight: 600;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 4px rgba(9, 20, 38, 0.1);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  background-color: var(--color-primary-container);
+}
+
+/* Chips de filtros */
+.chip-item {
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip-item.active {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.chip-item:not(.active) {
+  background-color: var(--color-surface-container-lowest);
+  color: var(--color-on-surface-variant);
+}
+
+.chip-item:not(.active):hover {
+  background-color: var(--color-surface-container);
+  color: var(--color-primary);
+}

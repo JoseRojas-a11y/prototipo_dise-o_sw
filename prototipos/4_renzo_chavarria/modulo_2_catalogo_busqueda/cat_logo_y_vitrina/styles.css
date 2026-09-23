@@ -1,0 +1,21 @@
+/* Estilos de Contenedores - Catálogo y Vitrina */
+.stand-profile-card {
+  background: var(--color-surface-container-lowest);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(197, 198, 205, 0.3);
+}
+
+.hero-add-product-btn {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  box-shadow: 0 2px 4px rgba(9, 20, 38, 0.1);
+}
+
+.catalog-items-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}

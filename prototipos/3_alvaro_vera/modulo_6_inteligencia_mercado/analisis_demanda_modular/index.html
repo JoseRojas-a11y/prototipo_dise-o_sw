@@ -1,0 +1,549 @@
+<!DOCTYPE html><html lang="es"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Demanda Textil Modular - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head><body class="gamarrachain-dashboard bg-surface font-body-md text-on-surface antialiased">
+  <gamarra-header role="analytics" title="Demanda Textil Modular"></gamarra-header>
+  <analytics-tabs active="analisis-demanda-modular"></analytics-tabs><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full">
+<!-- Sub-bar Operativa & Contexto Comercial -->
+<div class="w-full bg-surface-container-low px-margin-tablet lg:px-space-xl py-space-md shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">insights</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">Inteligencia Comercial y Demanda Mayorista</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Nodo de analítica consolidada • Galería San Pedro &amp; Entorno Gamarra Central</span>
+</div>
+</div>
+<!-- Segmented Store Switch & Quick Status -->
+<div class="flex items-center gap-space-sm self-start md:self-auto">
+<div class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-lowest rounded-lg shadow-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-md text-label-md text-secondary font-semibold">Feed Mayorista Activo</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant pl-space-xs">Corte: 16:00 PET</span>
+</div>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span class="">Sincronizar Nodos</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contenedor Principal de Trabajo -->
+<div class="w-full px-margin-tablet lg:px-space-xl py-space-lg flex flex-col gap-space-lg">
+<!-- 1. PANTALLA DE ENTRADA SIMPLIFICADA CON NAVEGACIÓN EN CUADRÍCULA (GRID MENU) -->
+<div>
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Áreas de Gestión Operativa</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4 módulos integrados</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1: Activa (Tendencias y Demanda) -->
+<div class="bg-primary text-on-primary rounded-xl p-space-md shadow-md relative overflow-hidden cursor-pointer transition-all duration-200">
+<div class="flex items-start justify-between">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest/15 flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary text-on-secondary font-label-sm text-label-sm">Módulo Activo</span>
+</div>
+<div class="mt-space-md flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-primary">Tendencias y Demanda</span>
+<span class="font-body-sm text-body-sm text-on-primary-container mt-space-xs">Monitoreo de prendas, hilados y órdenes de compra en tiempo real.</span>
+</div>
+<div class="mt-space-sm flex items-center gap-space-xs font-label-md text-label-md text-secondary-fixed">
+<span class="">Visualizando datos</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2: Mapa Espacial y Tráfico -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md hover:bg-surface-container-low transition-all duration-200 cursor-pointer flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">domain</span>
+</div>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant">Pabellón A / B</span>
+</div>
+<div class="mt-space-md flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">Mapa Espacial y Tráfico</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Cámaras térmicas e intensidad peatonal de pasillos y galerías.</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-center gap-space-xs font-label-md text-label-md text-primary">
+<span class="">Ingresar al mapa</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</div>
+</div>
+<!-- Card 3: Gestión de Pautas B2B -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md hover:bg-surface-container-low transition-all duration-200 cursor-pointer flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+</div>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant">Mayoristas</span>
+</div>
+<div class="mt-space-md flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">Gestión de Pautas B2B</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Banners patrocinados y ubicación preferente en catálogo mayorista.</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-center gap-space-xs font-label-md text-label-md text-primary">
+<span class="">Gestionar campañas</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</div>
+</div>
+<!-- Card 4: Exportación de Reportes -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md hover:bg-surface-container-low transition-all duration-200 cursor-pointer flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">folder_zip</span>
+</div>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant">CSV / PDF</span>
+</div>
+<div class="mt-space-md flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">Exportación de Reportes</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Generación de balances mensuales de transaccionalidad y demanda.</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-center gap-space-xs font-label-md text-label-md text-primary">
+<span class="">Configurar descarga</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. CONTROL DE CONSULTA SEGMENTADA BAJO DEMANDA -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<!-- Dropdown Selector Principal -->
+<div class="flex flex-col sm:flex-row sm:items-center gap-space-sm">
+<label class="font-label-md text-label-md text-primary whitespace-nowrap flex items-center gap-space-xs" for="metric-selector">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">filter_alt</span>
+<span class="">Seleccionar Indicador de Mercado:</span>
+</label>
+<div class="relative min-w-[280px]">
+<select class="w-full bg-surface-container-low text-primary font-label-md text-label-md rounded-lg px-space-md py-2.5 pr-8 appearance-none focus:outline-none focus:bg-surface-container cursor-pointer shadow-sm" id="metric-selector">
+<option selected="" value="prendas">Demanda de Prendas y Categorías</option>
+<option value="hilados">Composición y Stock de Hilados</option>
+<option value="precios">Rango de Precios y Ticket Promedio</option>
+<option value="busquedas">Top Búsquedas en App Mayorista</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Filtros Rápidos de Rango y Actualizar -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center bg-surface-container-low p-0.5 rounded-lg">
+<button class="px-space-sm py-1 rounded font-label-md text-label-md bg-surface-container-lowest text-primary shadow-sm" type="button">Últimos 7 días</button>
+<button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-primary" type="button">Mes en curso</button>
+<button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-primary" type="button">Campaña Invierno</button>
+</div>
+<button class="flex items-center gap-space-xs px-space-md py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" id="btn-update-query" type="button">
+<span class="material-symbols-outlined text-[16px]">refresh</span>
+<span class="">Actualizar Consulta</span>
+</button>
+</div>
+</div>
+<!-- Tabs de Pestañas Rápidas Vinculadas -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1">
+<button class="px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-primary text-on-primary transition-colors whitespace-nowrap flex items-center gap-space-xs shadow-sm" id="tab-prendas" type="button">
+<span class="material-symbols-outlined text-[16px]">apparel</span>
+<span class="">Demanda de Prendas</span>
+</button>
+<button class="px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-surface-container text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors whitespace-nowrap flex items-center gap-space-xs" id="tab-hilados" type="button">
+<span class="material-symbols-outlined text-[16px]">texture</span>
+<span class="">Composición de Hilados</span>
+</button>
+<button class="px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-surface-container text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors whitespace-nowrap flex items-center gap-space-xs" id="tab-precios" type="button">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+<span class="">Rango de Precios</span>
+</button>
+<button class="px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-surface-container text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors whitespace-nowrap flex items-center gap-space-xs" id="tab-busquedas" type="button">
+<span class="material-symbols-outlined text-[16px]">search</span>
+<span class="">Top Búsquedas App</span>
+</button>
+</div>
+</div>
+<!-- 3. CONTENIDO ESPECÍFICO SEGMENTADO (ESTANDARIZACIÓN TIPOGRÁFICA) -->
+<!-- SECCIÓN A: Demanda de Prendas (Activa por Defecto) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter" id="section-prendas">
+<!-- Columna Principal: Gráfico de Demanda Horizontal -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-secondary">bar_chart</span>
+<h2 class="font-headline-md text-headline-md text-primary">Volumen Solicitado por Categoría Textil</h2>
+</div>
+<span class="font-label-md text-label-md px-space-xs py-0.5 rounded bg-secondary-container/40 text-on-secondary-container">Muestra: 148,200 uds</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Distribución de pedidos confirmados por lotes mayoristas. Datos extraídos de facturas electrónicas anonimizadas y despachos por almacén central.
+        </p>
+<!-- Barras de Datos con Tipografía Estandarizada Uniforme -->
+<div class="flex flex-col gap-space-md mt-space-xs">
+<!-- Item 1: Polos Jersey Manga Corta -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-primary font-semibold">1. Polos Jersey 30/1 Peinado</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-secondary font-bold">52,400 uds (35.4%)</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm">+18.2%</span>
+</div>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 35.4%"></div>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span class="">Mayor tracción en tallas M y L • Cuello redondo</span>
+<span class="text-primary font-medium">Demanda Alta</span>
+</div>
+</div>
+<!-- Item 2: Poleras Franela Reactiva -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-primary font-semibold">2. Poleras Franela 20/1 Capucha</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-secondary font-bold">38,100 uds (25.7%)</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm">+24.6%</span>
+</div>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 25.7%"></div>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span class="">Stock concentrado en tonos grafito, negro y crudo</span>
+<span class="text-primary font-medium">Temporada Media</span>
+</div>
+</div>
+<!-- Item 3: Pantalones Jogger Drill & French Terry -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-primary font-semibold">3. Pantalones Jogger French Terry</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-secondary font-bold">29,350 uds (19.8%)</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm">+9.1%</span>
+</div>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 19.8%"></div>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span class="">Preferencia mayorista por pretina elasticada</span>
+<span class="text-primary font-medium">Constante</span>
+</div>
+</div>
+<!-- Item 4: Blusas y Camisería Popelina -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-primary font-semibold">4. Camisas Popelina Spandex B2B</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-secondary font-bold">18,600 uds (12.5%)</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-primary-fixed-variant font-label-sm text-label-sm">-2.4%</span>
+</div>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-primary-fixed-variant rounded-full transition-all duration-500" style="width: 12.5%"></div>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span class="">Desaceleración por rotación de estampados florales</span>
+<span class="text-on-surface-variant font-medium">Baja rotación</span>
+</div>
+</div>
+<!-- Item 5: Ropa Infantil y Bodys Interlock -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-primary font-semibold">5. Conjuntos Bebé Interlock Pima</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-secondary font-bold">9,750 uds (6.6%)</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm">+5.0%</span>
+</div>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 6.6%"></div>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span class="">Mayor pedido para exportación provincial (Huancayo/Arequipa)</span>
+<span class="text-primary font-medium">Demanda Estable</span>
+</div>
+</div>
+</div>
+<!-- Indicador de Síntesis Comercial -->
+<div class="mt-space-sm p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-secondary">verified</span>
+<span class="font-label-md text-label-md text-primary">Prenda líder de la semana: Polos Jersey 30/1</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lote mínimo recomendado: 250 docenas</span>
+</div>
+</div>
+<!-- Columna Lateral: Resumen Operativo & Contexto de Producción -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-primary">Contexto de Producción</h3>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">factory</span>
+</div>
+<!-- Tarjetas Métricas Estandarizadas (Sin saltos de escala) -->
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Capacidad de Tejeduría en Hilanderías</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary text-on-secondary font-label-sm text-label-sm">Normal</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">89.4% ocupación activa</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">+3.2% vs semana ant.</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Plazo Medio de Despacho Mayorista</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">48h a 72h</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">2.4 días por lote</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">Óptimo para provincias</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tasa de Concreción de Compra B2B</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm">Efectivo</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">71.8% de cotizaciones</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">Canal físico + app</span>
+</div>
+</div>
+</div>
+<!-- Mini Alerta de Taller de Corte -->
+<div class="p-space-sm bg-surface-container rounded-lg flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[18px] text-primary shrink-0 mt-0.5">info</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-semibold">Alerta de Insumo: Hilo Reactivo Negro</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Alta concentración de pedidos para teñido reactivo genera un cuello de botella de 18 horas en tintorerías de Los Ficus.
+              </span>
+</div>
+</div>
+</div>
+<!-- Botón de acción rápida para descargar vista -->
+<button class="w-full py-2.5 px-space-md bg-surface-container hover:bg-surface-container-high text-primary rounded-lg font-label-md text-label-md transition-colors flex items-center justify-center gap-space-xs shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">table_view</span>
+<span class="">Descargar Matriz de Prendas (.CSV)</span>
+</button>
+</div>
+</div>
+<!-- SECCIÓN B: Composición de Hilados (Oculta dinámicamente) -->
+<div class="hidden bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md" id="section-hilados">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-primary">texture</span>
+<h2 class="font-headline-md text-headline-md text-primary">Composición y Stock de Hilados</h2>
+</div>
+<span class="font-label-md text-label-md px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant">Almacén Central Mayorista</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Disponibilidad de materia prima e hilaturas para tejeduría circular en talleres asociados a GamarraChain.
+      </p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Algodón Tangüis 20/1 &amp; 30/1</span>
+<span class="font-label-md text-label-md text-primary font-bold">142,500 kg en inventario</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">Stock garantizado para 22 días</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Algodón Pima 40/1 &amp; 50/1</span>
+<span class="font-label-md text-label-md text-primary font-bold">68,200 kg en inventario</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">Stock garantizado para 14 días</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mezclas Poliéster / Algodón</span>
+<span class="font-label-md text-label-md text-primary font-bold">95,400 kg en inventario</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">Stock garantizado para 30 días</span>
+</div>
+</div>
+</div>
+<!-- SECCIÓN C: Rango de Precios (Oculta dinámicamente) -->
+<div class="hidden bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md" id="section-precios">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-primary">payments</span>
+<h2 class="font-headline-md text-headline-md text-primary">Rango de Precios y Ticket Promedio Mayorista</h2>
+</div>
+<span class="font-label-md text-label-md px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant">Moneda: PEN (S/.)</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Valores de cierre para compras por docena y ciento en puestos de confección mayorista.
+      </p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Polo Jersey 30/1 (Docena)</span>
+<span class="font-label-md text-label-md text-primary font-bold">S/. 135.00 - S/. 160.00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Precio unitario prom: S/. 12.50</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Polera Franela (Docena)</span>
+<span class="font-label-md text-label-md text-primary font-bold">S/. 340.00 - S/. 410.00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Precio unitario prom: S/. 31.00</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Jogger French Terry (Docena)</span>
+<span class="font-label-md text-label-md text-primary font-bold">S/. 260.00 - S/. 310.00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Precio unitario prom: S/. 23.50</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ticket Mayorista Promedio</span>
+<span class="font-label-md text-label-md text-secondary font-bold">S/. 4,820.00 por orden</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">+6.4% incremento mensual</span>
+</div>
+</div>
+</div>
+<!-- SECCIÓN D: Top Búsquedas App (Oculta dinámicamente) -->
+<div class="hidden bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md" id="section-busquedas">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-primary">search</span>
+<h2 class="font-headline-md text-headline-md text-primary">Top Búsquedas en App Mayorista</h2>
+</div>
+<span class="font-label-md text-label-md px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant">Consultas Móvil B2B</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Términos y SKUs más buscados por compradores mayoristas en la aplicación móvil de la galería durante las últimas 48 horas.
+      </p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">1</span>
+<span class="font-label-md text-label-md text-primary">polo oversized 24/1 pesado</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">12,480 queries</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">2</span>
+<span class="font-label-md text-label-md text-primary">franela reactiva perchada</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">9,120 queries</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">3</span>
+<span class="font-label-md text-label-md text-primary">jean baggy rigido 14oz</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">7,890 queries</span>
+</div>
+</div>
+</div>
+<!-- 4. LEYENDA Y POLÍTICA DE DATOS ANONIMIZADOS (FOOTER DEL MÓDULO) -->
+<div class="p-space-md bg-surface-container-low rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant shrink-0">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-semibold">Aviso Legal y Privacidad de la Información Comercial</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+            Todos los volúmenes, porcentajes de demanda y precios son procesados mediante hashing criptográfico y agregados estadísticos. No se revelan nombres de comerciantes, clientes ni RUCs individuales según el estándar de protección empresarial de GamarraChain.
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Protocolo Anon-B2B v2.4</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Validado por Nodos Locales</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Control interactivo del Dropdown Selector y Tabs Rápidos sin sobrecargar la pantalla
+  (function() {
+    const selector = document.getElementById('metric-selector');
+    const updateBtn = document.getElementById('btn-update-query');
+    
+    const sections = {
+      prendas: document.getElementById('section-prendas'),
+      hilados: document.getElementById('section-hilados'),
+      precios: document.getElementById('section-precios'),
+      busquedas: document.getElementById('section-busquedas')
+    };
+
+    const tabs = {
+      prendas: document.getElementById('tab-prendas'),
+      hilados: document.getElementById('tab-hilados'),
+      precios: document.getElementById('tab-precios'),
+      busquedas: document.getElementById('tab-busquedas')
+    };
+
+    function setActiveSection(targetKey) {
+      // Ocultar todas las secciones y actualizar tabs
+      Object.keys(sections).forEach(key => {
+        if (sections[key]) {
+          if (key === targetKey) {
+            sections[key].classList.remove('hidden');
+          } else {
+            sections[key].classList.add('hidden');
+          }
+        }
+
+        if (tabs[key]) {
+          if (key === targetKey) {
+            tabs[key].className = 'px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-primary text-on-primary transition-colors whitespace-nowrap flex items-center gap-space-xs shadow-sm';
+          } else {
+            tabs[key].className = 'px-space-md py-1.5 rounded-lg font-label-md text-label-md bg-surface-container text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors whitespace-nowrap flex items-center gap-space-xs';
+          }
+        }
+      });
+
+      if (selector && selector.value !== targetKey) {
+        selector.value = targetKey;
+      }
+    }
+
+    if (selector) {
+      selector.addEventListener('change', function(e) {
+        setActiveSection(e.target.value);
+      });
+    }
+
+    Object.keys(tabs).forEach(key => {
+      if (tabs[key]) {
+        tabs[key].addEventListener('click', function() {
+          setActiveSection(key);
+        });
+      }
+    });
+
+    if (updateBtn) {
+      updateBtn.addEventListener('click', function() {
+        updateBtn.classList.add('opacity-75');
+        const originalText = updateBtn.innerHTML;
+        updateBtn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span><span>Consultando...</span>';
+        setTimeout(() => {
+          updateBtn.innerHTML = originalText;
+          updateBtn.classList.remove('opacity-75');
+        }, 400);
+      });
+    }
+  })();
+</script></main><footer class="w-full bg-surface-container-low py-space-lg mt-space-xl"><div class="w-full px-margin-tablet lg:px-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm font-semibold text-primary uppercase tracking-wider">GamarraChain Retail Intelligence</span><span class="text-[12px] opacity-40">|</span><span class="font-body-sm text-body-sm">© 2025 Plataforma Corporativa B2B. Red de Nodos Espaciales Textil.</span></div><div class="flex items-center gap-space-lg font-label-sm text-label-sm"><span class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary"></span>Red LoRaWAN Activa</span><span class="hover:text-on-surface transition-colors cursor-pointer">Documentación API IoT</span><span class="hover:text-on-surface transition-colors cursor-pointer">Auditoría de Métricas</span></div></div></footer>
+
+  
+  
+</body></html>

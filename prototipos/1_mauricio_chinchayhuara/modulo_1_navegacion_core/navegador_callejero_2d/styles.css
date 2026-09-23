@@ -1,0 +1,21 @@
+/* Estilos de Contenedores - Navegador Callejero 2D */
+.street-map-view {
+  width: 100%;
+  min-height: calc(100vh - 128px);
+  position: relative;
+}
+
+.turn-indicator-card {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
+  color: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 16px rgba(9, 20, 38, 0.2);
+}
+
+.street-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}

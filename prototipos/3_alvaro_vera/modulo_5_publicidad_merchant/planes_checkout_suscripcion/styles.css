@@ -1,0 +1,11 @@
+/* Estilos de Contenedores - Planes Checkout */
+.tier-plan-box {
+  background: var(--color-surface-container-lowest);
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 2px solid transparent;
+}
+
+.tier-plan-box.recommended {
+  border-color: var(--color-secondary);
+}

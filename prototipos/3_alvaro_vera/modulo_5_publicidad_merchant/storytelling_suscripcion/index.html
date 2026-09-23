@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="es"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Suscripción Mayorista - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head><body class="gamarrachain-app bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased select-none">
+  <gamarra-header role="vendedor" title="Suscripción Mayorista" back="inicio"></gamarra-header><main class="flex flex-col relative w-full pt-16 pb-20 bg-surface flex-grow min-h-screen"><div class="flex flex-col w-full">
+<!-- Segmented Top Mode Switcher -->
+<section class="px-margin pt-space-md pb-space-sm">
+<div class="bg-surface-container-high p-1 rounded-xl flex items-center shadow-sm">
+<button class="flex-1 flex items-center justify-center gap-space-xs py-2.5 px-space-sm rounded-lg bg-surface-container-lowest text-primary shadow-sm font-label-md text-label-md transition-all" id="tab-sub" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span>Suscripción</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-space-xs py-2.5 px-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:text-primary transition-all" id="tab-ads" type="button">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+<span>Publicidad</span>
+</button>
+</div>
+</section>
+<!-- Visual Hero & Emotional Hook -->
+<section class="px-margin pt-space-xs pb-space-md">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary via-primary-container to-tertiary p-space-lg text-on-primary shadow-md">
+<!-- Ambient decorative glow -->
+<div class="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-secondary/20 blur-2xl pointer-events-none"></div>
+<div class="absolute -left-6 -top-6 w-32 h-32 rounded-full bg-tertiary-fixed-dim/15 blur-xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col gap-space-sm">
+<div class="inline-flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-secondary-container/20 w-max backdrop-blur-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary-fixed tracking-wide uppercase">Evolución Mayorista</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tight text-on-primary leading-tight">
+          De stand tradicional a negocio textil conectado
+        </h1>
+<p class="font-body-md text-body-md text-primary-fixed-dim leading-relaxed">
+          El <strong class="text-on-primary font-semibold">70% de compradores mayoristas de provincias</strong> ya no caminan todo el emporio a ciegas; contactan y cierran pedidos con quienes encuentran primero en digital.
+        </p>
+<!-- Dynamic Context Snapshot -->
+<div class="mt-space-xs pt-space-sm flex items-center gap-space-sm bg-surface-container-lowest/10 p-3 rounded-lg backdrop-blur-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0 text-on-secondary-container">
+<span class="material-symbols-outlined text-[22px]">hub</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary leading-snug">
+            GamarraChain abre tu vitrina hacia Arequipa, Trujillo, Cusco y mercados fronterizos al instante.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Impact Story Card (Asymmetric Bento Highlight) -->
+<section class="px-margin pb-space-lg">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<!-- Metric Callout -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Rendimiento Promedio</span>
+<div class="flex items-baseline gap-1.5 mt-0.5">
+<span class="font-display-metric text-display-metric font-extrabold text-primary tracking-tight">+3.4x</span>
+<span class="font-headline-sm text-headline-sm font-bold text-secondary">cotizaciones</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mayoristas verificados en los primeros 30 días</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-secondary-container/40 flex items-center justify-center text-secondary flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">trending_up</span>
+</div>
+</div>
+<!-- Merchant Case Study Snippet -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">Caso Real Auditado</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-highest px-2 py-0.5 rounded-full">Stand C-102</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+          “Pasamos de 4 pedidos mensuales de provincia a 18 envíos continuos cada semana. Los clientes pagan con confianza al ver la insignia de fabricante verificado.”
+        </p>
+<div class="flex items-center gap-space-xs pt-1">
+<div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-[10px] text-on-primary font-bold">
+            SR
+          </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Galería Santa Rosa, Piso 2 • Confecciones Pima</span>
+</div>
+</div>
+<!-- Visual Context Photo of Real Fabric Workshop -->
+<div class="relative w-full h-36 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Modern textile manufacturing workshop in Gamarra Lima Peru, piles of premium cotton fabric rolls neatly organized on wooden pallets, bright industrial lighting with focused artisan seamstress, commercial textile atmosphere with slate blue and mint green tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApct67VpTVvQ3xxCRm2Ob2_cbmsZeH8cFjzg9HzQNqb3Pe_Oqqfup812MbBwKY66e39ED1L321QjQvbA6o5BCeGRcVHXlAMfInfmUj-xGiKjCoLeIQGEExI9VfWRjDw7tK7emdD6-U7aHKpbDPIPDEUTfk3E5t0FlJvArQ4zIT6kkHDhrdh4bjEfJf2XHmBLDpP05N5Uz3dcwATc2x4_5BZtNYu57th75Y9cCDOuJxRhWSuQbV7Jiw">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent flex items-end p-3">
+<span class="font-label-sm text-label-sm text-on-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+            Despachos por fardo directo de taller a terminal terrestre
+          </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Problem Solving Architecture -->
+<section class="px-margin pb-space-lg flex flex-col gap-space-sm">
+<div class="flex flex-col gap-0.5">
+<h2 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">
+        Diseñado para la realidad del fabricante
+      </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Herramientas claras sin trabas administrativas que cuidan tu rentabilidad.
+      </p>
+</div>
+<!-- Feature Bento Tile 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-start gap-space-md transition-all">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">percent</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm font-semibold text-primary leading-tight">Sin comisiones por venta</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm">0% Cut</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Mantén el 100% de tu margen en cada docena y fardo. No intermediamos pagos ni descontamos porcentajes de tus clientes.
+        </p>
+</div>
+</div>
+<!-- Feature Bento Tile 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-start gap-space-md transition-all">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">schedule</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm font-semibold text-primary leading-tight">Presencia mayorista 24/7</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-primary font-label-sm text-label-sm">Siempre Activo</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Tu catálogo y stock de rollos quedan visibles para compradores de Arequipa, Trujillo, Huancayo y Bolivia aún cuando tu stand físico esté cerrado.
+        </p>
+</div>
+</div>
+<!-- Feature Bento Tile 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-start gap-space-md transition-all">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm font-semibold text-primary leading-tight">Verificación de Galería Oficial</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container/10 text-tertiary-container font-label-sm text-label-sm">Antifraude</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Insignia auditada con tu número de RUC y ubicación exacta de stand. Elimina el miedo a estafas de los compradores que no pueden viajar a Lima.
+        </p>
+</div>
+</div>
+</section>
+<!-- Community Proof Banner -->
+<section class="px-margin pb-space-lg">
+<div class="bg-surface-container rounded-xl p-space-md flex items-center gap-space-sm shadow-sm">
+<div class="flex -space-x-2 overflow-hidden flex-shrink-0">
+<div class="inline-block h-8 w-8 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center shadow-sm">
+          TX
+        </div>
+<div class="inline-block h-8 w-8 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm flex items-center justify-center shadow-sm">
+          GC
+        </div>
+<div class="inline-block h-8 w-8 rounded-full bg-tertiary text-on-tertiary font-label-sm text-label-sm flex items-center justify-center shadow-sm">
+          MG
+        </div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-primary font-bold">
+          Más de 1,240 talleres y marcas
+        </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+          Están multiplicando sus ventas mayoristas con su membresía activa en GamarraChain.
+        </span>
+</div>
+</div>
+</section>
+<!-- Sticky / High-Visibility Conversion Anchor -->
+<section class="px-margin pb-space-xl">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-md flex flex-col gap-space-sm">
+<button class="w-full h-14 bg-primary active:bg-primary-container text-on-primary font-label-lg text-label-lg font-bold rounded-lg flex items-center justify-center gap-space-xs shadow-sm transition-transform active:scale-[0.99]" id="cta-planes" type="button">
+<span>Ver Planes y Membresías</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<div class="flex items-center justify-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-body-sm text-body-sm">Garantía de activación inmediata • Sin contratos forzosos</span>
+</div>
+</div>
+</section>
+</div>
+<script>
+  (function() {
+    const tabSub = document.getElementById('tab-sub');
+    const tabAds = document.getElementById('tab-ads');
+    const ctaPlanes = document.getElementById('cta-planes');
+
+    if (tabAds && tabSub) {
+      tabAds.addEventListener('click', function() {
+        tabAds.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+        tabAds.classList.remove('text-on-surface-variant');
+        
+        tabSub.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+        tabSub.classList.add('text-on-surface-variant');
+      });
+
+      tabSub.addEventListener('click', function() {
+        tabSub.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+        tabSub.classList.remove('text-on-surface-variant');
+        
+        tabAds.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+        tabAds.classList.add('text-on-surface-variant');
+      });
+    }
+
+    if (ctaPlanes) {
+      ctaPlanes.addEventListener('click', function() {
+        this.classList.add('opacity-90');
+        setTimeout(() => this.classList.remove('opacity-90'), 200);
+      });
+    }
+  })();
+</script></main>  
+  <gamarra-nav mode="vendedor" active="suscripcion"></gamarra-nav>
+</body></html>
