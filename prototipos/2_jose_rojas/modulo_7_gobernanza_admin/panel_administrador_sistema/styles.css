@@ -1,0 +1,14 @@
+/* Estilos específicos para la consola de Administrador del Sistema */
+.admin-tab-btn.active {
+  background-color: #091426;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(9, 20, 38, 0.15);
+}
+
+.log-row {
+  transition: background-color 0.15s ease;
+}
+
+.log-row:hover {
+  background-color: rgba(229, 238, 255, 0.5);
+}

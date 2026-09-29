@@ -10,7 +10,8 @@ class GamarraNav extends HTMLElement {
       const items = [
         { id: 'explorar', label: 'Explorar', icon: 'storefront' },
         { id: 'mapa-gps', label: 'Mapa GPS', icon: 'near_me' },
-        { id: 'closet', label: 'Closet', icon: 'checkroom' }
+        { id: 'closet', label: 'Closet', icon: 'checkroom' },
+        { id: 'cupones', label: 'Cupones', icon: 'loyalty' }
       ];
 
       this.innerHTML = `

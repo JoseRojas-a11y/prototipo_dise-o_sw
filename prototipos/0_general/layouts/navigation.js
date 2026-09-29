@@ -16,6 +16,11 @@ export const ROUTES = {
   'mapa-gps': '/prototipos/mauricio_chinchayhuara/modulo_1_navegacion_core/navegador_gps_3d/index.html',
   'mapa-calle': '/prototipos/mauricio_chinchayhuara/modulo_1_navegacion_core/navegador_callejero_2d/index.html',
   'closet': '/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/closet_guardados_historial/index.html',
+  'cupones': '/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/fidelizacion_cupones/index.html',
+  'perfil': '/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/perfil_usuario/index.html',
+
+  // Modo Administración y Gobernanza Centralizada (Módulo 7)
+  'admin-sistema': '/prototipos/jose_rojas/modulo_7_gobernanza_admin/panel_administrador_sistema/index.html',
 
   // Modo Spatial Analytics B2B
   'mapa-de-calor': '/prototipos/alvaro_vera/modulo_6_inteligencia_mercado/mapa_calor_espacial/index.html',

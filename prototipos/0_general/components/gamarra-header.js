@@ -93,12 +93,7 @@ class GamarraHeader extends HTMLElement {
     const profileBtn = this.querySelector('#header-profile-btn');
     if (profileBtn) {
       profileBtn.addEventListener('click', () => {
-        // Conmuta entre Comprador y Vendedor
-        if (isCliente) {
-          navigateTo('inicio');
-        } else {
-          navigateTo('explorar');
-        }
+        navigateTo('perfil');
       });
     }
   }

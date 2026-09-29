@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="es"><head>
+<html lang="es">
+
+<head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    name="viewport">
   <meta content="mobile_tab" name="shell-type">
   <title>GPS Peatonal Calle - GamarraChain</title>
   <link rel="stylesheet" href="/prototipos/general/css/theme.css">
@@ -15,455 +18,526 @@
   <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
   <script type="module" src="/prototipos/general/components/analytics-tabs.js"></script>
   <script type="module" src="/shared/navigation/router.js"></script>
-</head><body class="gamarrachain-app bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
-  <gamarra-header role="cliente" title="GPS Peatonal Calle" back="explorar"></gamarra-header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full relative">
-<!-- Status Chip & Turn-by-Turn HUD Bar -->
-<div class="px-margin pt-space-sm pb-space-xs flex flex-col gap-space-sm z-30">
-<!-- Live GNSS Accuracy Pill -->
-<div class="flex items-center justify-between bg-surface-container-lowest px-space-md py-space-xs rounded-full shadow-sm">
-<div class="flex items-center gap-space-xs">
-<span class="relative flex h-2.5 w-2.5">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
-</span>
-<span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase">GPS Peatonal Activo</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">• GNSS ±2.8m</span>
-</div>
-<div class="flex items-center gap-1 text-on-surface-variant">
-<span class="material-symbols-outlined text-[16px] text-secondary">satellite_alt</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Damero A</span>
-</div>
-</div>
-<!-- Active Turn-by-Turn Maneuver HUD Card -->
-<div class="bg-primary text-on-primary rounded-xl p-space-md shadow-md flex items-center justify-between gap-space-sm">
-<div class="flex items-center gap-space-md min-w-0">
-<div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 shadow-sm">
-<span class="material-symbols-outlined text-[30px]" style="font-variation-settings: 'FILL' 1;">turn_left</span>
-</div>
-<div class="flex flex-col min-w-0">
-<div class="flex items-center gap-space-xs">
-<span class="font-label-sm text-label-sm text-secondary-container font-bold uppercase tracking-wider">En 45 metros</span>
-<span class="w-1 h-1 rounded-full bg-primary-fixed-dim"></span>
-<span class="font-body-sm text-body-sm text-primary-fixed-dim">Jr. Humboldt</span>
-</div>
-<p class="font-headline-sm text-headline-sm text-on-primary truncate">Gira a la izquierda</p>
-<p class="font-body-sm text-body-sm text-on-primary-container truncate">Hacia Jr. Gamarra (vía peatonal)</p>
-</div>
-</div>
-<div class="flex flex-col gap-1 shrink-0">
-<button aria-label="Silenciar guía por voz" class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary hover:bg-surface-tint/30 transition-colors" id="audio-toggle-btn">
-<span class="material-symbols-outlined text-[20px]" id="speaker-icon">volume_up</span>
-</button>
-</div>
-</div>
-<!-- Quick Route Overview Metrics -->
-<div class="grid grid-cols-3 gap-gutter-sm">
-<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col items-center text-center">
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Distancia</span>
-<span class="font-headline-sm text-headline-sm text-primary font-bold">320 m</span>
-</div>
-<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col items-center text-center">
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Tiempo Est.</span>
-<div class="flex items-center gap-0.5">
-<span class="font-headline-sm text-headline-sm text-secondary font-bold">4</span>
-<span class="font-body-sm text-body-sm text-on-surface">min</span>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col items-center text-center">
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Flujo Peatonal</span>
-<span class="font-label-md text-label-md text-on-secondary-container bg-secondary-container/40 px-2 py-0.5 rounded-full mt-0.5">Moderado</span>
-</div>
-</div>
-</div>
-<!-- 2D Vector Styled Urban Map Container -->
-<div class="relative w-full px-margin my-space-sm">
-<div class="relative w-full h-[360px] rounded-xl overflow-hidden shadow-sm bg-surface-container-low select-none">
-<!-- High detail vector canvas simulating crisp Mapbox/Google Maps street layout -->
-<svg class="w-full h-full" fill="none" viewbox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<!-- Grid street tile patterns -->
-<pattern height="40" id="street-grid" patternunits="userSpaceOnUse" width="40">
-<path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e5eeff" stroke-width="1"></path>
-</pattern>
-<!-- Dynamic route glow filter -->
-<filter height="140%" id="routeGlow" width="140%" x="-20%" y="-20%">
-<fegaussianblur result="blur" stddeviation="3"></fegaussianblur>
-<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
-</filter>
-</defs>
-<!-- Base Map Canvas -->
-<rect fill="#f4f7fc" height="360" width="360"></rect>
-<rect fill="url(#street-grid)" height="360" opacity="0.6" width="360"></rect>
-<!-- Urban City Blocks (Damero de Gamarra blocks) -->
-<rect fill="#e8effc" height="90" rx="6" width="76" x="18" y="24"></rect>
-<rect fill="#e8effc" height="90" rx="6" width="132" x="114" y="24"></rect>
-<rect fill="#e8effc" height="90" rx="6" width="78" x="266" y="24"></rect>
-<rect fill="#e8effc" height="94" rx="6" width="76" x="18" y="136"></rect>
-<!-- Highlighted Destination Block (Galería San Pedro) -->
-<rect fill="#dce9ff" height="94" rx="6" width="132" x="114" y="136"></rect>
-<rect fill="#e8effc" height="94" rx="6" width="78" x="266" y="136"></rect>
-<rect fill="#e8effc" height="88" rx="6" width="76" x="18" y="252"></rect>
-<rect fill="#e8effc" height="88" rx="6" width="132" x="114" y="252"></rect>
-<rect fill="#e8effc" height="88" rx="6" width="78" x="266" y="252"></rect>
-<!-- Road Network -->
-<!-- Av. 28 de Julio (Top horizontal) -->
-<line stroke="#ffffff" stroke-linecap="round" stroke-width="14" x1="0" x2="360" y1="18" y2="18"></line>
-<!-- Jr. Humboldt (Middle horizontal) -->
-<line stroke="#ffffff" stroke-linecap="round" stroke-width="16" x1="0" x2="360" y1="124" y2="124"></line>
-<!-- Jr. Hipólito Unanue (Bottom horizontal) -->
-<line stroke="#ffffff" stroke-linecap="round" stroke-width="14" x1="0" x2="360" y1="240" y2="240"></line>
-<!-- Jr. Antonio Bazo (Left vertical) -->
-<line stroke="#ffffff" stroke-width="16" x1="104" x2="104" y1="0" y2="360"></line>
-<!-- Jr. Gamarra (Central Pedestrian Avenue - tinted lightly for pedestrian zone) -->
-<line stroke="#ffffff" stroke-width="20" x1="256" x2="256" y1="0" y2="360"></line>
-<line stroke="#6cf8bb" stroke-opacity="0.25" stroke-width="16" x1="256" x2="256" y1="0" y2="360"></line>
-<!-- Street Names (Typography in urban cartography style) -->
-<text fill="#45474c" font-family="Inter" font-size="9" font-weight="600" letter-spacing="0.5" transform="rotate(90 260 55)" x="260" y="55">JR. GAMARRA (Paseo Peatonal)</text>
-<text fill="#75777d" font-family="Inter" font-size="8" font-weight="500" letter-spacing="0.5" transform="rotate(90 108 55)" x="108" y="55">JR. ANTONIO BAZO</text>
-<text fill="#45474c" font-family="Inter" font-size="8.5" font-weight="600" x="122" y="128">JR. HUMBOLDT</text>
-<text fill="#75777d" font-family="Inter" font-size="8" font-weight="500" x="122" y="244">JR. HIPÓLITO UNANUE</text>
-<text fill="#75777d" font-family="Inter" font-size="8" font-weight="500" x="122" y="16">AV. 28 DE JULIO</text>
-<!-- Pedestrian Walkway Crosswalk markings -->
-<line stroke="#d3e4fe" stroke-dasharray="2 2" stroke-width="2" x1="248" x2="264" y1="120" y2="120"></line>
-<line stroke="#d3e4fe" stroke-dasharray="2 2" stroke-width="2" x1="248" x2="264" y1="128" y2="128"></line>
-<line stroke="#d3e4fe" stroke-dasharray="2 2" stroke-width="2" x1="96" x2="112" y1="120" y2="120"></line>
-<!-- Nearby Landmark Galerias (Grey/Blue tags) -->
-<!-- Galería El Rey -->
-<g transform="translate(122, 45)">
-<rect fill="#ffffff" filter="drop-shadow(0px 1px 2px rgba(11,28,48,0.12))" height="18" rx="4" width="68"></rect>
-<circle cx="10" cy="9" fill="#75777d" r="4"></circle>
-<text fill="#0b1c30" font-family="Inter" font-size="7.5" font-weight="600" x="18" y="12">Gal. El Rey</text>
-</g>
-<!-- Galería Guizado -->
-<g transform="translate(26" y="160)">
-<rect fill="#ffffff" filter="drop-shadow(0px 1px 2px rgba(11,28,48,0.12))" height="18" rx="4" width="64"></rect>
-<circle cx="9" cy="9" fill="#75777d" r="3.5"></circle>
-<text fill="#0b1c30" font-family="Inter" font-size="7.5" font-weight="600" x="16" y="12">Guizado</text>
-</g>
-<!-- CC Gama -->
-<g transform="translate(274" y="270)">
-<rect fill="#ffffff" filter="drop-shadow(0px 1px 2px rgba(11,28,48,0.12))" height="18" rx="4" width="64"></rect>
-<circle cx="9" cy="9" fill="#75777d" r="3.5"></circle>
-<text fill="#0b1c30" font-family="Inter" font-size="7.5" font-weight="600" x="16" y="12">CC Gama</text>
-</g>
-<!-- Pedestrian Route Geometry Path -->
-<!-- Path from Station Gamarra (bottom right) -> Humboldt -> Gamarra entrance -->
-<path d="M 290 310 L 256 310 L 256 124 L 200 124 L 200 148" fill="none" opacity="0.45" stroke="#6cf8bb" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"></path>
-<path d="M 290 310 L 256 310 L 256 124 L 200 124 L 200 148" fill="none" id="walk-path" stroke="#006c49" stroke-dasharray="7 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
-<!-- Origin: Current Position Marker (Estación Gamarra area) -->
-<g transform="translate(256, 172)">
-<!-- Heading direction beam -->
-<path d="M 0 0 L -18 -32 L 18 -32 Z" fill="#00714d" opacity="0.2"></path>
-<!-- Pulsing Rings -->
-<circle cx="0" cy="0" fill="#6cf8bb" opacity="0.4" r="14">
-<animate attributename="r" dur="2.2s" repeatcount="indefinite" values="8;18;8"></animate>
-<animate attributename="opacity" dur="2.2s" repeatcount="indefinite" values="0.6;0.1;0.6"></animate>
-</circle>
-<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.3))" r="7"></circle>
-<circle cx="0" cy="0" fill="#006c49" r="4.5"></circle>
-</g>
-<!-- Destination Target: Galería San Pedro Gate Pin & Tooltip -->
-<g transform="translate(200, 148)">
-<!-- Ground shadow -->
-<ellipse cx="0" cy="2" fill="#0b1c30" opacity="0.16" rx="14" ry="4"></ellipse>
-<!-- Animated Ring Indicator around entrance -->
-<circle cx="0" cy="-14" fill="none" r="18" stroke="#006c49" stroke-dasharray="3 3" stroke-width="1.5">
-<animatetransform attributename="transform" dur="8s" from="0 0 -14" repeatcount="indefinite" to="360 0 -14" type="rotate"></animatetransform>
-</circle>
-<!-- Marker Body -->
-<path d="M 0 0 C -10 -12 -12 -22 0 -34 C 12 -22 10 -12 0 0 Z" fill="#091426" filter="drop-shadow(0 4px 6px rgba(11,28,48,0.3))"></path>
-<circle cx="0" cy="-21" fill="#6cf8bb" r="5"></circle>
-<!-- High-Contrast Floating Tooltip Tag -->
-<g transform="translate(-64, -68)">
-<rect fill="#091426" filter="drop-shadow(0 3px 6px rgba(11,28,48,0.25))" height="30" rx="6" width="128"></rect>
-<path d="M 64 30 L 68 34 L 72 30 Z" fill="#091426"></path>
-<text fill="#ffffff" font-family="Plus Jakarta Sans" font-size="8.5" font-weight="700" x="10" y="14">Galería San Pedro</text>
-<text fill="#6cf8bb" font-family="Inter" font-size="7" font-weight="600" x="10" y="24">Stand B-204 te espera adentro</text>
-</g>
-</g>
-<!-- Safe Security Booth (Serenazgo / PNP) checkpoint marker -->
-<g transform="translate(268, 110)">
-<circle cx="0" cy="0" fill="#eff4ff" r="7" stroke="#0b1c30" stroke-width="1"></circle>
-<text fill="#006c49" font-family="Material Symbols Outlined" font-size="9" x="-4" y="3">verified_user</text>
-</g>
-</svg>
-<!-- Floating Map Control Buttons (Stacked vertical right) -->
-<div class="absolute top-space-sm right-space-sm flex flex-col gap-1.5 z-10">
-<!-- North Compass Reset -->
-<button aria-label="Orientar al norte" class="w-10 h-10 rounded-xl bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center hover:bg-surface-container-low active:scale-95 transition-all" id="compass-btn">
-<span class="material-symbols-outlined text-[20px] text-secondary">explore</span>
-</button>
-<!-- Pedestrian Heatmap Toggle -->
-<button aria-label="Capa de afluencia peatonal" class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant shadow-sm flex items-center justify-center hover:bg-surface-container-low active:scale-95 transition-all" id="heat-toggle-btn">
-<span class="material-symbols-outlined text-[20px]">group</span>
-</button>
-<!-- Safety Corridor Serenos Toggle -->
-<button aria-label="Zonas seguras y serenos" class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant shadow-sm flex items-center justify-center hover:bg-surface-container-low active:scale-95 transition-all" id="safety-btn">
-<span class="material-symbols-outlined text-[20px]">shield</span>
-</button>
-<!-- Zoom Controls -->
-<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mt-1">
-<button aria-label="Acercar mapa" class="w-10 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low active:bg-surface-container" id="zoom-in">
-<span class="material-symbols-outlined text-[18px]">add</span>
-</button>
-<button aria-label="Alejar mapa" class="w-10 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low active:bg-surface-container" id="zoom-out">
-<span class="material-symbols-outlined text-[18px]">remove</span>
-</button>
-</div>
-</div>
-<!-- Real-time Street Camera Preview Badge (Floating bottom-left) -->
-<div class="absolute bottom-space-sm left-space-sm bg-surface-container-lowest/95 backdrop-blur-md px- space-sm py-1 rounded-lg shadow-sm flex items-center gap-1.5 z-10">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-<span class="font-label-sm text-label-sm text-primary">Jr. Gamarra cdra. 10</span>
-</div>
-</div>
-</div>
-<!-- Building Proximity & 3D Interior Transition Callout (Delight Moment) -->
-<div class="px-margin my-space-xs">
-<div class="relative overflow-hidden bg-primary text-on-primary rounded-xl p-space-md shadow-md">
-<!-- Ambient decorative glow -->
-<div class="absolute -right-8 -top-8 w-28 h-28 bg-secondary/25 rounded-full blur-2xl pointer-events-none"></div>
-<div class="flex items-start justify-between relative z-10 gap-space-sm">
-<div class="flex flex-col">
-<div class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-secondary-container text-[18px]">door_front</span>
-<span class="font-label-sm text-label-sm text-secondary-container font-bold uppercase tracking-wider">A 35 metros de la entrada</span>
-</div>
-<h2 class="font-headline-sm text-headline-sm text-on-primary mt-0.5 leading-snug">
-            ¡Llegando a Galería San Pedro!
-          </h2>
-<p class="font-body-sm text-body-sm text-primary-fixed-dim mt-0.5">
-            Ingreso principal: Puerta 1 (Jr. Gamarra 1043)
-          </p>
-</div>
-<div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-[24px]">view_in_ar</span>
-</div>
-</div>
-<!-- Dynamic Transition Trigger Button -->
-<button class="w-full mt-space-md bg-secondary text-on-secondary py-3 px-space-md rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-space-sm shadow-sm active:scale-[0.98] transition-all" id="activate-indoor-btn">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">layers</span>
-<span>Entrar al Edificio y Activar Navegador 3D Interior</span>
-<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Destination Stand Details Sheet -->
-<div class="px-margin pt-space-xs pb-space-lg flex flex-col gap-space-sm">
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
-<div class="flex items-start justify-between gap-space-sm pb-space-sm">
-<div class="flex flex-col min-w-0">
-<div class="flex items-center gap-space-xs">
-<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">Destino Final</span>
-<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
-<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Piso 1 • Pasaje B</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface truncate mt-0.5">
-            Confecciones Los Andes
-          </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[16px] text-secondary">checkroom</span>
-            Casacas Denim &amp; Franela Reactiva al por mayor
-          </p>
-</div>
-<div class="flex flex-col items-end shrink-0">
-<span class="font-headline-sm text-headline-sm text-primary font-bold">B-204</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Stand</span>
-</div>
-</div>
-<!-- Quick Action Secondary Buttons -->
-<div class="grid grid-cols-3 gap-gutter-sm pt-space-sm">
-<!-- WhatsApp / Call Stand -->
-<button class="flex items-center justify-center gap-1.5 py-2.5 px-space-xs bg-surface-container text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors" id="contact-stand-btn">
-<span class="material-symbols-outlined text-[18px] text-secondary">chat</span>
-<span>Contactar</span>
-</button>
-<!-- Turn-by-Turn Steps List Sheet Trigger -->
-<button class="flex items-center justify-center gap-1.5 py-2.5 px-space-xs bg-surface-container text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors" id="view-steps-btn">
-<span class="material-symbols-outlined text-[18px] text-primary">format_list_bulleted</span>
-<span>Ver Pasos</span>
-</button>
-<!-- Pause / Cancel Navigation -->
-<button class="flex items-center justify-center gap-1.5 py-2.5 px-space-xs bg-surface-container-low text-on-surface-variant rounded-lg font-label-md text-label-md hover:bg-error-container hover:text-on-error-container transition-colors" id="pause-route-btn">
-<span class="material-symbols-outlined text-[18px]" id="pause-icon">pause</span>
-<span id="pause-label">Pausar</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Interactive Steps Drawer Modal (Initially hidden) -->
-<div class="fixed inset-x-0 bottom-16 top-16 bg-primary/40 backdrop-blur-sm z-40 hidden flex-col justify-end p-margin" id="steps-modal">
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-xl max-h-[75%] overflow-y-auto flex flex-col gap-space-md">
-<div class="flex items-center justify-between">
-<div class="flex flex-col">
-<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Hoja de Ruta Peatonal</span>
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Pasos en la calle</h4>
-</div>
-<button class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant" id="close-steps-btn">
-<span class="material-symbols-outlined text-[20px]">close</span>
-</button>
-</div>
-<div class="flex flex-col gap-space-md">
-<div class="flex items-start gap-space-sm">
-<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-[18px]">near_me</span>
-</div>
-<div class="flex flex-col">
-<p class="font-body-md text-body-md text-on-surface font-semibold">Salida Estación Gamarra (Línea 1)</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Camina 120m hacia el norte por Jr. Antonio Bazo</p>
-</div>
-</div>
-<div class="flex items-start gap-space-sm">
-<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-[18px]">turn_right</span>
-</div>
-<div class="flex flex-col">
-<p class="font-body-md text-body-md text-on-surface font-semibold">Gira a la derecha en Jr. Humboldt</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Pasa por el corredor seguro de serenos (75m)</p>
-</div>
-</div>
-<div class="flex items-start gap-space-sm">
-<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-[18px]">door_front</span>
-</div>
-<div class="flex flex-col">
-<p class="font-body-md text-body-md text-on-surface font-semibold">Puerta 1: Galería San Pedro</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Llegada al pórtico. Pasa al escaneo y mapa 3D interior</p>
-</div>
-</div>
-</div>
-<button class="w-full mt-space-sm bg-primary text-on-primary py-3 rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2" id="modal-indoor-btn">
-<span class="material-symbols-outlined text-[18px]">layers</span>
-        Iniciar Navegación Interior
-      </button>
-</div>
-</div>
-</div>
-<script>
-  (function() {
-    // Audio Voice Guidance Toggle
-    var audioBtn = document.getElementById('audio-toggle-btn');
-    var speakerIcon = document.getElementById('speaker-icon');
-    var isMuted = false;
+</head>
 
-    if (audioBtn && speakerIcon) {
-      audioBtn.addEventListener('click', function() {
-        isMuted = !isMuted;
-        speakerIcon.textContent = isMuted ? 'volume_off' : 'volume_up';
-        audioBtn.classList.toggle('bg-error-container', isMuted);
-        audioBtn.classList.toggle('text-on-error-container', isMuted);
-      });
-    }
+<body class="gamarrachain-app bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+  <gamarra-header role="cliente" title="GPS Peatonal Calle" back="explorar"></gamarra-header>
+  <main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen">
+    <div class="flex flex-col w-full relative">
+      <!-- Status Chip & Turn-by-Turn HUD Bar -->
+      <div class="px-margin pt-space-sm pb-space-xs flex flex-col gap-space-sm z-30">
+        <!-- Live GNSS Accuracy Pill -->
+        <div
+          class="flex items-center justify-between bg-surface-container-lowest px-space-md py-space-xs rounded-full shadow-sm">
+          <div class="flex items-center gap-space-xs">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+            </span>
+            <span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase">GPS Peatonal Activo</span>
+          </div>
+          <div class="flex items-center gap-1 text-on-surface-variant">
+            <span class="material-symbols-outlined text-[16px] text-secondary">satellite_alt</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Damero A</span>
+          </div>
+        </div>
+        <!-- Active Turn-by-Turn Maneuver HUD Card -->
+        <div
+          class="bg-primary text-on-primary rounded-xl p-space-md shadow-md flex items-center justify-between gap-space-sm">
+          <div class="flex items-center gap-space-md min-w-0">
+            <div
+              class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 shadow-sm">
+              <span class="material-symbols-outlined text-[30px]"
+                style="font-variation-settings: 'FILL' 1;">turn_left</span>
+            </div>
+            <div class="flex flex-col min-w-0">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-label-sm text-label-sm text-secondary-container font-bold uppercase tracking-wider">En
+                  45 metros</span>
+                <span class="w-1 h-1 rounded-full bg-primary-fixed-dim"></span>
+                <span class="font-body-sm text-body-sm text-primary-fixed-dim">Jr. Humboldt</span>
+              </div>
+              <p class="font-headline-sm text-headline-sm text-on-primary truncate">Gira a la izquierda</p>
+              <p class="font-body-sm text-body-sm text-on-primary-container truncate">Hacia Jr. Gamarra (vía peatonal)
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-1 shrink-0">
+            <button aria-label="Silenciar guía por voz"
+              class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary hover:bg-surface-tint/30 transition-colors"
+              id="audio-toggle-btn">
+              <span class="material-symbols-outlined text-[20px]" id="speaker-icon">volume_up</span>
+            </button>
+          </div>
+        </div>
+        <!-- Quick Route Overview Metrics -->
+        <div class="grid grid-cols-3 gap-gutter-sm">
+          <div
+            class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col items-center text-center">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Distancia</span>
+            <span class="font-headline-sm text-headline-sm text-primary font-bold">320 m</span>
+          </div>
+          <div
+            class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col items-center text-center">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Tiempo Est.</span>
+            <div class="flex items-center gap-0.5">
+              <span class="font-headline-sm text-headline-sm text-secondary font-bold">4</span>
+              <span class="font-body-sm text-body-sm text-on-surface">min</span>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col items-center text-center">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Flujo Peatonal</span>
+            <span
+              class="font-label-md text-label-md text-on-secondary-container bg-secondary-container/40 px-2 py-0.5 rounded-full mt-0.5">Moderado</span>
+          </div>
+        </div>
+      </div>
+      <!-- 2D Vector Styled Urban Map Container -->
+      <div class="relative w-full px-margin my-space-sm">
+        <div
+          class="relative w-full h-[360px] rounded-xl overflow-hidden shadow-sm bg-surface-container-low select-none">
+          <!-- High detail vector canvas simulating crisp Mapbox/Google Maps street layout -->
+          <svg class="w-full h-full" fill="none" viewbox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Grid street tile patterns -->
+              <pattern height="40" id="street-grid" patternunits="userSpaceOnUse" width="40">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e5eeff" stroke-width="1"></path>
+              </pattern>
+              <!-- Dynamic route glow filter -->
+              <filter height="140%" id="routeGlow" width="140%" x="-20%" y="-20%">
+                <fegaussianblur result="blur" stddeviation="3"></fegaussianblur>
+                <fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+              </filter>
+            </defs>
+            <!-- Base Map Canvas -->
+            <rect fill="#f4f7fc" height="360" width="360"></rect>
+            <rect fill="url(#street-grid)" height="360" opacity="0.6" width="360"></rect>
+            <!-- Urban City Blocks (Damero de Gamarra blocks) -->
+            <rect fill="#e8effc" height="90" rx="6" width="76" x="18" y="24"></rect>
+            <rect fill="#e8effc" height="90" rx="6" width="132" x="114" y="24"></rect>
+            <rect fill="#e8effc" height="90" rx="6" width="78" x="266" y="24"></rect>
+            <rect fill="#e8effc" height="94" rx="6" width="76" x="18" y="136"></rect>
+            <!-- Highlighted Destination Block (Galería San Pedro) -->
+            <rect fill="#dce9ff" height="94" rx="6" width="132" x="114" y="136"></rect>
+            <rect fill="#e8effc" height="94" rx="6" width="78" x="266" y="136"></rect>
+            <rect fill="#e8effc" height="88" rx="6" width="76" x="18" y="252"></rect>
+            <rect fill="#e8effc" height="88" rx="6" width="132" x="114" y="252"></rect>
+            <rect fill="#e8effc" height="88" rx="6" width="78" x="266" y="252"></rect>
+            <!-- Road Network -->
+            <!-- Av. 28 de Julio (Top horizontal) -->
+            <line stroke="#ffffff" stroke-linecap="round" stroke-width="14" x1="0" x2="360" y1="18" y2="18"></line>
+            <!-- Jr. Humboldt (Middle horizontal) -->
+            <line stroke="#ffffff" stroke-linecap="round" stroke-width="16" x1="0" x2="360" y1="124" y2="124"></line>
+            <!-- Jr. Hipólito Unanue (Bottom horizontal) -->
+            <line stroke="#ffffff" stroke-linecap="round" stroke-width="14" x1="0" x2="360" y1="240" y2="240"></line>
+            <!-- Jr. Antonio Bazo (Left vertical) -->
+            <line stroke="#ffffff" stroke-width="16" x1="104" x2="104" y1="0" y2="360"></line>
+            <!-- Jr. Gamarra (Central Pedestrian Avenue - tinted lightly for pedestrian zone) -->
+            <line stroke="#ffffff" stroke-width="20" x1="256" x2="256" y1="0" y2="360"></line>
+            <line stroke="#6cf8bb" stroke-opacity="0.25" stroke-width="16" x1="256" x2="256" y1="0" y2="360"></line>
+            <!-- Street Names (Typography in urban cartography style) -->
+            <text fill="#45474c" font-family="Inter" font-size="9" font-weight="600" letter-spacing="0.5"
+              transform="rotate(90 260 55)" x="260" y="55">JR. GAMARRA (Paseo Peatonal)</text>
+            <text fill="#75777d" font-family="Inter" font-size="8" font-weight="500" letter-spacing="0.5"
+              transform="rotate(90 108 55)" x="108" y="55">JR. ANTONIO BAZO</text>
+            <text fill="#45474c" font-family="Inter" font-size="8.5" font-weight="600" x="122" y="128">JR.
+              HUMBOLDT</text>
+            <text fill="#75777d" font-family="Inter" font-size="8" font-weight="500" x="122" y="244">JR. HIPÓLITO
+              UNANUE</text>
+            <text fill="#75777d" font-family="Inter" font-size="8" font-weight="500" x="122" y="16">AV. 28 DE
+              JULIO</text>
+            <!-- Pedestrian Walkway Crosswalk markings -->
+            <line stroke="#d3e4fe" stroke-dasharray="2 2" stroke-width="2" x1="248" x2="264" y1="120" y2="120"></line>
+            <line stroke="#d3e4fe" stroke-dasharray="2 2" stroke-width="2" x1="248" x2="264" y1="128" y2="128"></line>
+            <line stroke="#d3e4fe" stroke-dasharray="2 2" stroke-width="2" x1="96" x2="112" y1="120" y2="120"></line>
+            <!-- Nearby Landmark Galerias (Grey/Blue tags) -->
+            <!-- Galería El Rey -->
+            <g transform="translate(122, 45)">
+              <rect fill="#ffffff" filter="drop-shadow(0px 1px 2px rgba(11,28,48,0.12))" height="18" rx="4" width="68">
+              </rect>
+              <circle cx="10" cy="9" fill="#75777d" r="4"></circle>
+              <text fill="#0b1c30" font-family="Inter" font-size="7.5" font-weight="600" x="18" y="12">Gal. El
+                Rey</text>
+            </g>
+            <!-- Galería Guizado -->
+            <g transform="translate(26" y="160)">
+              <rect fill="#ffffff" filter="drop-shadow(0px 1px 2px rgba(11,28,48,0.12))" height="18" rx="4" width="64">
+              </rect>
+              <circle cx="9" cy="9" fill="#75777d" r="3.5"></circle>
+              <text fill="#0b1c30" font-family="Inter" font-size="7.5" font-weight="600" x="16" y="12">Guizado</text>
+            </g>
+            <!-- CC Gama -->
+            <g transform="translate(274" y="270)">
+              <rect fill="#ffffff" filter="drop-shadow(0px 1px 2px rgba(11,28,48,0.12))" height="18" rx="4" width="64">
+              </rect>
+              <circle cx="9" cy="9" fill="#75777d" r="3.5"></circle>
+              <text fill="#0b1c30" font-family="Inter" font-size="7.5" font-weight="600" x="16" y="12">CC Gama</text>
+            </g>
+            <!-- Pedestrian Route Geometry Path -->
+            <!-- Path from Station Gamarra (bottom right) -> Humboldt -> Gamarra entrance -->
+            <path d="M 290 310 L 256 310 L 256 124 L 200 124 L 200 148" fill="none" opacity="0.45" stroke="#6cf8bb"
+              stroke-linecap="round" stroke-linejoin="round" stroke-width="10"></path>
+            <path d="M 290 310 L 256 310 L 256 124 L 200 124 L 200 148" fill="none" id="walk-path" stroke="#006c49"
+              stroke-dasharray="7 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+            <!-- Origin: Current Position Marker (Estación Gamarra area) -->
+            <g transform="translate(256, 172)">
+              <!-- Heading direction beam -->
+              <path d="M 0 0 L -18 -32 L 18 -32 Z" fill="#00714d" opacity="0.2"></path>
+              <!-- Pulsing Rings -->
+              <circle cx="0" cy="0" fill="#6cf8bb" opacity="0.4" r="14">
+                <animate attributename="r" dur="2.2s" repeatcount="indefinite" values="8;18;8"></animate>
+                <animate attributename="opacity" dur="2.2s" repeatcount="indefinite" values="0.6;0.1;0.6"></animate>
+              </circle>
+              <circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.3))" r="7"></circle>
+              <circle cx="0" cy="0" fill="#006c49" r="4.5"></circle>
+            </g>
+            <!-- Destination Target: Galería San Pedro Gate Pin & Tooltip -->
+            <g transform="translate(200, 148)">
+              <!-- Ground shadow -->
+              <ellipse cx="0" cy="2" fill="#0b1c30" opacity="0.16" rx="14" ry="4"></ellipse>
+              <!-- Animated Ring Indicator around entrance -->
+              <circle cx="0" cy="-14" fill="none" r="18" stroke="#006c49" stroke-dasharray="3 3" stroke-width="1.5">
+                <animatetransform attributename="transform" dur="8s" from="0 0 -14" repeatcount="indefinite"
+                  to="360 0 -14" type="rotate"></animatetransform>
+              </circle>
+              <!-- Marker Body -->
+              <path d="M 0 0 C -10 -12 -12 -22 0 -34 C 12 -22 10 -12 0 0 Z" fill="#091426"
+                filter="drop-shadow(0 4px 6px rgba(11,28,48,0.3))"></path>
+              <circle cx="0" cy="-21" fill="#6cf8bb" r="5"></circle>
+              <!-- High-Contrast Floating Tooltip Tag -->
+              <g transform="translate(-64, -68)">
+                <rect fill="#091426" filter="drop-shadow(0 3px 6px rgba(11,28,48,0.25))" height="30" rx="6" width="128">
+                </rect>
+                <path d="M 64 30 L 68 34 L 72 30 Z" fill="#091426"></path>
+                <text fill="#ffffff" font-family="Plus Jakarta Sans" font-size="8.5" font-weight="700" x="10"
+                  y="14">Galería San Pedro</text>
+                <text fill="#6cf8bb" font-family="Inter" font-size="7" font-weight="600" x="10" y="24">Stand B-204 te
+                  espera adentro</text>
+              </g>
+            </g>
+            <!-- Safe Security Booth (Serenazgo / PNP) checkpoint marker -->
+            <g transform="translate(268, 110)">
+              <circle cx="0" cy="0" fill="#eff4ff" r="7" stroke="#0b1c30" stroke-width="1"></circle>
+              <text fill="#006c49" font-family="Material Symbols Outlined" font-size="9" x="-4"
+                y="3">verified_user</text>
+            </g>
+          </svg>
+          <!-- Floating Map Control Buttons (Stacked vertical right) -->
+          <div class="absolute top-space-sm right-space-sm flex flex-col gap-1.5 z-10">
+            <!-- North Compass Reset -->
+            <button aria-label="Orientar al norte"
+              class="w-10 h-10 rounded-xl bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center hover:bg-surface-container-low active:scale-95 transition-all"
+              id="compass-btn">
+              <span class="material-symbols-outlined text-[20px] text-secondary">explore</span>
+            </button>
+            <!-- Pedestrian Heatmap Toggle -->
+            <button aria-label="Capa de afluencia peatonal"
+              class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant shadow-sm flex items-center justify-center hover:bg-surface-container-low active:scale-95 transition-all"
+              id="heat-toggle-btn">
+              <span class="material-symbols-outlined text-[20px]">group</span>
+            </button>
+            <!-- Safety Corridor Serenos Toggle -->
+            <button aria-label="Zonas seguras y serenos"
+              class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant shadow-sm flex items-center justify-center hover:bg-surface-container-low active:scale-95 transition-all"
+              id="safety-btn">
+              <span class="material-symbols-outlined text-[20px]">shield</span>
+            </button>
+            <!-- Zoom Controls -->
+            <div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mt-1">
+              <button aria-label="Acercar mapa"
+                class="w-10 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low active:bg-surface-container"
+                id="zoom-in">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+              </button>
+              <button aria-label="Alejar mapa"
+                class="w-10 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low active:bg-surface-container"
+                id="zoom-out">
+                <span class="material-symbols-outlined text-[18px]">remove</span>
+              </button>
+            </div>
+          </div>
+          <!-- Real-time Street Camera Preview Badge (Floating bottom-left) -->
+          <div
+            class="absolute bottom-space-sm left-space-sm bg-surface-container-lowest/95 backdrop-blur-md px- space-sm py-1 rounded-lg shadow-sm flex items-center gap-1.5 z-10">
+            <span class="w-2 h-2 rounded-full bg-secondary"></span>
+            <span class="font-label-sm text-label-sm text-primary">Jr. Gamarra cdra. 10</span>
+          </div>
+        </div>
+      </div>
+      <!-- Building Proximity & 3D Interior Transition Callout (Delight Moment) -->
+      <div class="px-margin my-space-xs">
+        <div class="relative overflow-hidden bg-primary text-on-primary rounded-xl p-space-md shadow-md">
+          <!-- Ambient decorative glow -->
+          <div class="absolute -right-8 -top-8 w-28 h-28 bg-secondary/25 rounded-full blur-2xl pointer-events-none">
+          </div>
+          <div class="flex items-start justify-between relative z-10 gap-space-sm">
+            <div class="flex flex-col">
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-secondary-container text-[18px]">door_front</span>
+                <span class="font-label-sm text-label-sm text-secondary-container font-bold uppercase tracking-wider">A
+                  35 metros de la entrada</span>
+              </div>
+              <h2 class="font-headline-sm text-headline-sm text-on-primary mt-0.5 leading-snug">
+                ¡Llegando a Galería San Pedro!
+              </h2>
+              <p class="font-body-sm text-body-sm text-primary-fixed-dim mt-0.5">
+                Ingreso principal: Puerta 1 (Jr. Gamarra 1043)
+              </p>
+            </div>
+            <div
+              class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[24px]">view_in_ar</span>
+            </div>
+          </div>
+          <!-- Dynamic Transition Trigger Button -->
+          <button
+            class="w-full mt-space-md bg-secondary text-on-secondary py-3 px-space-md rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-space-sm shadow-sm active:scale-[0.98] transition-all"
+            id="activate-indoor-btn">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">layers</span>
+            <span>Entrar al Edificio y Activar Navegador 3D Interior</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+      <!-- Destination Stand Details Sheet -->
+      <div class="px-margin pt-space-xs pb-space-lg flex flex-col gap-space-sm">
+        <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+          <div class="flex items-start justify-between gap-space-sm pb-space-sm">
+            <div class="flex flex-col min-w-0">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">Destino
+                  Final</span>
+                <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Piso 1 • Pasaje B</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface truncate mt-0.5">
+                Confecciones Los Andes
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+                <span class="material-symbols-outlined text-[16px] text-secondary">checkroom</span>
+                Casacas Denim &amp; Franela Reactiva al por mayor
+              </p>
+            </div>
+            <div class="flex flex-col items-end shrink-0">
+              <span class="font-headline-sm text-headline-sm text-primary font-bold">B-204</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Stand</span>
+            </div>
+          </div>
+          <!-- Quick Action Secondary Buttons -->
+          <div class="grid grid-cols-3 gap-gutter-sm pt-space-sm">
+            <!-- WhatsApp / Call Stand -->
+            <button
+              class="flex items-center justify-center gap-1.5 py-2.5 px-space-xs bg-surface-container text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors"
+              id="contact-stand-btn">
+              <span class="material-symbols-outlined text-[18px] text-secondary">chat</span>
+              <span>Contactar</span>
+            </button>
+            <!-- Turn-by-Turn Steps List Sheet Trigger -->
+            <button
+              class="flex items-center justify-center gap-1.5 py-2.5 px-space-xs bg-surface-container text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors"
+              id="view-steps-btn">
+              <span class="material-symbols-outlined text-[18px] text-primary">format_list_bulleted</span>
+              <span>Ver Pasos</span>
+            </button>
+            <!-- Pause / Cancel Navigation -->
+            <button
+              class="flex items-center justify-center gap-1.5 py-2.5 px-space-xs bg-surface-container-low text-on-surface-variant rounded-lg font-label-md text-label-md hover:bg-error-container hover:text-on-error-container transition-colors"
+              id="pause-route-btn">
+              <span class="material-symbols-outlined text-[18px]" id="pause-icon">pause</span>
+              <span id="pause-label">Pausar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Interactive Steps Drawer Modal (Initially hidden) -->
+      <div
+        class="fixed inset-x-0 bottom-16 top-16 bg-primary/40 backdrop-blur-sm z-40 hidden flex-col justify-end p-margin"
+        id="steps-modal">
+        <div
+          class="bg-surface-container-lowest rounded-xl p-space-md shadow-xl max-h-[75%] overflow-y-auto flex flex-col gap-space-md">
+          <div class="flex items-center justify-between">
+            <div class="flex flex-col">
+              <span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Hoja de Ruta Peatonal</span>
+              <h4 class="font-headline-sm text-headline-sm text-on-surface">Pasos en la calle</h4>
+            </div>
+            <button
+              class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant"
+              id="close-steps-btn">
+              <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+          </div>
+          <div class="flex flex-col gap-space-md">
+            <div class="flex items-start gap-space-sm">
+              <div
+                class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[18px]">near_me</span>
+              </div>
+              <div class="flex flex-col">
+                <p class="font-body-md text-body-md text-on-surface font-semibold">Salida Estación Gamarra (Línea 1)</p>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Camina 120m hacia el norte por Jr. Antonio
+                  Bazo</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-space-sm">
+              <div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[18px]">turn_right</span>
+              </div>
+              <div class="flex flex-col">
+                <p class="font-body-md text-body-md text-on-surface font-semibold">Gira a la derecha en Jr. Humboldt</p>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Pasa por el corredor seguro de serenos
+                  (75m)</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-space-sm">
+              <div
+                class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[18px]">door_front</span>
+              </div>
+              <div class="flex flex-col">
+                <p class="font-body-md text-body-md text-on-surface font-semibold">Puerta 1: Galería San Pedro</p>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Llegada al pórtico. Pasa al escaneo y mapa
+                  3D interior</p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="w-full mt-space-sm bg-primary text-on-primary py-3 rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2"
+            id="modal-indoor-btn">
+            <span class="material-symbols-outlined text-[18px]">layers</span>
+            Iniciar Navegación Interior
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        // Audio Voice Guidance Toggle
+        var audioBtn = document.getElementById('audio-toggle-btn');
+        var speakerIcon = document.getElementById('speaker-icon');
+        var isMuted = false;
 
-    // Navigation Pause Micro-interaction
-    var pauseBtn = document.getElementById('pause-route-btn');
-    var pauseIcon = document.getElementById('pause-icon');
-    var pauseLabel = document.getElementById('pause-label');
-    var isPaused = false;
-
-    if (pauseBtn && pauseIcon && pauseLabel) {
-      pauseBtn.addEventListener('click', function() {
-        isPaused = !isPaused;
-        pauseIcon.textContent = isPaused ? 'play_arrow' : 'pause';
-        pauseLabel.textContent = isPaused ? 'Reanudar' : 'Pausar';
-        pauseBtn.classList.toggle('bg-secondary-container', isPaused);
-        pauseBtn.classList.toggle('text-on-secondary-container', isPaused);
-      });
-    }
-
-    // Steps Modal Interactions
-    var viewStepsBtn = document.getElementById('view-steps-btn');
-    var closeStepsBtn = document.getElementById('close-steps-btn');
-    var stepsModal = document.getElementById('steps-modal');
-
-    if (viewStepsBtn && closeStepsBtn && stepsModal) {
-      viewStepsBtn.addEventListener('click', function() {
-        stepsModal.classList.remove('hidden');
-        stepsModal.classList.add('flex');
-      });
-
-      closeStepsBtn.addEventListener('click', function() {
-        stepsModal.classList.add('hidden');
-        stepsModal.classList.remove('flex');
-      });
-
-      stepsModal.addEventListener('click', function(e) {
-        if (e.target === stepsModal) {
-          stepsModal.classList.add('hidden');
-          stepsModal.classList.remove('flex');
+        if (audioBtn && speakerIcon) {
+          audioBtn.addEventListener('click', function () {
+            isMuted = !isMuted;
+            speakerIcon.textContent = isMuted ? 'volume_off' : 'volume_up';
+            audioBtn.classList.toggle('bg-error-container', isMuted);
+            audioBtn.classList.toggle('text-on-error-container', isMuted);
+          });
         }
-      });
-    }
 
-    // Transition Button to Indoor GPS 3D
-    var activateIndoorBtn = document.getElementById('activate-indoor-btn');
-    var modalIndoorBtn = document.getElementById('modal-indoor-btn');
+        // Navigation Pause Micro-interaction
+        var pauseBtn = document.getElementById('pause-route-btn');
+        var pauseIcon = document.getElementById('pause-icon');
+        var pauseLabel = document.getElementById('pause-label');
+        var isPaused = false;
 
-    function triggerIndoorTransition() {
-      // Direct integration link or prompt trigger for 3D Indoor mode
-      var banner = activateIndoorBtn ? activateIndoorBtn.closest('.relative') : null;
-      if (banner) {
-        activateIndoorBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">sync</span><span>Sincronizando Beacons Interiores...</span>';
-        setTimeout(function() {
-          window.location.hash = '#screen-indoor-3d';
-          // Visual feedback if single-page routing
-          activateIndoorBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span><span>¡Conectado al Interior! Entrando...</span>';
-        }, 900);
-      }
-    }
-
-    if (activateIndoorBtn) {
-      activateIndoorBtn.addEventListener('click', triggerIndoorTransition);
-    }
-    if (modalIndoorBtn) {
-      modalIndoorBtn.addEventListener('click', function() {
-        if (stepsModal) {
-          stepsModal.classList.add('hidden');
-          stepsModal.classList.remove('flex');
+        if (pauseBtn && pauseIcon && pauseLabel) {
+          pauseBtn.addEventListener('click', function () {
+            isPaused = !isPaused;
+            pauseIcon.textContent = isPaused ? 'play_arrow' : 'pause';
+            pauseLabel.textContent = isPaused ? 'Reanudar' : 'Pausar';
+            pauseBtn.classList.toggle('bg-secondary-container', isPaused);
+            pauseBtn.classList.toggle('text-on-secondary-container', isPaused);
+          });
         }
-        triggerIndoorTransition();
-      });
-    }
 
-    // Contact stand dummy feedback
-    var contactBtn = document.getElementById('contact-stand-btn');
-    if (contactBtn) {
-      contactBtn.addEventListener('click', function() {
-        var originalText = contactBtn.innerHTML;
-        contactBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-secondary">done</span><span>WhatsApp Abierto</span>';
-        setTimeout(function() {
-          contactBtn.innerHTML = originalText;
-        }, 2200);
-      });
-    }
+        // Steps Modal Interactions
+        var viewStepsBtn = document.getElementById('view-steps-btn');
+        var closeStepsBtn = document.getElementById('close-steps-btn');
+        var stepsModal = document.getElementById('steps-modal');
 
-    // Map control toggles
-    var compassBtn = document.getElementById('compass-btn');
-    if (compassBtn) {
-      compassBtn.addEventListener('click', function() {
-        compassBtn.classList.add('rotate-45');
-        setTimeout(function() {
-          compassBtn.classList.remove('rotate-45');
-        }, 400);
-      });
-    }
+        if (viewStepsBtn && closeStepsBtn && stepsModal) {
+          viewStepsBtn.addEventListener('click', function () {
+            stepsModal.classList.remove('hidden');
+            stepsModal.classList.add('flex');
+          });
 
-    var heatBtn = document.getElementById('heat-toggle-btn');
-    if (heatBtn) {
-      heatBtn.addEventListener('click', function() {
-        heatBtn.classList.toggle('text-secondary');
-        heatBtn.classList.toggle('bg-secondary-container/30');
-      });
-    }
+          closeStepsBtn.addEventListener('click', function () {
+            stepsModal.classList.add('hidden');
+            stepsModal.classList.remove('flex');
+          });
 
-    var safetyBtn = document.getElementById('safety-btn');
-    if (safetyBtn) {
-      safetyBtn.addEventListener('click', function() {
-        safetyBtn.classList.toggle('text-secondary');
-        safetyBtn.classList.toggle('bg-secondary-container/30');
-      });
-    }
-  })();
-</script></main>  
+          stepsModal.addEventListener('click', function (e) {
+            if (e.target === stepsModal) {
+              stepsModal.classList.add('hidden');
+              stepsModal.classList.remove('flex');
+            }
+          });
+        }
+
+        // Transition Button to Indoor GPS 3D
+        var activateIndoorBtn = document.getElementById('activate-indoor-btn');
+        var modalIndoorBtn = document.getElementById('modal-indoor-btn');
+
+        function triggerIndoorTransition() {
+          // Direct integration link or prompt trigger for 3D Indoor mode
+          var banner = activateIndoorBtn ? activateIndoorBtn.closest('.relative') : null;
+          if (banner) {
+            activateIndoorBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">sync</span><span>Sincronizando Beacons Interiores...</span>';
+            setTimeout(function () {
+              window.location.hash = '#screen-indoor-3d';
+              // Visual feedback if single-page routing
+              activateIndoorBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span><span>¡Conectado al Interior! Entrando...</span>';
+            }, 900);
+          }
+        }
+
+        if (activateIndoorBtn) {
+          activateIndoorBtn.addEventListener('click', triggerIndoorTransition);
+        }
+        if (modalIndoorBtn) {
+          modalIndoorBtn.addEventListener('click', function () {
+            if (stepsModal) {
+              stepsModal.classList.add('hidden');
+              stepsModal.classList.remove('flex');
+            }
+            triggerIndoorTransition();
+          });
+        }
+
+        // Contact stand dummy feedback
+        var contactBtn = document.getElementById('contact-stand-btn');
+        if (contactBtn) {
+          contactBtn.addEventListener('click', function () {
+            var originalText = contactBtn.innerHTML;
+            contactBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-secondary">done</span><span>WhatsApp Abierto</span>';
+            setTimeout(function () {
+              contactBtn.innerHTML = originalText;
+            }, 2200);
+          });
+        }
+
+        // Map control toggles
+        var compassBtn = document.getElementById('compass-btn');
+        if (compassBtn) {
+          compassBtn.addEventListener('click', function () {
+            compassBtn.classList.add('rotate-45');
+            setTimeout(function () {
+              compassBtn.classList.remove('rotate-45');
+            }, 400);
+          });
+        }
+
+        var heatBtn = document.getElementById('heat-toggle-btn');
+        if (heatBtn) {
+          heatBtn.addEventListener('click', function () {
+            heatBtn.classList.toggle('text-secondary');
+            heatBtn.classList.toggle('bg-secondary-container/30');
+          });
+        }
+
+        var safetyBtn = document.getElementById('safety-btn');
+        if (safetyBtn) {
+          safetyBtn.addEventListener('click', function () {
+            safetyBtn.classList.toggle('text-secondary');
+            safetyBtn.classList.toggle('bg-secondary-container/30');
+          });
+        }
+      })();
+    </script>
+  </main>
   <gamarra-nav mode="cliente" active="mapa-gps"></gamarra-nav>
-</body></html>
+</body>
+
+</html>

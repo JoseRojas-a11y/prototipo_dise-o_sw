@@ -1,0 +1,13 @@
+/* Estilos específicos para la pantalla de perfil de usuario */
+.account-card {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.account-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(9, 20, 38, 0.1);
+}
+
+.admin-card {
+  background: linear-gradient(135deg, #091426 0%, #1e293b 100%);
+}
