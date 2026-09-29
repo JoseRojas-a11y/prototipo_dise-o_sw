@@ -119,9 +119,29 @@
               <h3 class="font-headline font-bold text-base text-primary leading-tight">Catálogo de Beneficios</h3>
               <p class="text-xs text-on-surface-variant">Canjea tus puntos por descuentos en tiendas aliadas</p>
             </div>
-            <span class="text-xs font-bold text-secondary bg-surface-container-high px-2.5 py-1 rounded-full">
-              6 Activos
-            </span>
+            
+            <!-- Selector Desplegable de Orden / Galería -->
+            <div class="relative">
+              <button id="coupon-sort-btn" onclick="toggleCouponDropdown(event)" class="text-xs font-bold text-secondary bg-surface-container-high hover:bg-surface-container-highest px-2.5 py-1 rounded-full flex items-center gap-1 transition-colors">
+                <span class="material-symbols-outlined text-[15px]">filter_list</span>
+                <span id="coupon-filter-label">Todos</span>
+                <span class="material-symbols-outlined text-[15px] transition-transform" id="coupon-dd-chevron">expand_more</span>
+              </button>
+
+              <div id="coupon-dropdown" class="hidden absolute right-0 top-8 w-48 bg-surface-container-lowest rounded-xl shadow-xl border border-outline-variant/30 py-1.5 z-30 text-xs text-on-surface text-left animate-[fadeIn_0.15s_ease-out]">
+                <span class="px-3 py-1 text-[10px] font-bold text-on-surface-variant uppercase tracking-wider block">Galería / Zona</span>
+                <button onclick="applyCouponFilter('all', 'Todos')" class="w-full px-3 py-1.5 hover:bg-surface-container flex items-center justify-between text-primary font-semibold">
+                  <span>Todas las galerías</span>
+                  <span class="material-symbols-outlined text-[14px] text-secondary">check</span>
+                </button>
+                <button onclick="applyCouponFilter('damero-a', 'Damero A')" class="w-full px-3 py-1.5 hover:bg-surface-container flex items-center justify-between text-on-surface">
+                  <span>Damero A (San Pedro / Guizado)</span>
+                </button>
+                <button onclick="applyCouponFilter('damero-b', 'Damero B')" class="w-full px-3 py-1.5 hover:bg-surface-container flex items-center justify-between text-on-surface">
+                  <span>Damero B (Gama / América)</span>
+                </button>
+              </div>
+            </div>
           </div>
 
           <!-- Filtros de categoría -->
@@ -653,6 +673,52 @@
       document.getElementById('pos-result-box').classList.remove('hidden');
       document.getElementById('pos-input-code').value = "GC-DAM-8942";
     }
+
+    // Funciones del Menú Desplegable de Beneficios
+    function toggleCouponDropdown(e) {
+      e.stopPropagation();
+      const dd = document.getElementById('coupon-dropdown');
+      const chevron = document.getElementById('coupon-dd-chevron');
+      const isHidden = dd.classList.contains('hidden');
+      if (isHidden) {
+        dd.classList.remove('hidden');
+        if (chevron) chevron.style.transform = 'rotate(180deg)';
+      } else {
+        dd.classList.add('hidden');
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    function applyCouponFilter(zone, label) {
+      document.getElementById('coupon-filter-label').innerText = label;
+      document.getElementById('coupon-dropdown').classList.add('hidden');
+      const chevron = document.getElementById('coupon-dd-chevron');
+      if (chevron) chevron.style.transform = 'rotate(0deg)';
+
+      const cards = document.querySelectorAll('#coupons-container .coupon-card');
+      cards.forEach(card => {
+        if (zone === 'all') {
+          card.style.display = 'flex';
+        } else if (zone === 'damero-a') {
+          // Mostrar si es de Damero A o genérico
+          card.style.display = card.innerText.includes('Damero A') ? 'flex' : 'none';
+        } else if (zone === 'damero-b') {
+          // Mostrar si es de Damero B
+          card.style.display = card.innerText.includes('Damero B') ? 'flex' : 'none';
+        }
+      });
+      showToast(`Filtrado por: ${label}`);
+    }
+
+    document.addEventListener('click', (e) => {
+      const dd = document.getElementById('coupon-dropdown');
+      const btn = document.getElementById('coupon-sort-btn');
+      const chevron = document.getElementById('coupon-dd-chevron');
+      if (dd && !dd.classList.contains('hidden') && !btn.contains(e.target) && !dd.contains(e.target)) {
+        dd.classList.add('hidden');
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+      }
+    });
   </script>
 </body>
 </html>

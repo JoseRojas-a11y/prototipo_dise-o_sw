@@ -90,23 +90,82 @@
         </div>
       </div>
 
-      <!-- Control de Suscripción & SaaS Activo -->
-      <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant/30 flex flex-col gap-3">
+      <!-- Control de Suscripción & SaaS Activo con Componente Desplegable -->
+      <div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-outline-variant/30 flex flex-col gap-3">
         <div class="flex items-center justify-between">
           <h3 class="font-headline font-bold text-sm text-primary flex items-center gap-1.5">
             <span class="material-symbols-outlined text-primary text-[18px]">workspace_premium</span>
             Suscripción SaaS Vigente
           </h3>
-          <span class="text-xs font-bold text-secondary bg-secondary-container/50 px-2 py-0.5 rounded-full">Taller Pro</span>
+          <span class="text-xs font-bold text-secondary bg-secondary-container/50 px-2.5 py-0.5 rounded-full">Taller Pro</span>
         </div>
-        <p class="text-xs text-on-surface-variant">Renovación automática el 15 del próximo mes. Incluye catálogo ilimitado, 3 pautas destacadas y analíticas de tráfico.</p>
+        <p class="text-xs text-on-surface-variant">Renovación automática el 15 del próximo mes. Catálogo ilimitado, 3 pautas destacadas y analíticas de tráfico.</p>
+        
         <div class="flex items-center gap-2 pt-1">
-          <a href="#" data-path="planes-suscripcion" class="flex-1 h-9 rounded-lg bg-primary text-on-primary text-xs font-semibold flex items-center justify-center gap-1 shadow-sm">
+          <!-- Botón que despliega el panel de opciones de suscripción in-situ -->
+          <button type="button" onclick="toggleSubscriptionDropdown()" class="flex-1 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm hover:bg-primary/90 transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-[16px]">tune</span>
             <span>Gestionar Suscripción</span>
-            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
-          </a>
-          <a href="#" data-path="publicidad" class="h-9 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary text-xs font-semibold flex items-center justify-center gap-1">
+            <span class="material-symbols-outlined text-[16px] transition-transform" id="sub-chevron">expand_more</span>
+          </button>
+          
+          <button type="button" onclick="toggleAdsDropdown()" class="h-9 px-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary text-xs font-semibold flex items-center justify-center gap-1 transition-colors">
+            <span class="material-symbols-outlined text-[16px]">campaign</span>
             <span>Pauta</span>
+          </button>
+        </div>
+
+        <!-- Panel Desplegable de Gestión de Suscripción (In-situ) -->
+        <div id="subscription-dropdown-panel" class="hidden flex-col gap-3 pt-3 border-t border-outline-variant/20 animate-[fadeIn_0.15s_ease-out]">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Opciones de Nivel de Cuenta</span>
+          
+          <div class="grid grid-cols-1 gap-2">
+            <!-- Plan Actual -->
+            <div class="p-2.5 rounded-xl border-2 border-secondary bg-secondary/5 flex items-center justify-between">
+              <div class="flex flex-col">
+                <div class="flex items-center gap-1.5">
+                  <span class="font-bold text-xs text-primary">Taller Pro (Activo)</span>
+                  <span class="px-1.5 py-0.2 rounded bg-secondary text-white text-[9px] font-bold">Vigente</span>
+                </div>
+                <span class="text-[10px] text-on-surface-variant">S/ 49.00 / mes · Facturación mensual</span>
+              </div>
+              <span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+            </div>
+
+            <!-- Upgrade a Plan Mayorista -->
+            <div class="p-2.5 rounded-xl border border-outline-variant/30 hover:border-primary/50 bg-surface-container-low flex items-center justify-between cursor-pointer transition-colors" onclick="selectPlan('Mayorista Enterprise')">
+              <div class="flex flex-col">
+                <span class="font-bold text-xs text-primary">Mayorista Enterprise</span>
+                <span class="text-[10px] text-on-surface-variant">S/ 120.00 / mes · Integración ERP, Beacon UWB + 10 pautas</span>
+              </div>
+              <button class="px-2.5 py-1 rounded-lg bg-primary text-white text-[10px] font-bold">Mejorar</button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1 text-[11px]">
+            <a href="/prototipos/alvaro_vera/modulo_5_publicidad_merchant/planes_checkout_suscripcion/index.html" class="text-secondary font-semibold hover:underline flex items-center gap-0.5">
+              <span>Ver comparativa completa</span>
+              <span class="material-symbols-outlined text-[13px]">open_in_new</span>
+            </a>
+            <button onclick="cancelSubscriptionAlert()" class="text-error hover:underline font-medium">Cancelar renovación</button>
+          </div>
+        </div>
+
+        <!-- Panel Desplegable de Pautas Rápidas -->
+        <div id="ads-dropdown-panel" class="hidden flex-col gap-2 pt-3 border-t border-outline-variant/20 animate-[fadeIn_0.15s_ease-out]">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Campañas de Pauta Activas</span>
+            <span class="text-[10px] font-bold text-secondary">2 de 3 usadas</span>
+          </div>
+          <div class="p-2 rounded-xl bg-surface-container-low border border-outline-variant/20 flex items-center justify-between">
+            <div class="flex flex-col">
+              <span class="text-xs font-semibold text-primary">Campana "Liquidación Denim Invierno"</span>
+              <span class="text-[10px] text-on-surface-variant">Activa hasta 05 Oct · 1,420 impresiones</span>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-secondary"></span>
+          </div>
+          <a href="/prototipos/alvaro_vera/modulo_5_publicidad_merchant/configuracion_pago_campana/index.html" class="w-full py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary text-[11px] font-bold text-center block transition-colors">
+            + Crear Nueva Pauta Rápida
           </a>
         </div>
       </div>
@@ -141,5 +200,56 @@
   
   
   <gamarra-nav mode="vendedor" active="inicio"></gamarra-nav>
+
+  <script>
+    function toggleSubscriptionDropdown() {
+      const panel = document.getElementById('subscription-dropdown-panel');
+      const adsPanel = document.getElementById('ads-dropdown-panel');
+      const chevron = document.getElementById('sub-chevron');
+      if (adsPanel) adsPanel.classList.add('hidden');
+      
+      const isHidden = panel.classList.contains('hidden');
+      if (isHidden) {
+        panel.classList.remove('hidden');
+        panel.classList.add('flex');
+        chevron.style.transform = 'rotate(180deg)';
+      } else {
+        panel.classList.add('hidden');
+        panel.classList.remove('flex');
+        chevron.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    function toggleAdsDropdown() {
+      const panel = document.getElementById('ads-dropdown-panel');
+      const subPanel = document.getElementById('subscription-dropdown-panel');
+      const chevron = document.getElementById('sub-chevron');
+      if (subPanel) {
+        subPanel.classList.add('hidden');
+        subPanel.classList.remove('flex');
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+      }
+      
+      if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        panel.classList.add('flex');
+      } else {
+        panel.classList.add('hidden');
+        panel.classList.remove('flex');
+      }
+    }
+
+    function selectPlan(planName) {
+      alert(`Has solicitado la suscripción al plan "${planName}". Se generó la orden de confirmación.`);
+      toggleSubscriptionDropdown();
+    }
+
+    function cancelSubscriptionAlert() {
+      if (confirm("¿Estás seguro de cancelar la renovación automática del Plan Taller Pro? Tu stand pasará al catálogo básico a fin de mes.")) {
+        alert("Renovación automática pausada.");
+        toggleSubscriptionDropdown();
+      }
+    }
+  </script>
 </body>
 </html>
