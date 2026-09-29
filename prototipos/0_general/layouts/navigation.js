@@ -18,6 +18,7 @@ export const ROUTES = {
   'closet': '/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/closet_guardados_historial/index.html',
   'cupones': '/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/fidelizacion_cupones/index.html',
   'perfil': '/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/perfil_usuario/index.html',
+  'notificaciones': '/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/centro_notificaciones/index.html',
 
   // Modo Administración y Gobernanza Centralizada (Módulo 7)
   'admin-sistema': '/prototipos/jose_rojas/modulo_7_gobernanza_admin/panel_administrador_sistema/index.html',

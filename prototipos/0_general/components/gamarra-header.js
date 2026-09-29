@@ -64,13 +64,13 @@ class GamarraHeader extends HTMLElement {
           </div>
 
           <div class="flex items-center gap-1">
-            <button aria-label="Notificaciones" class="relative w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary active:bg-surface-container transition-colors">
+            <button id="header-notif-btn" aria-label="Notificaciones" class="relative w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary active:bg-surface-container transition-colors" title="Ver Notificaciones">
               <span class="material-symbols-outlined text-[22px]">notifications</span>
               <span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full ring-2 ring-surface"></span>
             </button>
             
             <!-- Botón Conmutador de Perfil y Modo -->
-            <button id="header-profile-btn" aria-label="Perfil y Modo" class="w-9 h-9 rounded-full ${isCliente ? 'bg-primary text-on-primary' : 'bg-secondary text-on-secondary'} flex items-center justify-center shadow-sm active:scale-95 transition-all" title="${isCliente ? 'Ir a Modo Vendedor (Merchant Hub)' : 'Ir a Modo Cliente (Explorar)'}">
+            <button id="header-profile-btn" aria-label="Perfil y Modo" class="w-9 h-9 rounded-full ${isCliente ? 'bg-primary text-on-primary' : 'bg-secondary text-on-secondary'} flex items-center justify-center shadow-sm active:scale-95 transition-all" title="Ver Perfil y Conmutador de Cuentas">
               <span class="material-symbols-outlined text-[18px]">${isCliente ? 'person' : 'store'}</span>
             </button>
           </div>
@@ -87,6 +87,14 @@ class GamarraHeader extends HTMLElement {
         } else {
           window.history.back();
         }
+      });
+    }
+
+    const notifBtn = this.querySelector('#header-notif-btn');
+    if (notifBtn) {
+      notifBtn.addEventListener('click', () => {
+        const roleParam = isCliente ? '?role=cliente' : '?role=vendedor';
+        navigateTo(`notificaciones${roleParam}`);
       });
     }
 

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+  <meta content="mobile_tab" name="shell-type">
+  <title>Notificaciones - GamarraChain</title>
+  <link rel="stylesheet" href="/prototipos/general/css/theme.css">
+  <link rel="stylesheet" href="/prototipos/general/css/layout.css">
+  <link rel="stylesheet" href="/prototipos/general/css/components.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="/shared/theme/tailwind-init.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-header.js"></script>
+  <script type="module" src="/prototipos/general/components/gamarra-nav.js"></script>
+  <script type="module" src="/shared/navigation/router.js"></script>
+</head>
+<body class="gamarrachain-app bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+  <gamarra-header role="cliente" title="Notificaciones" back="true"></gamarra-header>
+
+  <main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen">
+    <div class="flex flex-col w-full pb-6">
+
+      <!-- Conmutador de Rol: Cliente vs Vendedor -->
+      <div class="px-margin pt-3 pb-2 flex flex-col gap-2">
+        <div class="p-1 bg-surface-container-high/80 rounded-xl flex items-center gap-1 shadow-sm">
+          <button id="tab-client-btn" onclick="switchNotificationRole('cliente')" class="flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px] text-secondary">shopping_bag</span>
+            <span>Comprador (Ofertas & Novedades)</span>
+          </button>
+          <button id="tab-merchant-btn" onclick="switchNotificationRole('vendedor')" class="flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all text-on-surface-variant hover:text-primary flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">storefront</span>
+            <span>Vendedor (Radar & Reseñas)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Barra de Estado y Herramientas -->
+      <div class="px-margin flex items-center justify-between pb-1">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-primary flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            Bandeja de Entrada
+          </span>
+          <span id="unread-counter" class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-secondary/15 text-secondary">
+            3 no leídas
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="markAllAsRead()" class="text-[11px] text-secondary hover:underline font-semibold flex items-center gap-0.5">
+            <span class="material-symbols-outlined text-[14px]">done_all</span> Marcar leídas
+          </button>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VISTA CLIENTE: OFERTAS, NUEVOS PRODUCTOS, RECOMENDACIONES -->
+      <!-- ============================================== -->
+      <div id="view-client-notifs" class="flex flex-col gap-3">
+        <!-- Filtros Rápidos (Pill Bar) -->
+        <div class="px-margin overflow-x-auto no-scrollbar flex items-center gap-2 py-1">
+          <button class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-primary text-on-primary shadow-sm whitespace-nowrap" onclick="filterNotifs(this, 'all', 'client')">
+            Todas (5)
+          </button>
+          <button class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest whitespace-nowrap" onclick="filterNotifs(this, 'ofertas', 'client')">
+            Ofertas Flash (2)
+          </button>
+          <button class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest whitespace-nowrap" onclick="filterNotifs(this, 'nuevos', 'client')">
+            Nuevos Productos (1)
+          </button>
+          <button class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest whitespace-nowrap" onclick="filterNotifs(this, 'recomendaciones', 'client')">
+            Recomendaciones (1)
+          </button>
+          <button class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest whitespace-nowrap" onclick="filterNotifs(this, 'puntos', 'client')">
+            Puntos Ganados (1)
+          </button>
+        </div>
+
+        <!-- Lista de Notificaciones de Cliente -->
+        <div class="px-margin flex flex-col gap-2.5" id="client-notifs-container">
+
+          <!-- Notif 1: Oferta Flash -->
+          <article data-cat="ofertas" onclick="toggleRead(this)" class="notif-card bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm border border-outline-variant/30 flex items-start gap-3 cursor-pointer relative">
+            <div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">local_offer</span>
+            </div>
+            <div class="flex-1 flex flex-col gap-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="px-2 py-0.5 rounded-md bg-secondary/10 text-secondary text-[10px] font-bold uppercase tracking-wider">Oferta Especial</span>
+                <span class="text-[10px] text-on-surface-variant font-medium">Hace 5 min</span>
+              </div>
+              <h4 class="font-headline font-bold text-xs text-primary leading-tight">¡30% OFF en Damero Jeans por hoy!</h4>
+              <p class="text-xs text-on-surface-variant leading-relaxed">
+                Presenta tu código QR en el Stand 112 (Gal. Guizado Hnos) y obtén 30% en jeans rígidos corte flare y mom fit.
+              </p>
+              <div class="flex items-center justify-between pt-1 mt-1 border-t border-outline-variant/15">
+                <span class="text-[10px] font-bold text-secondary">Damero A · Cupón activo</span>
+                <a href="/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/fidelizacion_cupones/index.html" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg bg-primary text-white text-[10px] font-bold flex items-center gap-1 hover:bg-primary/90">
+                  <span>Ver Cupón</span>
+                  <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+            <span class="unread-dot w-2 h-2 rounded-full bg-secondary shrink-0 mt-1"></span>
+          </article>
+
+          <!-- Notif 2: Nuevo Producto -->
+          <article data-cat="nuevos" onclick="toggleRead(this)" class="notif-card bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm border border-outline-variant/30 flex items-start gap-3 cursor-pointer relative">
+            <div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">new_releases</span>
+            </div>
+            <div class="flex-1 flex flex-col gap-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Nuevo Producto</span>
+                <span class="text-[10px] text-on-surface-variant font-medium">Hace 25 min</span>
+              </div>
+              <h4 class="font-headline font-bold text-xs text-primary leading-tight">Nueva Colección: Casacas Bomber Pima 50/1</h4>
+              <p class="text-xs text-on-surface-variant leading-relaxed">
+                Tu puesto guardado <span class="font-semibold text-primary">Confecciones Los Andes (Stand B-204)</span> acaba de ingresar 50 unidades de casacas impermeables térmicas.
+              </p>
+              <div class="flex items-center justify-between pt-1 mt-1 border-t border-outline-variant/15">
+                <span class="text-[10px] text-on-surface-variant">Desde S/ 65.00 mayorista</span>
+                <a href="/prototipos/renzo_chavarria/modulo_2_catalogo_busqueda/detalle_producto_comentarios/index.html" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary text-[10px] font-bold flex items-center gap-1">
+                  <span>Ver Prenda</span>
+                  <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+            <span class="unread-dot w-2 h-2 rounded-full bg-secondary shrink-0 mt-1"></span>
+          </article>
+
+          <!-- Notif 3: Recomendación Personalizada -->
+          <article data-cat="recomendaciones" onclick="toggleRead(this)" class="notif-card bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm border border-outline-variant/30 flex items-start gap-3 cursor-pointer relative">
+            <div class="w-10 h-10 rounded-xl bg-tertiary-fixed text-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+            </div>
+            <div class="flex-1 flex flex-col gap-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="px-2 py-0.5 rounded-md bg-tertiary-container/10 text-primary text-[10px] font-bold uppercase tracking-wider">Para Tu Closet</span>
+                <span class="text-[10px] text-on-surface-variant font-medium">Hace 2 horas</span>
+              </div>
+              <h4 class="font-headline font-bold text-xs text-primary leading-tight">Recomendado para ti: Poleras Hoodie Reactivas</h4>
+              <p class="text-xs text-on-surface-variant leading-relaxed">
+                Basado en tus prendas guardadas de franela en Damero A, 3 puestos cercanos tienen ofertas en tus colores favoritos.
+              </p>
+              <div class="flex items-center justify-between pt-1 mt-1 border-t border-outline-variant/15">
+                <span class="text-[10px] text-secondary font-bold">Galería San Pedro · Damero A</span>
+                <a href="/prototipos/mauricio_chinchayhuara/modulo_1_navegacion_core/explorar_tendencias/index.html" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary text-[10px] font-bold flex items-center gap-1">
+                  <span>Explorar</span>
+                  <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+            <span class="unread-dot w-2 h-2 rounded-full bg-secondary shrink-0 mt-1"></span>
+          </article>
+
+          <!-- Notif 4: Puntos Ganados / Gamificación -->
+          <article data-cat="puntos" onclick="toggleRead(this)" class="notif-card bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm border border-outline-variant/30 flex items-start gap-3 cursor-pointer relative">
+            <div class="w-10 h-10 rounded-xl bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">token</span>
+            </div>
+            <div class="flex-1 flex flex-col gap-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="px-2 py-0.5 rounded-md bg-secondary/15 text-secondary text-[10px] font-bold uppercase tracking-wider">Puntos Acreditados</span>
+                <span class="text-[10px] text-on-surface-variant font-medium">Hoy 10:15 AM</span>
+              </div>
+              <h4 class="font-headline font-bold text-xs text-primary leading-tight">¡+50 GC Puntos acreditados por validación!</h4>
+              <p class="text-xs text-on-surface-variant leading-relaxed">
+                Tu reporte sobre el Stand B-204 fue auditado y confirmado. Tu confianza de validador se actualizó al 98.4%.
+              </p>
+              <div class="flex items-center justify-between pt-1 mt-1 border-t border-outline-variant/15">
+                <span class="text-[10px] text-on-surface-variant">Saldo total: 1,450 GC Pts</span>
+                <a href="/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/fidelizacion_cupones/index.html" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg bg-secondary/15 text-secondary hover:bg-secondary hover:text-white text-[10px] font-bold flex items-center gap-1 transition-colors">
+                  <span>Canjear</span>
+                  <span class="material-symbols-outlined text-[13px]">redeem</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Notif 5: Oferta 2x1 -->
+          <article data-cat="ofertas" onclick="toggleRead(this)" class="notif-card bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm border border-outline-variant/30 flex items-start gap-3 cursor-pointer relative">
+            <div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">loyalty</span>
+            </div>
+            <div class="flex-1 flex flex-col gap-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-primary text-[10px] font-bold uppercase tracking-wider">Promoción 2x1</span>
+                <span class="text-[10px] text-on-surface-variant font-medium">Ayer</span>
+              </div>
+              <h4 class="font-headline font-bold text-xs text-primary leading-tight">Textiles San Pedro: 2x1 en Polos Oversize</h4>
+              <p class="text-xs text-on-surface-variant leading-relaxed">
+                Canjea con 500 puntos y llévate dos prendas por el precio de una en colores reactivos seleccionados.
+              </p>
+              <div class="flex items-center justify-between pt-1 mt-1 border-t border-outline-variant/15">
+                <span class="text-[10px] text-on-surface-variant">Gal. San Pedro · Stand C-04</span>
+                <a href="/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/fidelizacion_cupones/index.html" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary text-[10px] font-bold flex items-center gap-1">
+                  <span>Ver Cupón</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VISTA VENDEDOR: CLIENTES LLEGANDO (RADAR) & RESEÑAS -->
+      <!-- ============================================== -->
+      <div id="view-merchant-notifs" class="hidden flex-col gap-3">
+        <!-- Filtros Rápidos (Pill Bar) -->
+        <div class="px-margin overflow-x-auto no-scrollbar flex items-center gap-2 py-1">
+          <button class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-primary text-on-primary shadow-sm whitespace-nowrap" onclick="filterNotifs(this, 'all', 'merchant')">
+            Todas (5)
+          </button>
+          <button class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest whitespace-nowrap" onclick="filterNotifs(this, 'radar', 'merchant')">
+            Clientes en Camino (2)
+          </button>
+          <button class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest whitespace-nowrap" onclick="filterNotifs(this, 'comentarios', 'merchant')">
+            Comentarios & Reseñas (2)
+          </button>
+          <button class="cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest whitespace-nowrap" onclick="filterNotifs(this, 'pauta', 'merchant')">
+            Pauta & Rendimiento (1)
+          </button>
+        </div>
+
+        <!-- Lista de Notificaciones de Vendedor -->
+        <div class="px-margin flex flex-col gap-2.5" id="merchant-notifs-container">
+
+          <!-- Notif 1 Vendedor: Cliente Llegando (Radar UWB / GPS) -->
+          <article data-cat="radar" onclick="toggleRead(this)" class="notif-card bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm border-2 border-secondary/40 flex items-start gap-3 cursor-pointer relative bg-gradient-to-r from-secondary/5 to-transparent">
+            <div class="w-10 h-10 rounded-xl bg-secondary text-white flex items-center justify-center shrink-0 relative">
+              <span class="material-symbols-outlined text-[20px] radar-beacon">radar</span>
+              <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-secondary-fixed ring-2 ring-white animate-ping"></span>
+            </div>
+            <div class="flex-1 flex flex-col gap-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="px-2 py-0.5 rounded-md bg-secondary text-white text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed animate-pulse"></span> Radar UWB en Vivo
+                </span>
+                <span class="text-[10px] text-secondary font-bold font-mono">A 12 metros</span>
+              </div>
+              <h4 class="font-headline font-bold text-xs text-primary leading-tight">🎯 ¡Cliente dirigiéndose a tu Stand B-204!</h4>
+              <p class="text-xs text-on-surface-variant leading-relaxed">
+                Un comprador que guardó tu <span class="font-bold text-primary">'Casaca Denim Oversize'</span> en su Closet está caminando por el Pasillo B hacia tu puesto.
+              </p>
+              <div class="flex items-center justify-between pt-1 mt-1 border-t border-outline-variant/15">
+                <span class="text-[10px] text-on-surface-variant font-medium">Tiempo est. de llegada: 30 seg</span>
+                <a href="/prototipos/mauricio_chinchayhuara/modulo_1_navegacion_core/navegador_gps_3d/index.html" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg bg-secondary text-white text-[10px] font-bold flex items-center gap-1 hover:bg-secondary/90">
+                  <span class="material-symbols-outlined text-[13px]">near_me</span>
+                  <span>Ver en Mapa GPS 3D</span>
+                </a>
+              </div>
+            </div>
+            <span class="unread-dot w-2 h-2 rounded-full bg-secondary shrink-0 mt-1"></span>
+          </article>
+
+          <!-- Notif 2 Vendedor: Nuevo Comentario sobre Producto -->
+          <article data-cat="comentarios" onclick="toggleRead(this)" class="notif-card bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm border border-outline-variant/30 flex items-start gap-3 cursor-pointer relative">
+            <div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">rate_review</span>
+            </div>
+            <div class="flex-1 flex flex-col gap-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Nueva Reseña</span>
+                <span class="text-[10px] text-on-surface-variant font-medium">Hace 14 min</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <h4 class="font-headline font-bold text-xs text-primary leading-tight">Casaca Denim Stretch</h4>
+                <div class="flex text-amber-500 text-[12px]">
+                  <span class="material-symbols-outlined text-[14px]">star</span>
+                  <span class="material-symbols-outlined text-[14px]">star</span>
+                  <span class="material-symbols-outlined text-[14px]">star</span>
+                  <span class="material-symbols-outlined text-[14px]">star</span>
+                  <span class="material-symbols-outlined text-[14px]">star</span>
+                </div>
+              </div>
+              <p class="text-xs text-on-surface-variant leading-relaxed italic bg-surface-container-low p-2 rounded-lg border border-outline-variant/20">
+                "Excelente grosor de denim y acabado de costuras reforzadas. Definitivamente volveré a hacer pedidos por docena para mi tienda en Huancayo."
+              </p>
+              <div class="flex items-center justify-between pt-1 mt-1 border-t border-outline-variant/15">
+                <span class="text-[10px] text-on-surface-variant font-medium">Cliente: Carlos Mendoza (Comprador Mayorista)</span>
+                <a href="/prototipos/renzo_chavarria/modulo_2_catalogo_busqueda/detalle_producto_comentarios/index.html" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg bg-primary text-white text-[10px] font-bold flex items-center gap-1 hover:bg-primary/90">
+                  <span>Responder</span>
+                </a>
+              </div>
+            </div>
+            <span class="unread-dot w-2 h-2 rounded-full bg-secondary shrink-0 mt-1"></span>
+          </article>
+
+          <!-- Notif 3 Vendedor: Cliente Llegando (Ruta de Compras) -->
+          <article data-cat="radar" onclick="toggleRead(this)" class="notif-card bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm border border-outline-variant/30 flex items-start gap-3 cursor-pointer relative">
+            <div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">directions_walk</span>
+            </div>
+            <div class="flex-1 flex flex-col gap-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="px-2 py-0.5 rounded-md bg-secondary/15 text-secondary text-[10px] font-bold uppercase tracking-wider">Cliente en Camino</span>
+                <span class="text-[10px] text-on-surface-variant font-medium">Hace 35 min</span>
+              </div>
+              <h4 class="font-headline font-bold text-xs text-primary leading-tight">🎯 Cliente con ruta de compras hacia tu galería</h4>
+              <p class="text-xs text-on-surface-variant leading-relaxed">
+                Comprador optimizó su ruta de paradas desde Galería Guizado hacia Stand B-204 (Confecciones Los Andes).
+              </p>
+              <div class="flex items-center justify-between pt-1 mt-1 border-t border-outline-variant/15">
+                <span class="text-[10px] text-secondary font-bold">Interés: Polos Pima 50/1</span>
+                <a href="/prototipos/alvaro_vera/modulo_5_publicidad_merchant/panel_comerciante_metricas/index.html" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary text-[10px] font-bold flex items-center gap-1">
+                  <span>Ver Panel Stand</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Notif 4 Vendedor: Pregunta sobre Producto -->
+          <article data-cat="comentarios" onclick="toggleRead(this)" class="notif-card bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm border border-outline-variant/30 flex items-start gap-3 cursor-pointer relative">
+            <div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">chat</span>
+            </div>
+            <div class="flex-1 flex flex-col gap-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Consulta de Stock</span>
+                <span class="text-[10px] text-on-surface-variant font-medium">Hace 1 hora</span>
+              </div>
+              <h4 class="font-headline font-bold text-xs text-primary leading-tight">Pregunta en 'Polera Hoodie Reactiva'</h4>
+              <p class="text-xs text-on-surface-variant leading-relaxed bg-surface-container-low p-2 rounded-lg border border-outline-variant/20">
+                "¿Tienen disponibilidad en color verde olivo talla XL para envío interprovincial a Trujillo?"
+              </p>
+              <div class="flex items-center justify-between pt-1 mt-1 border-t border-outline-variant/15">
+                <span class="text-[10px] text-on-surface-variant">Usuario: Lucia_Trujillo</span>
+                <a href="/prototipos/renzo_chavarria/modulo_2_catalogo_busqueda/detalle_producto_comentarios/index.html" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg bg-primary text-white text-[10px] font-bold flex items-center gap-1 hover:bg-primary/90">
+                  <span>Responder Pregunta</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Notif 5 Vendedor: Rendimiento Publicitario B2B -->
+          <article data-cat="pauta" onclick="toggleRead(this)" class="notif-card bg-surface-container-lowest rounded-2xl p-3.5 shadow-sm border border-outline-variant/30 flex items-start gap-3 cursor-pointer relative">
+            <div class="w-10 h-10 rounded-xl bg-primary-container text-white flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">campaign</span>
+            </div>
+            <div class="flex-1 flex flex-col gap-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider">Impacto Pauta</span>
+                <span class="text-[10px] text-on-surface-variant font-medium">Hoy 09:00 AM</span>
+              </div>
+              <h4 class="font-headline font-bold text-xs text-primary leading-tight">Tu Campaña Destacada alcanzó 450 impresiones</h4>
+              <p class="text-xs text-on-surface-variant leading-relaxed">
+                Tu banner patrocinado en Damero A generó un incremento del 18% en visitas físicas hacia tu stand hoy.
+              </p>
+              <div class="flex items-center justify-between pt-1 mt-1 border-t border-outline-variant/15">
+                <span class="text-[10px] text-secondary font-bold">+38 clics en mapa</span>
+                <a href="/prototipos/alvaro_vera/modulo_5_publicidad_merchant/panel_comerciante_metricas/index.html" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary text-[10px] font-bold flex items-center gap-1">
+                  <span>Ver Métricas</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- TOAST FEEDBACK -->
+  <div id="notif-toast" class="hidden fixed bottom-20 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-primary text-white text-xs font-semibold shadow-lg flex items-center gap-2">
+    <span class="material-symbols-outlined text-secondary-fixed text-[16px]">check_circle</span>
+    <span id="notif-toast-text">Notificación marcada como leída</span>
+  </div>
+
+  <gamarra-nav mode="cliente"></gamarra-nav>
+
+  <script>
+    // Inicialización según parámetros de URL (?role=vendedor | ?role=cliente)
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const roleParam = urlParams.get('role');
+      if (roleParam === 'vendedor') {
+        switchNotificationRole('vendedor');
+      } else {
+        switchNotificationRole('cliente');
+      }
+      updateUnreadCounter();
+    });
+
+    function switchNotificationRole(role) {
+      const viewClient = document.getElementById('view-client-notifs');
+      const viewMerchant = document.getElementById('view-merchant-notifs');
+      const btnClient = document.getElementById('tab-client-btn');
+      const btnMerchant = document.getElementById('tab-merchant-btn');
+
+      if (role === 'cliente') {
+        viewClient.classList.remove('hidden');
+        viewClient.classList.add('flex');
+        viewMerchant.classList.add('hidden');
+        viewMerchant.classList.remove('flex');
+
+        btnClient.className = "flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5";
+        btnMerchant.className = "flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all text-on-surface-variant hover:text-primary flex items-center justify-center gap-1.5";
+      } else {
+        viewClient.classList.add('hidden');
+        viewClient.classList.remove('flex');
+        viewMerchant.classList.remove('hidden');
+        viewMerchant.classList.add('flex');
+
+        btnMerchant.className = "flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5";
+        btnClient.className = "flex-1 py-2 rounded-lg font-label-md text-label-md text-center transition-all text-on-surface-variant hover:text-primary flex items-center justify-center gap-1.5";
+      }
+      updateUnreadCounter();
+    }
+
+    function filterNotifs(btn, cat, viewType) {
+      const containerId = viewType === 'client' ? '#client-notifs-container' : '#merchant-notifs-container';
+      const container = document.querySelector(containerId);
+      const pills = btn.parentElement.querySelectorAll('.cat-pill');
+
+      pills.forEach(p => {
+        p.className = "cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest whitespace-nowrap";
+      });
+      btn.className = "cat-pill px-3 py-1 rounded-full text-xs font-semibold bg-primary text-on-primary shadow-sm whitespace-nowrap";
+
+      const cards = container.querySelectorAll('article');
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function toggleRead(card) {
+      const dot = card.querySelector('.unread-dot');
+      if (dot) {
+        dot.remove();
+        card.classList.add('read');
+        showToast("Notificación marcada como leída");
+        updateUnreadCounter();
+      }
+    }
+
+    function markAllAsRead() {
+      document.querySelectorAll('.unread-dot').forEach(dot => dot.remove());
+      document.querySelectorAll('.notif-card').forEach(c => c.classList.add('read'));
+      updateUnreadCounter();
+      showToast("Todas las notificaciones marcadas como leídas");
+    }
+
+    function updateUnreadCounter() {
+      const activeContainer = document.querySelector('#view-client-notifs:not(.hidden) #client-notifs-container') ||
+                              document.querySelector('#view-merchant-notifs:not(.hidden) #merchant-notifs-container');
+      if (!activeContainer) return;
+
+      const unreadCount = activeContainer.querySelectorAll('.unread-dot').length;
+      const counterBadge = document.getElementById('unread-counter');
+      if (unreadCount > 0) {
+        counterBadge.innerText = `${unreadCount} no leídas`;
+        counterBadge.className = "text-[11px] font-bold px-2 py-0.5 rounded-full bg-secondary/15 text-secondary";
+      } else {
+        counterBadge.innerText = "Al día";
+        counterBadge.className = "text-[11px] font-bold px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant";
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('notif-toast');
+      document.getElementById('notif-toast-text').innerText = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>

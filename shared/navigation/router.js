@@ -19,6 +19,7 @@
     'closet': '/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/closet_guardados_historial/index.html',
     'cupones': '/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/fidelizacion_cupones/index.html',
     'perfil': '/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/perfil_usuario/index.html',
+    'notificaciones': '/prototipos/jose_rojas/modulo_3_incentivos_fidelizacion/centro_notificaciones/index.html',
 
     // Modo Administración y Gobernanza Centralizada (Módulo 7)
     'admin-sistema': '/prototipos/jose_rojas/modulo_7_gobernanza_admin/panel_administrador_sistema/index.html',
@@ -54,6 +55,21 @@
       profileIcon.addEventListener('click', (e) => {
         e.preventDefault();
         navigateTo(ROUTES['perfil']);
+      });
+    }
+
+    // 2.1 Acceso al Centro de Notificaciones desde la Campana
+    const notifBtn = document.querySelector('header button[aria-label="Notificaciones"], header #header-notif-btn');
+    if (notifBtn) {
+      notifBtn.style.cursor = 'pointer';
+      notifBtn.title = "Ver Notificaciones y Alertas";
+      notifBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isMerchant = window.location.pathname.includes('modulo_5') || 
+                           window.location.pathname.includes('modulo_6') || 
+                           window.location.pathname.includes('gobernanza_gestion_negocio');
+        const roleParam = isMerchant ? '?role=vendedor' : '?role=cliente';
+        navigateTo(ROUTES['notificaciones'] + roleParam);
       });
     }
 
