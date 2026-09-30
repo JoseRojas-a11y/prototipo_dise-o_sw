@@ -95,6 +95,19 @@
       card.addEventListener('click', (e) => {
         if (!e.target.closest('button')) window.location.href = DETALLE;
       });
+      card.querySelectorAll('button').forEach((btn) => {
+        const t = (btn.innerText || '').trim();
+        if (t.startsWith('Comentarios')) btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.href = DETALLE;
+        });
+        else if (t.startsWith('Editar')) btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.href = INGESTA;
+        });
+      });
     });
   })();
 </script>

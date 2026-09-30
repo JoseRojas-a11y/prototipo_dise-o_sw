@@ -74,77 +74,90 @@
     }
 
     // 3. Botones y enlaces contextuales
+    // NOTA (fix Renzo M2/M4): los handlers por texto solo se atan a BUTTON/A.
+    // Antes se ataban también a DIV/ARTICLE padres (su innerText incluye el de
+    // los hijos) y cualquier clic burbujeaba hasta ellos y redirigía mal
+    // (ej: en vitrina todo clic terminaba en ingesta-producto).
     document.querySelectorAll('button, a, article, div').forEach(el => {
       const text = (el.innerText || '').trim();
+      const isClickableTag = el.tagName === 'BUTTON' || el.tagName === 'A';
 
       // Botón Alta Rápida de Inventario (Módulo 4)
-      if (text.includes('Agregar Producto Estrella') || text.includes('+ Agregar Producto')) {
+      if ((text.includes('Agregar Producto Estrella') || text.includes('+ Agregar Producto')) && isClickableTag) {
         el.style.cursor = 'pointer';
         el.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           navigateTo('ingesta-producto');
         });
       }
 
       // Configuración de Pauta (Módulo 5)
-      else if (text.includes('Configura tu Pauta') || text.includes('Crear Campaña') || (text.includes('Destacar') && el.tagName === 'BUTTON')) {
+      else if ((text.includes('Configura tu Pauta') || text.includes('Crear Campaña') || text.includes('Destacar')) && isClickableTag) {
         el.style.cursor = 'pointer';
         el.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           navigateTo('configurar-pauta');
         });
       }
 
       // Suscripción SaaS / Planes (Módulo 5)
-      else if (text.includes('Elige el plan') || text.includes('Ver planes') || text.includes('Mejorar Plan') || text.includes('Gestionar Suscripción')) {
+      else if ((text.includes('Elige el plan') || text.includes('Ver planes') || text.includes('Mejorar Plan') || text.includes('Gestionar Suscripción')) && isClickableTag) {
         el.style.cursor = 'pointer';
         el.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           navigateTo('planes-suscripcion');
         });
       }
 
       // Volver a Catálogo / Vitrina
-      else if (text.includes('Volver al Catálogo') || text.includes('Volver a la Vitrina')) {
+      else if ((text.includes('Volver al Catálogo') || text.includes('Volver a la Vitrina')) && isClickableTag) {
         el.style.cursor = 'pointer';
         el.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           navigateTo('vitrina');
         });
       }
 
       // Volver a Beneficios Publicidad
-      else if (text.includes('Volver a Beneficios de Publicidad')) {
+      else if (text.includes('Volver a Beneficios de Publicidad') && isClickableTag) {
         el.style.cursor = 'pointer';
         el.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           navigateTo('publicidad');
         });
       }
 
       // Volver a Beneficios Suscripción
-      else if (text.includes('Volver a Beneficios') && !text.includes('Publicidad')) {
+      else if (text.includes('Volver a Beneficios') && !text.includes('Publicidad') && isClickableTag) {
         el.style.cursor = 'pointer';
         el.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           navigateTo('suscripcion');
         });
       }
 
       // Navegador GPS 3D desde Explorar
-      else if (text.includes('Navegador GPS Interior 3D') || text.includes('Ver en Mapa 3D')) {
+      else if ((text.includes('Navegador GPS Interior 3D') || text.includes('Ver en Mapa 3D')) && isClickableTag) {
         el.style.cursor = 'pointer';
         el.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           navigateTo('mapa-gps');
         });
       }
 
       // Navegador Peatonal Callejero 2D
-      else if (text.includes('Pasos en la calle') || text.includes('GPS Peatonal Calle')) {
+      else if ((text.includes('Pasos en la calle') || text.includes('GPS Peatonal Calle')) && isClickableTag) {
         el.style.cursor = 'pointer';
         el.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           navigateTo('mapa-calle');
         });
       }
@@ -158,10 +171,11 @@
       }
 
       // Exportación de Inteligencia B2B
-      else if (text.includes('Exportar') || text.includes('Informes Ejecutivos') || text.includes('Exportar Reporte')) {
+      else if ((text.includes('Exportar') || text.includes('Informes Ejecutivos') || text.includes('Exportar Reporte')) && isClickableTag) {
         el.style.cursor = 'pointer';
         el.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           navigateTo('exportacion-analytics');
         });
       }
