@@ -134,10 +134,20 @@
 
   <script>
     document.getElementById('btn-save').addEventListener('click', function() {
+      const name = (document.getElementById('prod-name')?.value || '').trim();
+      const priceDoc = parseFloat(document.getElementById('price-doc')?.value || '0');
+      if (!name || !(priceDoc > 0)) {
+        alert('Completa nombre y precio mayor válido para publicar (prototipo).');
+        return;
+      }
+      const btn = document.getElementById('btn-save');
+      btn.disabled = true;
+      btn.querySelector('span:last-child').textContent = 'Publicando... (IA optimizando foto)';
       const banner = document.getElementById('success-banner');
       banner.classList.remove('hidden');
+      banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       setTimeout(() => {
-        window.location.hash = '#vitrina';
+        window.location.href = '/prototipos/4_renzo_chavarria/modulo_2_catalogo_busqueda/cat_logo_y_vitrina/index.html';
       }, 1200);
     });
   </script>

@@ -16,7 +16,7 @@
 </head><body class="gamarrachain-app bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased select-none">
   <gamarra-header role="cliente" title="Ficha de Producto" back="vitrina"></gamarra-header><main class="flex flex-col relative w-full pt-16 pb-20 bg-surface flex-grow min-h-screen"><div class="flex flex-col w-full pb-8">
 <!-- Top Navigation Contextual Header -->
-<div class="flex items-center justify-between px-margin py-space-sm bg-surface-container-lowest shadow-sm sticky top-0 z-30"><button aria-label="Volver al Catálogo" class="flex items-center gap-space-xs text-on-surface hover:text-primary active:opacity-70 transition-opacity" type="button"><span class="material-symbols-outlined text-[20px] text-on-surface">arrow_back</span><span class="font-body-md text-body-md text-on-surface font-medium">Volver al Catálogo</span></button><span class="font-label-lg text-label-lg text-on-surface font-semibold">Detalle y Comentarios</span></div>
+<div class="flex items-center justify-between px-margin py-space-sm bg-surface-container-lowest shadow-sm sticky top-0 z-30"><button data-path="vitrina" id="btn-back-vitrina" aria-label="Volver al Catálogo" class="flex items-center gap-space-xs text-on-surface hover:text-primary active:opacity-70 transition-opacity" type="button"><span class="material-symbols-outlined text-[20px] text-on-surface">arrow_back</span><span class="font-body-md text-body-md text-on-surface font-medium">Volver al Catálogo</span></button><span class="font-label-lg text-label-lg text-on-surface font-semibold">Detalle y Comentarios</span></div>
 <!-- Main Content Flow -->
 <div class="flex flex-col gap-space-md px-margin mt-space-md">
 <!-- Compact Product Summary Card -->
@@ -34,9 +34,44 @@
 <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs"><div class="flex items-center justify-between text-label-sm"><div class="flex items-center gap-1.5 min-w-0 truncate"><span class="font-semibold text-primary truncate">Confecciones El Inca (Cusco)</span><span class="text-on-surface-variant">• Hace 3d</span></div><div class="flex text-amber-500 flex-shrink-0"><span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span></div></div><p class="font-body-md text-body-md text-on-surface leading-snug">"¿Realizan envíos directos a terminal terrestre para provincia?"</p><div class="flex items-center gap-space-xs pt-space-xs"><button class="w-full bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors" type="button"><span class="material-symbols-outlined text-[16px]">reply</span><span class="">Responder</span></button></div></div>
 </div>
 <!-- Quick Reply Compose Module -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs sticky bottom-16 z-20"><div class="flex items-center justify-between text-label-sm"><span class="text-primary font-semibold">Respuesta Oficial</span><span class="text-on-surface-variant truncate">Como Confecciones Gamarra</span></div><div class="flex items-center gap-2 bg-surface-container rounded-lg px-3 py-1.5 focus-within:bg-surface-container-high transition-colors"><input class="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant outline-none" placeholder="Escribe una respuesta rápida..." type="text"><button aria-label="Enviar respuesta" class="w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform" type="button"><span class="material-symbols-outlined text-[16px]">send</span></button></div></div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs sticky bottom-16 z-20"><div class="flex items-center justify-between text-label-sm"><span class="text-primary font-semibold">Respuesta Oficial</span><span class="text-on-surface-variant truncate">Como Confecciones Gamarra</span></div><div class="flex items-center gap-2 bg-surface-container rounded-lg px-3 py-1.5 focus-within:bg-surface-container-high transition-colors"><input id="quick-reply-input" class="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant outline-none" placeholder="Escribe una respuesta rápida..." type="text"><button id="quick-reply-send" aria-label="Enviar respuesta" class="w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform" type="button"><span class="material-symbols-outlined text-[16px]">send</span></button></div></div>
 </div>
 </div></main>
   
   <gamarra-nav mode="vendedor" active="vitrina"></gamarra-nav>
+  <div id="detalle-toast" class="hidden fixed left-1/2 -translate-x-1/2 bottom-24 z-50 bg-primary text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow-2xl max-w-[90%] text-center"></div>
+  <script>
+    (function () {
+      const VITRINA = '/prototipos/4_renzo_chavarria/modulo_2_catalogo_busqueda/cat_logo_y_vitrina/index.html';
+      const toast = document.getElementById('detalle-toast');
+      let toastTimer;
+      function showToast(msg) {
+        toast.textContent = msg + ' (prototipo)';
+        toast.classList.remove('hidden');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.add('hidden'), 1800);
+      }
+      document.getElementById('btn-back-vitrina')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = VITRINA;
+      });
+      const img = document.querySelector('main img');
+      img?.addEventListener('error', function h() {
+        img.removeEventListener('error', h);
+        img.src = '/prototipos/0_assets/denim_jackets.png';
+      });
+      document.querySelectorAll('main button').forEach((btn) => {
+        const t = (btn.innerText || '').trim();
+        if (t === 'Responder') btn.addEventListener('click', () => showToast('Respuesta enviada al comprador'));
+        else if (t === 'WhatsApp' || t.includes('WhatsApp')) btn.addEventListener('click', () => showToast('Abriendo WhatsApp con el comprador...'));
+        else if (t === 'Enviar') btn.addEventListener('click', () => showToast('Plantilla enviada: Stock listo para despacho'));
+      });
+      document.getElementById('quick-reply-send')?.addEventListener('click', () => {
+        const input = document.getElementById('quick-reply-input');
+        if (!(input?.value || '').trim()) { showToast('Escribe una respuesta primero'); return; }
+        input.value = '';
+        showToast('Respuesta oficial publicada');
+      });
+    })();
+  </script>
 </body></html>
